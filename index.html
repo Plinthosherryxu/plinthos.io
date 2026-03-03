@@ -560,14 +560,32 @@
       .frameworks-grid { grid-template-columns: repeat(2, 1fr); }
       .process-steps { grid-template-columns: 1fr; }
     }
+
+    /* ─── AUDIENCE SWITCHER ─── */
+    .nav-audience-group { display: flex; align-items: center; gap: 0.5rem; margin-right: 0.5rem; }
+    .nav-sep { color: rgba(245,241,234,0.15); font-size: 0.75rem; }
+    .nav-audience {
+      font-size: 0.72rem; font-weight: 400;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: rgba(245,241,234,0.35); text-decoration: none;
+      transition: color var(--transition);
+    }
+    .nav-audience:hover { color: var(--muted); }
+    .nav-audience.active { color: var(--gold-lt) !important; }
   </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">Plinth<span>os</span></a>
+  <a href="/" class="nav-logo">Plinth<span>os</span></a>
   <div class="nav-links">
+    <div class="nav-audience-group">
+      <span class="nav-sep">For</span>
+      <a href="/" class="nav-audience active">Real Estate Funds</a>
+      <span class="nav-sep">/</span>
+      <a href="/valuers" class="nav-audience">Valuers &amp; Lenders</a>
+    </div>
     <a href="#risk">Risk Assessment</a>
     <a href="#services">Services</a>
     <a href="#process">Process</a>
