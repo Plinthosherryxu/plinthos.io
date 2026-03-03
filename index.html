@@ -649,7 +649,7 @@
             <span class="asset-name">14 King Street, Manchester</span>
             <div class="asset-meta">
               <span class="asset-rating">EPC D</span>
-              <span class="risk-tag tag-red">HIGH</span>
+              <span class="risk-tag tag-amber">MODERATE</span>
             </div>
           </div>
           <div class="asset-row">
@@ -692,7 +692,7 @@
       <div class="tier-card red">
         <div class="tier-icon">⚠</div>
         <h3>High Risk Assets</h3>
-        <p>EPC D, E, F or G rated. Non-compliant under current MEES and at serious risk under projected tightening. Immediate action required.</p>
+        <p><strong style="color:var(--gold-lt);">EPC F or G:</strong> Non-compliant under current commercial MEES (in force April 2023) — unlettable without a registered exemption. <strong style="color:var(--gold-lt);">EPC D or E:</strong> Currently compliant, but at significant risk under the projected tightening to EPC B by 2030–2035. Immediate capex planning required.</p>
         <div class="tier-pct">D–G</div>
         <div class="tier-pct-label">10–25% valuation discount risk</div>
       </div>
@@ -770,7 +770,7 @@
       <div class="process-step">
         <div class="step-dot">03</div>
         <h4>Report Generation</h4>
-        <p>AI-assisted narrative synthesis across all E, S and G sections. Every claim is traceable to validated data. Academic QA applied throughout.</p>
+        <p>AI-assisted narrative synthesis across all E, S and G sections. Every claim is traceable to validated data. 120-point proprietary quality framework applied throughout.</p>
       </div>
       <div class="process-step">
         <div class="step-dot">04</div>
@@ -924,7 +924,7 @@
           ✓ Your download has started. We'll be in touch shortly.
         </p>
         <p id="download-err" style="display:none; margin-top:1rem; font-size:0.85rem; color:#E06060; text-align:center;">
-          Something went wrong. Please email us at hello@plinthos.io
+          Something went wrong. Please email us at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="452d2029292a0535292c2b312d2a366b2c2a">[email&#160;protected]</a>
         </p>
       </form>
 
@@ -1003,7 +1003,7 @@
         <button type="submit" class="btn-primary form-submit">Submit Enquiry →</button>
       </form>
       <p style="font-size:0.78rem;color:var(--muted);margin-top:1.5rem;text-align:center;">
-        Or email directly: <a href="mailto:hello@plinthos.io" style="color:var(--gold-lt);text-decoration:none;">hello@plinthos.io</a>
+        Or email directly: <a href="/cdn-cgi/l/email-protection#6d05080101022d1d0104031905021e430402" style="color:var(--gold-lt);text-decoration:none;"><span class="__cf_email__" data-cfemail="0169646d6d6e41716d686f75696e722f686e">[email&#160;protected]</span></a>
       </p>
     </div>
   </div>
@@ -1022,7 +1022,7 @@
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Gated download form
   const downloadForm = document.getElementById('download-form');
   if (downloadForm) {
@@ -1072,17 +1072,4 @@
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.tier-card, .service-card, .process-step, .framework-item').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
-  });
-</script>
-</body>
-</html>
+        entry.target.style.transform = 'tran
