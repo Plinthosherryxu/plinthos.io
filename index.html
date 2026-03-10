@@ -28,322 +28,7 @@
     }
 
     html { scroll-behavior: smooth; font-size: 16px; }
-<!-- ════════════════════════════════════════════════════
-     PLINTHOS HOMEPAGE — "Stranded Asset Checker" Section
-     Add this block to index.html, after your hero/services
-     sections and before the footer.
-     ════════════════════════════════════════════════════ -->
 
-<section class="tool-teaser" id="tool">
-  <div class="tool-teaser__inner">
-
-    <!-- Left: copy -->
-    <div class="tool-teaser__copy">
-      <div class="tool-teaser__eyebrow">Free Tool · No Login</div>
-      <h2 class="tool-teaser__heading">
-        When does your asset<br>
-        <em>become stranded?</em>
-      </h2>
-      <p class="tool-teaser__body">
-        Our CRREM Misalignment Engine calculates the exact year your property
-        exceeds the 1.5°C carbon pathway — instantly, from just your EPC rating.
-      </p>
-
-      <ul class="tool-teaser__list">
-        <li>
-          <span class="tool-teaser__check">✓</span>
-          Stranding year against CRREM 1.5°C pathway
-        </li>
-        <li>
-          <span class="tool-teaser__check">✓</span>
-          Cumulative excess emissions to 2050
-        </li>
-        <li>
-          <span class="tool-teaser__check">✓</span>
-          MEES compliance status
-        </li>
-        <li>
-          <span class="tool-teaser__check">✓</span>
-          Instant — no data upload required
-        </li>
-      </ul>
-
-      <div class="tool-teaser__cta-row">
-        <a href="/tools/misalignment-engine.html" class="tool-teaser__btn-primary">
-          Try the Free Checker →
-        </a>
-        <span class="tool-teaser__cta-note">
-          Office · Retail · Industrial · Residential · Hotel · Healthcare
-        </span>
-      </div>
-    </div>
-
-    <!-- Right: mini preview widget -->
-    <div class="tool-teaser__preview">
-      <div class="tool-teaser__preview-card">
-
-        <div class="tool-teaser__preview-header">
-          <span class="tool-teaser__preview-label">Misalignment Engine</span>
-          <span class="tool-teaser__preview-badge">CRREM 1.5°C · UK</span>
-        </div>
-
-        <!-- Mini interactive demo -->
-        <div class="tool-teaser__demo">
-          <div class="tool-teaser__demo-row">
-            <span class="tool-teaser__demo-key">Property type</span>
-            <span class="tool-teaser__demo-val">Office</span>
-          </div>
-          <div class="tool-teaser__demo-row">
-            <span class="tool-teaser__demo-key">EPC rating</span>
-            <div class="tool-teaser__epc-pills">
-              <span class="epc-pill" style="--c:#1a9641">A</span>
-              <span class="epc-pill" style="--c:#52b74a">B</span>
-              <span class="epc-pill" style="--c:#a6d96a">C</span>
-              <span class="epc-pill epc-pill--active" style="--c:#f5d938">D</span>
-              <span class="epc-pill" style="--c:#e06b1f">E</span>
-              <span class="epc-pill" style="--c:#d73027">F</span>
-              <span class="epc-pill" style="--c:#a50026">G</span>
-            </div>
-          </div>
-          <div class="tool-teaser__demo-row">
-            <span class="tool-teaser__demo-key">Floor area</span>
-            <span class="tool-teaser__demo-val">2,500 m²</span>
-          </div>
-        </div>
-
-        <!-- Result display -->
-        <div class="tool-teaser__result">
-          <div class="tool-teaser__result-grid">
-            <div class="tool-teaser__result-cell tool-teaser__result-cell--danger">
-              <div class="tool-teaser__result-label">Misalignment Year</div>
-              <div class="tool-teaser__result-value">2031</div>
-              <div class="tool-teaser__result-sub">Strands in 7 years</div>
-            </div>
-            <div class="tool-teaser__result-cell">
-              <div class="tool-teaser__result-label">Excess Emissions</div>
-              <div class="tool-teaser__result-value" style="color:#f97316">482 t</div>
-              <div class="tool-teaser__result-sub">CO₂e to 2050</div>
-            </div>
-          </div>
-
-          <!-- Mini chart SVG -->
-          <svg viewBox="0 0 240 80" xmlns="http://www.w3.org/2000/svg" class="tool-teaser__svg-chart">
-            <!-- Grid lines -->
-            <line x1="0" y1="20" x2="240" y2="20" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-            <line x1="0" y1="40" x2="240" y2="40" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-            <line x1="0" y1="60" x2="240" y2="60" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-            <!-- Stranded zone fill -->
-            <polygon points="120,12 240,12 240,72 200,68 160,65 140,63 120,62" fill="rgba(220,50,50,0.1)"/>
-            <!-- CRREM pathway (descending) -->
-            <polyline
-              points="0,10 40,18 80,30 120,42 160,54 200,64 240,72"
-              fill="none" stroke="#C9A84C" stroke-width="2" stroke-linecap="round"/>
-            <!-- Building line (flat/dashed) -->
-            <line x1="0" y1="32" x2="240" y2="32"
-              stroke="#ef4444" stroke-width="1.5" stroke-dasharray="6,4"/>
-            <!-- Intersection marker -->
-            <circle cx="120" cy="42" r="3" fill="#C9A84C"/>
-            <line x1="120" y1="0" x2="120" y2="80"
-              stroke="rgba(239,68,68,0.5)" stroke-width="1" stroke-dasharray="3,2"/>
-            <!-- Year label -->
-            <text x="124" y="9" fill="#ef4444" font-size="8" font-family="DM Mono, monospace" font-weight="bold">2031</text>
-          </svg>
-        </div>
-
-        <a href="/tools/misalignment-engine.html" class="tool-teaser__preview-link">
-          Run your own analysis →
-        </a>
-
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ════════════════════════════════════════════
-     CSS — add to your <style> block or .css file
-     ════════════════════════════════════════════ -->
-<style>
-/* Tool Teaser Section */
-.tool-teaser {
-  padding: 80px 32px;
-  border-top: 1px solid rgba(255,255,255,0.06);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  background: rgba(255,255,255,0.01);
-}
-.tool-teaser__inner {
-  max-width: 1080px; margin: 0 auto;
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 64px; align-items: center;
-}
-@media (max-width: 768px) {
-  .tool-teaser__inner { grid-template-columns: 1fr; gap: 40px; }
-}
-
-/* Copy side */
-.tool-teaser__eyebrow {
-  font-size: 11px; letter-spacing: 0.12em;
-  text-transform: uppercase; color: rgba(201,168,76,0.65);
-  margin-bottom: 14px;
-  display: inline-flex; align-items: center; gap: 8px;
-}
-.tool-teaser__eyebrow::before {
-  content: ''; display: block;
-  width: 24px; height: 1px; background: rgba(201,168,76,0.4);
-}
-.tool-teaser__heading {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(26px, 3.5vw, 38px);
-  font-weight: 400; line-height: 1.2;
-  color: #E8E0CC; margin-bottom: 16px;
-}
-.tool-teaser__heading em { font-style: italic; color: #C9A84C; }
-.tool-teaser__body {
-  font-size: 14px; line-height: 1.75;
-  color: rgba(255,255,255,0.45);
-  margin-bottom: 24px;
-}
-.tool-teaser__list {
-  list-style: none; margin-bottom: 28px;
-  display: flex; flex-direction: column; gap: 10px;
-}
-.tool-teaser__list li {
-  display: flex; align-items: center; gap: 10px;
-  font-size: 13px; color: rgba(255,255,255,0.5);
-}
-.tool-teaser__check {
-  color: #C9A84C; font-size: 12px; flex-shrink: 0;
-}
-.tool-teaser__cta-row {
-  display: flex; align-items: center;
-  gap: 16px; flex-wrap: wrap;
-}
-.tool-teaser__btn-primary {
-  display: inline-flex; align-items: center;
-  padding: 13px 28px; border-radius: 8px;
-  background: linear-gradient(135deg, #C9A84C, #a8883c);
-  color: #0B1829; font-size: 13px; font-weight: 700;
-  letter-spacing: 0.06em; text-transform: uppercase;
-  text-decoration: none;
-  box-shadow: 0 4px 20px rgba(201,168,76,0.2);
-  transition: all 0.2s; white-space: nowrap;
-  font-family: 'DM Sans', sans-serif;
-}
-.tool-teaser__btn-primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 28px rgba(201,168,76,0.3);
-}
-.tool-teaser__cta-note {
-  font-size: 11px; color: rgba(255,255,255,0.2);
-  line-height: 1.5;
-}
-
-/* Preview card */
-.tool-teaser__preview-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 14px; overflow: hidden;
-  box-shadow: 0 24px 64px rgba(0,0,0,0.35);
-}
-.tool-teaser__preview-header {
-  padding: 14px 18px;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  display: flex; align-items: center;
-  justify-content: space-between;
-}
-.tool-teaser__preview-label {
-  font-size: 11px; color: rgba(255,255,255,0.4);
-  letter-spacing: 0.06em;
-  font-family: 'DM Mono', monospace;
-}
-.tool-teaser__preview-badge {
-  font-size: 10px; color: rgba(201,168,76,0.55);
-  font-family: 'DM Mono', monospace;
-  background: rgba(201,168,76,0.07);
-  border: 1px solid rgba(201,168,76,0.15);
-  border-radius: 4px; padding: 2px 7px;
-}
-.tool-teaser__demo {
-  padding: 16px 18px;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-  display: flex; flex-direction: column; gap: 12px;
-}
-.tool-teaser__demo-row {
-  display: flex; align-items: center;
-  justify-content: space-between;
-}
-.tool-teaser__demo-key {
-  font-size: 11px; color: rgba(255,255,255,0.3);
-  letter-spacing: 0.05em;
-}
-.tool-teaser__demo-val {
-  font-size: 12px; color: rgba(255,255,255,0.65);
-  font-family: 'DM Mono', monospace;
-}
-.tool-teaser__epc-pills {
-  display: flex; gap: 4px;
-}
-.epc-pill {
-  width: 22px; height: 22px; border-radius: 4px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 10px; font-weight: 700;
-  font-family: 'DM Mono', monospace;
-  border: 1px solid rgba(255,255,255,0.08);
-  background: rgba(255,255,255,0.03);
-  color: rgba(255,255,255,0.3);
-  cursor: default;
-}
-.epc-pill--active {
-  border-color: var(--c);
-  background: color-mix(in srgb, var(--c) 15%, transparent);
-  color: var(--c);
-}
-
-.tool-teaser__result {
-  padding: 16px 18px;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-.tool-teaser__result-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 10px; margin-bottom: 14px;
-}
-.tool-teaser__result-cell {
-  padding: 10px 12px; border-radius: 8px;
-  background: rgba(255,255,255,0.025);
-  border: 1px solid rgba(255,255,255,0.06);
-}
-.tool-teaser__result-cell--danger {
-  border-color: rgba(239,68,68,0.2);
-}
-.tool-teaser__result-label {
-  font-size: 9px; letter-spacing: 0.1em;
-  text-transform: uppercase; color: rgba(255,255,255,0.25);
-  margin-bottom: 5px;
-}
-.tool-teaser__result-value {
-  font-family: 'DM Mono', monospace;
-  font-size: 20px; font-weight: 700;
-  color: #ef4444; line-height: 1;
-  margin-bottom: 3px;
-}
-.tool-teaser__result-sub {
-  font-size: 10px; color: rgba(255,255,255,0.25);
-}
-.tool-teaser__svg-chart {
-  width: 100%; height: auto; display: block;
-}
-.tool-teaser__preview-link {
-  display: block; padding: 13px 18px;
-  text-align: center;
-  font-size: 12px; font-weight: 600;
-  color: rgba(201,168,76,0.75);
-  text-decoration: none; letter-spacing: 0.05em;
-  transition: color 0.15s;
-  font-family: 'DM Sans', sans-serif;
-}
-.tool-teaser__preview-link:hover { color: #C9A84C; }
-</style>
     body {
       font-family: var(--ff-body);
       background: var(--navy);
@@ -905,6 +590,7 @@
     <a href="#services">Services</a>
     <a href="#process">Process</a>
     <a href="#frameworks">Frameworks</a>
+    <a href="/tools/misalignment-engine.html" style="color:var(--gold-lt)!important;border:1px solid rgba(184,150,62,0.25);padding:0.4rem 0.9rem;border-radius:2px;font-size:0.75rem!important;">Free Risk Checker</a>
     <a href="#download" class="nav-cta">Download Sample Report</a>
   </div>
 </nav>
@@ -1153,6 +839,133 @@
 </section>
 
 <div class="divider"></div>
+
+<div class="divider"></div>
+
+<!-- FREE TOOL: CRREM MISALIGNMENT ENGINE -->
+<section id="tool" style="background: var(--navy-2); position: relative; overflow: hidden;">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 70% 50%, rgba(184,150,62,0.04) 0%, transparent 65%);pointer-events:none;"></div>
+  <div class="container" style="position:relative;z-index:1;">
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;">
+
+      <!-- Left: copy -->
+      <div>
+        <div class="section-label" style="font-family:var(--ff-mono);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:flex;align-items:center;gap:0.7rem;">
+          <span style="display:block;width:24px;height:1px;background:var(--gold);flex-shrink:0;"></span>
+          Free Tool · No Login Required
+        </div>
+        <h2 style="margin-bottom:1.2rem;">
+          When Does Your Asset<br/><em>Become Stranded?</em>
+        </h2>
+        <p style="color:rgba(245,241,234,0.65);margin-bottom:1.75rem;font-size:1rem;line-height:1.8;">
+          Our CRREM Misalignment Engine calculates the exact year your property exceeds
+          the 1.5°C carbon pathway — instantly, from just your EPC rating. No data upload required.
+        </p>
+
+        <ul style="list-style:none;margin-bottom:2rem;display:flex;flex-direction:column;gap:0.85rem;">
+          <li style="display:flex;align-items:center;gap:0.75rem;font-size:0.88rem;color:rgba(245,241,234,0.6);">
+            <span style="color:var(--gold-lt);font-size:0.8rem;flex-shrink:0;">✦</span>
+            Stranding year against CRREM 1.5°C pathway
+          </li>
+          <li style="display:flex;align-items:center;gap:0.75rem;font-size:0.88rem;color:rgba(245,241,234,0.6);">
+            <span style="color:var(--gold-lt);font-size:0.8rem;flex-shrink:0;">✦</span>
+            Cumulative excess emissions to 2050
+          </li>
+          <li style="display:flex;align-items:center;gap:0.75rem;font-size:0.88rem;color:rgba(245,241,234,0.6);">
+            <span style="color:var(--gold-lt);font-size:0.8rem;flex-shrink:0;">✦</span>
+            MEES compliance status &amp; retrofit gap
+          </li>
+          <li style="display:flex;align-items:center;gap:0.75rem;font-size:0.88rem;color:rgba(245,241,234,0.6);">
+            <span style="color:var(--gold-lt);font-size:0.8rem;flex-shrink:0;">✦</span>
+            Instant · Office, Retail, Industrial, Residential, Hotel, Healthcare
+          </li>
+        </ul>
+
+        <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+          <a href="/tools/misalignment-engine.html" class="btn-primary">
+            Try the Free Checker →
+          </a>
+          <span style="font-size:0.78rem;color:var(--muted);">Takes 30 seconds</span>
+        </div>
+      </div>
+
+      <!-- Right: preview card -->
+      <div>
+        <div style="background:var(--navy-3);border:1px solid var(--border);border-radius:3px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,0.4);">
+
+          <!-- Card header -->
+          <div style="padding:0.9rem 1.25rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
+            <span style="font-family:var(--ff-mono);font-size:0.65rem;letter-spacing:0.08em;color:var(--muted);">Misalignment Engine</span>
+            <span style="font-family:var(--ff-mono);font-size:0.62rem;color:var(--gold);background:rgba(184,150,62,0.08);border:1px solid var(--border);border-radius:2px;padding:0.2rem 0.55rem;">CRREM 1.5°C · UK</span>
+          </div>
+
+          <!-- Inputs display -->
+          <div style="padding:1rem 1.25rem;border-bottom:1px solid rgba(184,150,62,0.08);display:flex;flex-direction:column;gap:0.7rem;">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:0.72rem;color:var(--muted);">Property type</span>
+              <span style="font-family:var(--ff-mono);font-size:0.72rem;color:var(--cream);">Office</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:0.72rem;color:var(--muted);">EPC rating</span>
+              <div style="display:flex;gap:4px;">
+                <span style="width:20px;height:20px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;font-family:var(--ff-mono);border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3);">A</span>
+                <span style="width:20px;height:20px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;font-family:var(--ff-mono);border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3);">B</span>
+                <span style="width:20px;height:20px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;font-family:var(--ff-mono);border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3);">C</span>
+                <span style="width:20px;height:20px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;font-family:var(--ff-mono);border:1px solid #f5d938;background:rgba(245,217,56,0.12);color:#f5d938;">D</span>
+                <span style="width:20px;height:20px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;font-family:var(--ff-mono);border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3);">E</span>
+                <span style="width:20px;height:20px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;font-family:var(--ff-mono);border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3);">F</span>
+                <span style="width:20px;height:20px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;font-family:var(--ff-mono);border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3);">G</span>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:0.72rem;color:var(--muted);">Floor area</span>
+              <span style="font-family:var(--ff-mono);font-size:0.72rem;color:var(--cream);">2,500 m²</span>
+            </div>
+          </div>
+
+          <!-- Result metrics -->
+          <div style="padding:1rem 1.25rem;border-bottom:1px solid rgba(184,150,62,0.08);display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+            <div style="padding:0.85rem;background:rgba(220,50,50,0.07);border:1px solid rgba(220,50,50,0.18);border-radius:2px;">
+              <div style="font-family:var(--ff-mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(245,241,234,0.35);margin-bottom:0.5rem;">Misalignment Year</div>
+              <div style="font-family:var(--ff-display);font-size:1.9rem;font-weight:500;color:#E06060;line-height:1;margin-bottom:0.25rem;">2031</div>
+              <div style="font-size:0.68rem;color:rgba(245,241,234,0.3);">Strands in 7 years</div>
+            </div>
+            <div style="padding:0.85rem;background:var(--navy);border:1px solid var(--border);border-radius:2px;">
+              <div style="font-family:var(--ff-mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(245,241,234,0.35);margin-bottom:0.5rem;">Excess Emissions</div>
+              <div style="font-family:var(--ff-display);font-size:1.9rem;font-weight:500;color:#D4923A;line-height:1;margin-bottom:0.25rem;">482 t</div>
+              <div style="font-size:0.68rem;color:rgba(245,241,234,0.3);">CO₂e to 2050</div>
+            </div>
+          </div>
+
+          <!-- Mini SVG chart -->
+          <div style="padding:0.9rem 1.25rem 0.75rem;border-bottom:1px solid rgba(184,150,62,0.08);">
+            <div style="font-family:var(--ff-mono);font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;color:rgba(245,241,234,0.2);margin-bottom:0.6rem;">GHG Intensity vs 1.5°C Pathway</div>
+            <svg viewBox="0 0 260 72" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+              <line x1="0" y1="18" x2="260" y2="18" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+              <line x1="0" y1="36" x2="260" y2="36" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+              <line x1="0" y1="54" x2="260" y2="54" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+              <polygon points="130,10 260,10 260,68 220,64 180,60 155,57 130,55" fill="rgba(220,50,50,0.08)"/>
+              <polyline points="0,8 50,16 100,27 130,38 165,50 210,60 260,67" fill="none" stroke="#DAA520" stroke-width="2" stroke-linecap="round"/>
+              <line x1="0" y1="29" x2="260" y2="29" stroke="#E06060" stroke-width="1.5" stroke-dasharray="6,4"/>
+              <line x1="130" y1="0" x2="130" y2="72" stroke="rgba(224,96,96,0.45)" stroke-width="1" stroke-dasharray="3,2"/>
+              <text x="134" y="8" fill="#E06060" font-size="7.5" font-family="monospace" font-weight="bold">2031</text>
+              <text x="2" y="26" fill="rgba(218,165,32,0.6)" font-size="6.5" font-family="monospace">CRREM 1.5°C</text>
+            </svg>
+          </div>
+
+          <!-- Card CTA -->
+          <a href="/tools/misalignment-engine.html" style="display:block;padding:0.9rem 1.25rem;text-align:center;font-size:0.78rem;font-weight:500;letter-spacing:0.06em;color:var(--gold-lt);text-decoration:none;transition:color var(--transition);">
+            Run your own analysis →
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 
 <!-- WHY PLINTHOS -->
 <section id="why">
