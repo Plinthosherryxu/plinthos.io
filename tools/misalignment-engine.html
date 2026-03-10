@@ -470,10 +470,7 @@
       </div>
 
       <!-- Chart -->
-      <div class="chart-wrap">
-        <div class="chart-title">GHG Intensity vs CRREM 1.5°C Pathway · UK</div>
-        <canvas id="chart-canvas" height="240"></canvas>
-      </div>
+      <div class="chart-wrap" id="chart-wrap" style="padding:18px 20px 12px;"></div>
 
       <!-- Risk narrative -->
       <div class="risk-box">
@@ -578,114 +575,139 @@
     initEpcBtns(); updateHint();
   });
 
+  // ── Constants ──────────────────────────────
+  const CURRENT_YEAR = 2026;
+  const CURRENT_IDX  = YEARS.indexOf(CURRENT_YEAR); // = 6
+
   // ── Calculations ───────────────────────────
   function getMisalignmentYear(ghg, propType) {
+    // Returns first year (from 2020) where building exceeds pathway
+    // May return a past year — caller must handle "already stranded" case
     const pw = PATHWAYS[propType];
     for (let i = 0; i < YEARS.length; i++) {
       if (ghg > pw[i]) return YEARS[i];
     }
-    return null;
+    return null; // fully aligned through 2050
   }
 
-  function getCumulativeExcess(ghg, propType, fromYear) {
-    if (!fromYear) return 0;
+  function getCumulativeExcess(ghg, propType) {
+    // Always count future excess from CURRENT_YEAR to 2050 only
     const pw = PATHWAYS[propType];
-    const si = YEARS.indexOf(fromYear);
     let total = 0;
-    for (let i = si; i < YEARS.length; i++) total += Math.max(0, ghg - pw[i]);
+    for (let i = CURRENT_IDX; i < YEARS.length; i++) {
+      total += Math.max(0, ghg - pw[i]);
+    }
     return total;
   }
 
-  // ── Chart ──────────────────────────────────
-  function drawChart(propType, ghg, strandYear) {
-    const canvas = document.getElementById('chart-canvas');
-    const dpr    = window.devicePixelRatio || 1;
-    const W0     = canvas.parentElement.clientWidth - 32;
-    const H0     = Math.min(240, Math.round(W0 * 0.36));
-    canvas.width  = W0 * dpr;
-    canvas.height = H0 * dpr;
-    canvas.style.width  = W0 + 'px';
-    canvas.style.height = H0 + 'px';
-
-    const ctx  = canvas.getContext('2d');
-    ctx.scale(dpr, dpr);
-    const W = W0, H = H0;
-    const pad = {top:22, right:20, bottom:44, left:48};
-    ctx.clearRect(0, 0, W, H);
-
+  // ── SVG Chart ──────────────────────────────
+  function drawChart(propType, ghg, strandYear, isAlreadyStranded) {
+    const wrap = document.getElementById('chart-wrap');
     const pw   = PATHWAYS[propType];
-    const maxY = Math.max(ghg * 1.2, pw[0] * 1.1, 40);
-    const toX  = i => pad.left + (i / (YEARS.length-1)) * (W - pad.left - pad.right);
-    const toY  = v => H - pad.bottom - (v / maxY) * (H - pad.top - pad.bottom);
 
-    // Grid
-    ctx.strokeStyle = "rgba(255,255,255,0.05)";
-    ctx.lineWidth = 1;
-    for (let v = 0; v <= maxY; v += 10) {
-      ctx.beginPath(); ctx.moveTo(pad.left, toY(v)); ctx.lineTo(W-pad.right, toY(v)); ctx.stroke();
+    // Chart coordinate space
+    const VW = 800, VH = 260;
+    const pad = { top: 28, right: 24, bottom: 46, left: 52 };
+    const PW  = VW - pad.left - pad.right;
+    const PH  = VH - pad.top  - pad.bottom;
+
+    const maxY = Math.ceil(Math.max(ghg * 1.15, pw[0] * 1.1, 50) / 10) * 10;
+    const tx   = i => pad.left + (i / (YEARS.length - 1)) * PW;
+    const ty   = v => pad.top  + (1 - v / maxY) * PH;
+
+    // Y-axis grid values
+    const gridStep = maxY <= 60 ? 10 : maxY <= 120 ? 20 : 30;
+    let gridLines = '', yLabels = '';
+    for (let v = 0; v <= maxY; v += gridStep) {
+      const y = ty(v);
+      gridLines += `<line x1="${pad.left}" y1="${y}" x2="${VW - pad.right}" y2="${y}" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>`;
+      yLabels   += `<text x="${pad.left - 7}" y="${y + 4}" text-anchor="end" fill="rgba(255,255,255,0.3)" font-size="11" font-family="DM Mono,monospace">${v}</text>`;
     }
+
+    // X-axis labels (every 5 years)
+    let xLabels = '', xLines = '';
     for (let i = 0; i < YEARS.length; i += 5) {
-      ctx.beginPath(); ctx.moveTo(toX(i), pad.top); ctx.lineTo(toX(i), H-pad.bottom); ctx.stroke();
+      const x = tx(i);
+      xLabels += `<text x="${x}" y="${VH - pad.bottom + 18}" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="11" font-family="DM Mono,monospace">${YEARS[i]}</text>`;
+      xLines  += `<line x1="${x}" y1="${pad.top}" x2="${x}" y2="${VH - pad.bottom}" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>`;
     }
 
-    // Stranded zone
-    if (strandYear) {
+    // "Today" marker (2026)
+    const todayX = tx(CURRENT_IDX);
+    const todayLine = `<line x1="${todayX}" y1="${pad.top}" x2="${todayX}" y2="${VH - pad.bottom}" stroke="rgba(201,168,76,0.3)" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="${todayX + 4}" y="${pad.top + 12}" fill="rgba(201,168,76,0.55)" font-size="9.5" font-family="DM Sans,sans-serif">Today</text>`;
+
+    // Stranded zone polygon
+    let strandedZone = '';
+    const zoneStartIdx = isAlreadyStranded ? 0 : (strandYear ? YEARS.indexOf(strandYear) : -1);
+    if (zoneStartIdx >= 0) {
+      // Build polygon: building line → pathway line → back
+      let pts = `${tx(zoneStartIdx)},${ty(ghg)} `;
+      for (let i = zoneStartIdx; i < YEARS.length; i++) {
+        pts += `${tx(i)},${ty(Math.min(pw[i], ghg))} `;
+      }
+      pts += `${tx(YEARS.length - 1)},${ty(ghg)}`;
+      strandedZone = `<polygon points="${pts}" fill="rgba(220,50,50,0.09)"/>`;
+    }
+
+    // CRREM pathway polyline
+    const pathPts = pw.map((v, i) => `${tx(i)},${ty(v)}`).join(' ');
+    const pathLine = `<polyline points="${pathPts}" fill="none" stroke="#C9A84C" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>`;
+
+    // Building intensity line
+    const lineColor = (strandYear || isAlreadyStranded) ? '#ef4444' : '#4ade80';
+    const buildLine = `<line x1="${tx(0)}" y1="${ty(ghg)}" x2="${tx(YEARS.length-1)}" y2="${ty(ghg)}" stroke="${lineColor}" stroke-width="2" stroke-dasharray="8,5" opacity="0.85"/>`;
+
+    // Strand year vertical marker
+    let strandMarker = '';
+    if (strandYear && !isAlreadyStranded) {
       const si = YEARS.indexOf(strandYear);
-      ctx.save();
-      ctx.beginPath();
-      ctx.moveTo(toX(si), toY(ghg));
-      for (let i = si; i < YEARS.length; i++) ctx.lineTo(toX(i), toY(pw[i]));
-      ctx.lineTo(toX(YEARS.length-1), toY(ghg));
-      ctx.closePath();
-      ctx.fillStyle = "rgba(220,50,50,0.1)";
-      ctx.fill(); ctx.restore();
+      const sx = tx(si);
+      strandMarker = `
+        <line x1="${sx}" y1="${pad.top}" x2="${sx}" y2="${VH - pad.bottom}" stroke="rgba(239,68,68,0.5)" stroke-width="1.5" stroke-dasharray="5,3"/>
+        <rect x="${sx - 22}" y="${pad.top - 18}" width="44" height="16" rx="3" fill="rgba(239,68,68,0.15)" stroke="rgba(239,68,68,0.3)" stroke-width="1"/>
+        <text x="${sx}" y="${pad.top - 6}" text-anchor="middle" fill="#ef4444" font-size="10" font-weight="bold" font-family="DM Mono,monospace">${strandYear}</text>`;
+    }
+    if (isAlreadyStranded) {
+      strandMarker = `
+        <rect x="${pad.left + 4}" y="${pad.top + 4}" width="130" height="18" rx="3" fill="rgba(239,68,68,0.12)" stroke="rgba(239,68,68,0.25)" stroke-width="1"/>
+        <text x="${pad.left + 69}" y="${pad.top + 16}" text-anchor="middle" fill="#ef4444" font-size="10" font-family="DM Sans,sans-serif">Currently stranded</text>`;
     }
 
-    // CRREM pathway line
-    ctx.beginPath(); ctx.strokeStyle = "#C9A84C"; ctx.lineWidth = 2.5; ctx.setLineDash([]);
-    pw.forEach((v,i) => i===0 ? ctx.moveTo(toX(i),toY(v)) : ctx.lineTo(toX(i),toY(v)));
-    ctx.stroke();
-
-    // Building line
-    const lineColor = strandYear ? "#ef4444" : "#4ade80";
-    ctx.beginPath(); ctx.strokeStyle = lineColor; ctx.lineWidth = 2; ctx.setLineDash([7,4]);
-    ctx.moveTo(toX(0), toY(ghg)); ctx.lineTo(toX(YEARS.length-1), toY(ghg));
-    ctx.stroke(); ctx.setLineDash([]);
-
-    // Strand year marker
-    if (strandYear) {
+    // Intersection dot
+    let intersectDot = '';
+    if (strandYear && !isAlreadyStranded) {
       const si = YEARS.indexOf(strandYear);
-      ctx.beginPath(); ctx.strokeStyle = "rgba(239,68,68,0.6)"; ctx.lineWidth = 1.5; ctx.setLineDash([4,3]);
-      ctx.moveTo(toX(si), pad.top); ctx.lineTo(toX(si), H-pad.bottom);
-      ctx.stroke(); ctx.setLineDash([]);
-      ctx.fillStyle = "#ef4444";
-      ctx.font = `bold 11px 'DM Mono', monospace`;
-      ctx.textAlign = "center";
-      ctx.fillText(strandYear, toX(si), pad.top - 5);
+      intersectDot = `<circle cx="${tx(si)}" cy="${ty(pw[si])}" r="4.5" fill="#C9A84C" stroke="#0B1829" stroke-width="2"/>`;
     }
-
-    // Axes labels
-    ctx.fillStyle = "rgba(255,255,255,0.3)";
-    ctx.font = "10px 'DM Sans', sans-serif";
-    ctx.textAlign = "right";
-    for (let v = 0; v <= maxY; v += 10) ctx.fillText(v, pad.left-5, toY(v)+3);
-    ctx.textAlign = "center";
-    for (let i = 0; i < YEARS.length; i += 5) ctx.fillText(YEARS[i], toX(i), H-pad.bottom+16);
 
     // Y-axis label
-    ctx.save(); ctx.translate(11, H/2); ctx.rotate(-Math.PI/2);
-    ctx.fillStyle = "rgba(255,255,255,0.25)"; ctx.font = "9px 'DM Sans',sans-serif"; ctx.textAlign = "center";
-    ctx.fillText("kgCO₂e/m²/yr", 0, 0); ctx.restore();
+    const yAxisLabel = `<text transform="rotate(-90)" x="${-(VH/2)}" y="13" text-anchor="middle" fill="rgba(255,255,255,0.22)" font-size="10" font-family="DM Sans,sans-serif">kgCO₂e/m²/yr</text>`;
 
     // Legend
-    const lx = W - pad.right - 175, ly = pad.top + 8;
-    ctx.font = "10px 'DM Sans', sans-serif"; ctx.textAlign = "left";
-    ctx.strokeStyle = "#C9A84C"; ctx.lineWidth = 2.5; ctx.setLineDash([]);
-    ctx.beginPath(); ctx.moveTo(lx, ly); ctx.lineTo(lx+20, ly); ctx.stroke();
-    ctx.fillStyle = "rgba(255,255,255,0.5)"; ctx.fillText("CRREM 1.5°C pathway", lx+25, ly+3);
-    ctx.strokeStyle = lineColor; ctx.lineWidth = 2; ctx.setLineDash([6,3]);
-    ctx.beginPath(); ctx.moveTo(lx, ly+16); ctx.lineTo(lx+20, ly+16); ctx.stroke(); ctx.setLineDash([]);
-    ctx.fillText("Building intensity", lx+25, ly+19);
+    const lx = VW - pad.right - 200, ly = pad.top + 8;
+    const legend = `
+      <line x1="${lx}" y1="${ly}" x2="${lx+22}" y2="${ly}" stroke="#C9A84C" stroke-width="2.5"/>
+      <text x="${lx+28}" y="${ly+4}" fill="rgba(255,255,255,0.5)" font-size="10.5" font-family="DM Sans,sans-serif">CRREM 1.5°C pathway</text>
+      <line x1="${lx}" y1="${ly+16}" x2="${lx+22}" y2="${ly+16}" stroke="${lineColor}" stroke-width="2" stroke-dasharray="6,4"/>
+      <text x="${lx+28}" y="${ly+20}" fill="rgba(255,255,255,0.5)" font-size="10.5" font-family="DM Sans,sans-serif">Building intensity</text>`;
+
+    wrap.innerHTML = `
+      <div style="font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.22);margin-bottom:10px;">
+        GHG Intensity vs CRREM 1.5°C Pathway · UK
+      </div>
+      <svg viewBox="0 0 ${VW} ${VH}" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;overflow:visible;">
+        ${gridLines}${xLines}
+        ${strandedZone}
+        ${todayLine}
+        ${pathLine}
+        ${buildLine}
+        ${strandMarker}
+        ${intersectDot}
+        ${yLabels}${xLabels}
+        ${yAxisLabel}
+        ${legend}
+      </svg>`;
   }
 
   // ── Render results ─────────────────────────
@@ -694,59 +716,89 @@
     state.gav  = document.getElementById('gav-input').value;
     state.year = +document.getElementById('year-input').value || 2024;
 
-    const ghg       = EPC_GHG[state.propType]?.[state.epc] ?? 45;
-    const strandYear= getMisalignmentYear(ghg, state.propType);
-    const excess    = getCumulativeExcess(ghg, state.propType, strandYear);
-    const excessT   = state.area ? Math.round(excess * state.area / 1000) : null;
-    const pw2024    = PATHWAYS[state.propType][4];
-    const gap       = Math.round(((ghg - pw2024) / pw2024) * 100);
-    const meesMin   = MEES_MIN[state.propType];
-    const meesOK    = EPC_ORDER.indexOf(state.epc) <= EPC_ORDER.indexOf(meesMin);
-    const yrsLeft   = strandYear ? strandYear - 2024 : null;
-    const urgency   = !strandYear ? "none" : yrsLeft <= 3 ? "critical" : yrsLeft <= 8 ? "high" : "moderate";
-    const urgColor  = {none:"#4ade80", critical:"#ef4444", high:"#f97316", moderate:"#eab308"}[urgency];
+    const ghg            = EPC_GHG[state.propType]?.[state.epc] ?? 45;
+    const rawStrandYear  = getMisalignmentYear(ghg, state.propType);
+    const isAlreadyStranded = rawStrandYear !== null && rawStrandYear <= CURRENT_YEAR;
+    const futureStrandYear  = rawStrandYear !== null && rawStrandYear > CURRENT_YEAR ? rawStrandYear : null;
 
-    // Update metric cards
+    // Cumulative excess always from CURRENT_YEAR onwards
+    const excess   = getCumulativeExcess(ghg, state.propType);
+    const excessT  = state.area ? Math.round(excess * state.area / 1000) : null;
+
+    const pw2026   = PATHWAYS[state.propType][CURRENT_IDX];
+    const gap      = Math.round(((ghg - pw2026) / pw2026) * 100);
+    const meesMin  = MEES_MIN[state.propType];
+    const meesOK   = EPC_ORDER.indexOf(state.epc) <= EPC_ORDER.indexOf(meesMin);
+    const yrsLeft  = futureStrandYear ? futureStrandYear - CURRENT_YEAR : null;
+
+    // Urgency colour
+    let urgColor, urgencyLabel;
+    if (!rawStrandYear) {
+      urgColor = '#4ade80'; urgencyLabel = '1.5°C aligned ✓';
+    } else if (isAlreadyStranded) {
+      urgColor = '#ef4444'; urgencyLabel = 'Currently stranded';
+    } else if (yrsLeft <= 3) {
+      urgColor = '#ef4444'; urgencyLabel = `Strands in ${yrsLeft} year${yrsLeft!==1?'s':''}`;
+    } else if (yrsLeft <= 8) {
+      urgColor = '#f97316'; urgencyLabel = `Strands in ${yrsLeft} years`;
+    } else {
+      urgColor = '#eab308'; urgencyLabel = `Strands in ${yrsLeft} years`;
+    }
+
+    // ── Metric cards ──
     document.getElementById('res-subtitle').textContent =
       `${state.propType} · EPC ${state.epc} · ${state.area.toLocaleString()} m²`;
 
     const mStrand = document.getElementById('metric-strand');
-    mStrand.style.borderColor = strandYear ? "rgba(239,68,68,0.3)" : "rgba(74,222,128,0.25)";
-    document.getElementById('val-strand').textContent = strandYear ?? "—";
-    document.getElementById('val-strand').style.color = urgColor;
-    document.getElementById('sub-strand').textContent =
-      strandYear ? `Strands in ${yrsLeft} year${yrsLeft!==1?'s':''}` : "1.5°C aligned ✓";
+    mStrand.style.borderColor = rawStrandYear ? 'rgba(239,68,68,0.3)' : 'rgba(74,222,128,0.25)';
+
+    const valStrandEl = document.getElementById('val-strand');
+    if (!rawStrandYear) {
+      valStrandEl.textContent = '—';
+      valStrandEl.style.fontSize = '34px';
+    } else if (isAlreadyStranded) {
+      valStrandEl.textContent = 'NOW';
+      valStrandEl.style.fontSize = '28px';
+    } else {
+      valStrandEl.textContent = futureStrandYear;
+      valStrandEl.style.fontSize = '34px';
+    }
+    valStrandEl.style.color = urgColor;
+    document.getElementById('sub-strand').textContent = urgencyLabel;
 
     document.getElementById('val-ghg').textContent = ghg;
     document.getElementById('sub-ghg').innerHTML =
-      `vs target ${pw2024} kgCO₂e/m²/yr &nbsp;<span style="color:${gap>0?'#ef4444':'#4ade80'}">${gap>0?'+'+gap+'% above':Math.abs(gap)+'% below'}</span>`;
+      `vs ${CURRENT_YEAR} target ${pw2026} kgCO₂e/m²/yr &nbsp;<span style="color:${gap>0?'#ef4444':'#4ade80'}">${gap>0?'+'+gap+'% above':Math.abs(gap)+'% below'}</span>`;
 
-    document.getElementById('val-excess').textContent = strandYear ? `${excessT?.toLocaleString()} t` : "0 t";
+    const hasExcess = rawStrandYear !== null;
+    document.getElementById('val-excess').textContent = hasExcess ? `${excessT?.toLocaleString()} t` : '0 t';
     document.getElementById('sub-excess').innerHTML =
-      `CO₂e cumulative 2025–2050<br>${meesOK?'<span style="color:#4ade80">✓ MEES compliant</span>':'<span style="color:#ef4444">✗ MEES non-compliant</span>'}`;
+      `CO₂e cumulative ${CURRENT_YEAR}–2050<br>${meesOK?'<span style="color:#4ade80">✓ MEES compliant</span>':'<span style="color:#ef4444">✗ MEES non-compliant</span>'}`;
 
-    // Draw chart
-    drawChart(state.propType, ghg, strandYear);
+    // ── Draw chart ──
+    drawChart(state.propType, ghg, futureStrandYear, isAlreadyStranded);
 
-    // Risk narrative
-    const meesText = meesOK ? "" :
+    // ── Risk narrative ──
+    const meesText = meesOK ? '' :
       ` The asset also fails current MEES minimum standards (requires EPC <strong>${meesMin}</strong> or above), creating immediate letting risk.`;
     const narrativeEl = document.getElementById('risk-narrative');
-    if (strandYear) {
+
+    if (isAlreadyStranded) {
       narrativeEl.innerHTML =
-        `This <strong>${state.propType.toLowerCase()}</strong> asset (EPC <strong>${state.epc}</strong>, ${state.area.toLocaleString()} m²) is projected to exceed the CRREM 1.5°C carbon pathway in <strong>${strandYear}</strong> — ${yrsLeft} year${yrsLeft!==1?'s':''} from today. At current performance, the building will accumulate approximately <strong>${excessT?.toLocaleString()} tCO₂e</strong> of excess emissions between ${strandYear} and 2050, creating material stranded asset risk.${meesText} A targeted retrofit programme reducing emissions to below <strong>${pw2024} kgCO₂e/m²/yr</strong> would restore alignment with the 1.5°C pathway.`;
+        `This <strong>${state.propType.toLowerCase()}</strong> asset (EPC <strong>${state.epc}</strong>, ${state.area.toLocaleString()} m²) is <strong>currently stranded</strong> — its GHG intensity of <strong>${ghg} kgCO₂e/m²/yr</strong> already exceeds the CRREM 1.5°C pathway target of <strong>${pw2026} kgCO₂e/m²/yr</strong> for ${CURRENT_YEAR}. Without intervention, the asset will accumulate approximately <strong>${excessT?.toLocaleString()} tCO₂e</strong> of excess emissions between ${CURRENT_YEAR} and 2050, creating material valuation and refinancing risk.${meesText} Urgent retrofit planning is required to restore pathway alignment.`;
+    } else if (futureStrandYear) {
+      narrativeEl.innerHTML =
+        `This <strong>${state.propType.toLowerCase()}</strong> asset (EPC <strong>${state.epc}</strong>, ${state.area.toLocaleString()} m²) is projected to exceed the CRREM 1.5°C carbon pathway in <strong>${futureStrandYear}</strong> — ${yrsLeft} year${yrsLeft!==1?'s':''} from today. At current performance, the building will accumulate approximately <strong>${excessT?.toLocaleString()} tCO₂e</strong> of excess emissions between ${CURRENT_YEAR} and 2050, creating material stranded asset risk.${meesText} A retrofit programme reducing intensity to below <strong>${pw2026} kgCO₂e/m²/yr</strong> would restore pathway alignment.`;
     } else {
       narrativeEl.innerHTML =
-        `This <strong>${state.propType.toLowerCase()}</strong> asset (EPC <strong>${state.epc}</strong>) is currently aligned with the CRREM 1.5°C pathway and does not face near-term stranding risk. Continued monitoring is recommended as pathway targets tighten post-2030.`;
+        `This <strong>${state.propType.toLowerCase()}</strong> asset (EPC <strong>${state.epc}</strong>) is currently aligned with the CRREM 1.5°C pathway and does not face near-term stranding risk. Continued monitoring is recommended as pathway targets tighten through 2030–2040.`;
     }
 
-    // Show/hide sections
+    // ── Show results ──
     document.getElementById('input-section').style.display = 'none';
     const r = document.getElementById('results');
     r.style.display = 'block';
     requestAnimationFrame(() => r.classList.add('visible'));
-
-    // Progress
     document.getElementById('step1').classList.remove('active');
     document.getElementById('step2').classList.add('active');
   }
