@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CRREM Stranded Asset Checker | Plinthos</title>
+  <meta name="description" content="Free tool: Calculate the CRREM misalignment year for your UK property. Instant stranded asset risk assessment against the 1.5°C pathway." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Reset & Base ─────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body {
+      background: #0B1829;
+      color: #E8E0CC;
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      background-image:
+        radial-gradient(ellipse at 15% 15%, rgba(201,168,76,0.05) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 85%, rgba(14,40,90,0.3) 0%, transparent 55%);
+    }
+
+    /* ── Nav ──────────────────────────────── */
+    nav {
+      border-bottom: 1px solid rgba(201,168,76,0.18);
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      position: sticky; top: 0;
+      background: rgba(11,24,41,0.95);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px; font-weight: 600;
+      color: #C9A84C; letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+    .nav-divider { width: 1px; height: 16px; background: rgba(201,168,76,0.25); }
+    .nav-label {
+      font-size: 11px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(255,255,255,0.35);
+    }
+    .nav-back {
+      margin-left: auto;
+      font-size: 12px; color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 5px 12px; border-radius: 5px;
+      transition: all 0.15s;
+    }
+    .nav-back:hover { color: #C9A84C; border-color: rgba(201,168,76,0.3); }
+    .badge {
+      margin-left: 4px;
+      font-size: 10px; color: rgba(201,168,76,0.55);
+      font-family: 'DM Mono', monospace;
+      background: rgba(201,168,76,0.06);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 4px; padding: 2px 7px;
+    }
+
+    /* ── Layout ───────────────────────────── */
+    .page-wrap { max-width: 860px; margin: 0 auto; padding: 48px 24px 80px; }
+
+    /* ── Hero ─────────────────────────────── */
+    .hero { margin-bottom: 44px; }
+    .hero-eyebrow {
+      font-size: 11px; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(201,168,76,0.65);
+      margin-bottom: 12px;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(30px, 5vw, 44px);
+      font-weight: 400; line-height: 1.2;
+      color: #E8E0CC; margin-bottom: 14px;
+    }
+    .hero h1 em { font-style: italic; color: #C9A84C; }
+    .hero-sub {
+      font-size: 14px; color: rgba(255,255,255,0.45);
+      line-height: 1.7; max-width: 560px;
+    }
+
+    /* ── Steps ────────────────────────────── */
+    .steps {
+      display: flex; gap: 6px; align-items: center;
+      margin-bottom: 36px; flex-wrap: wrap;
+    }
+    .step {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 12px; color: rgba(255,255,255,0.35);
+    }
+    .step-num {
+      width: 20px; height: 20px; border-radius: 50%;
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; color: rgba(201,168,76,0.6);
+      font-family: 'DM Mono', monospace;
+    }
+    .step.active .step-num { background: rgba(201,168,76,0.2); border-color: #C9A84C; color: #C9A84C; }
+    .step.active { color: rgba(255,255,255,0.65); }
+    .step-arrow { color: rgba(255,255,255,0.15); font-size: 10px; }
+
+    /* ── Card ─────────────────────────────── */
+    .card {
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px; padding: 28px;
+      margin-bottom: 20px;
+    }
+    .card-title {
+      font-size: 11px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(201,168,76,0.55);
+      margin-bottom: 18px;
+    }
+
+    /* ── Form ─────────────────────────────── */
+    .field-label {
+      display: block;
+      font-size: 11px; letter-spacing: 0.09em;
+      text-transform: uppercase; color: rgba(201,168,76,0.65);
+      margin-bottom: 10px;
+    }
+    .field-hint { font-size: 11px; color: rgba(255,255,255,0.25); margin-top: 6px; }
+    .field-group { margin-bottom: 24px; }
+
+    /* Property type buttons */
+    .prop-btns { display: flex; flex-wrap: wrap; gap: 8px; }
+    .prop-btn {
+      padding: 8px 18px; border-radius: 7px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.03);
+      color: rgba(255,255,255,0.5);
+      font-size: 13px; cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: all 0.15s;
+    }
+    .prop-btn:hover { border-color: rgba(201,168,76,0.3); color: rgba(255,255,255,0.75); }
+    .prop-btn.active {
+      border-color: #C9A84C;
+      background: rgba(201,168,76,0.1);
+      color: #C9A84C;
+    }
+
+    /* EPC buttons */
+    .epc-row { display: flex; gap: 7px; }
+    .epc-btn {
+      width: 40px; height: 40px; border-radius: 7px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.03);
+      color: rgba(255,255,255,0.4);
+      font-size: 14px; font-weight: 700;
+      cursor: pointer; font-family: 'DM Mono', monospace;
+      transition: all 0.15s;
+    }
+    .epc-btn:hover { opacity: 0.85; }
+
+    /* Text inputs */
+    .input-wrap { position: relative; }
+    .input-wrap input {
+      width: 100%; padding: 11px 46px 11px 14px;
+      border-radius: 7px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04);
+      color: #E8E0CC; font-size: 14px;
+      font-family: 'DM Mono', monospace;
+      outline: none; transition: border-color 0.15s;
+    }
+    .input-wrap input:focus { border-color: rgba(201,168,76,0.4); }
+    .input-unit {
+      position: absolute; right: 12px; top: 50%;
+      transform: translateY(-50%);
+      font-size: 11px; color: rgba(255,255,255,0.25);
+      pointer-events: none;
+    }
+    .input-prefix {
+      position: absolute; left: 12px; top: 50%;
+      transform: translateY(-50%);
+      font-size: 13px; color: rgba(255,255,255,0.25);
+      pointer-events: none;
+    }
+    .input-wrap.has-prefix input { padding-left: 24px; }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 540px) { .two-col { grid-template-columns: 1fr; } }
+
+    /* ── Submit button ────────────────────── */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 36px; border-radius: 8px;
+      background: linear-gradient(135deg, #C9A84C, #a8883c);
+      border: none; color: #0B1829;
+      font-size: 13px; font-weight: 700;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      cursor: pointer; font-family: 'DM Sans', sans-serif;
+      box-shadow: 0 4px 20px rgba(201,168,76,0.22);
+      transition: all 0.2s;
+    }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 28px rgba(201,168,76,0.32); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 12px 22px; border-radius: 8px;
+      border: 1px solid rgba(201,168,76,0.35);
+      background: transparent; color: rgba(201,168,76,0.8);
+      font-size: 13px; cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: all 0.15s;
+    }
+    .btn-secondary:hover { border-color: #C9A84C; color: #C9A84C; }
+    .btn-ghost {
+      padding: 10px 18px; border-radius: 7px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: transparent; color: rgba(255,255,255,0.4);
+      font-size: 12px; cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: all 0.15s;
+    }
+    .btn-ghost:hover { color: rgba(255,255,255,0.7); border-color: rgba(255,255,255,0.2); }
+
+    /* ── Results ──────────────────────────── */
+    #results { display: none; }
+    #results.visible {
+      display: block;
+      animation: fadeUp 0.35s ease both;
+    }
+    @keyframes fadeUp {
+      from { opacity:0; transform: translateY(14px); }
+      to   { opacity:1; transform: translateY(0); }
+    }
+
+    /* Metric cards */
+    .metrics { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+    @media (max-width: 640px) { .metrics { grid-template-columns: 1fr 1fr; } }
+    .metric {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 10px; padding: 18px 16px;
+    }
+    .metric-label {
+      font-size: 10px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(255,255,255,0.3);
+      margin-bottom: 10px;
+    }
+    .metric-value {
+      font-family: 'DM Mono', monospace;
+      font-size: 34px; font-weight: 700;
+      line-height: 1; margin-bottom: 6px;
+    }
+    .metric-sub { font-size: 11px; color: rgba(255,255,255,0.3); }
+
+    /* Chart */
+    .chart-wrap {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 10px; padding: 20px 16px 12px;
+      margin-bottom: 20px;
+    }
+    .chart-title {
+      font-size: 11px; letter-spacing: 0.08em;
+      text-transform: uppercase; color: rgba(255,255,255,0.25);
+      margin-bottom: 14px;
+    }
+    canvas { width: 100% !important; height: auto !important; }
+
+    /* Risk box */
+    .risk-box {
+      background: rgba(201,168,76,0.05);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 10px; padding: 20px 22px;
+      margin-bottom: 20px;
+    }
+    .risk-box-title {
+      font-size: 10px; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(201,168,76,0.55);
+      margin-bottom: 10px;
+    }
+    .risk-box p { font-size: 13px; line-height: 1.75; color: rgba(255,255,255,0.6); }
+    .risk-box strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+
+    /* CTA row */
+    .cta-row {
+      display: flex; align-items: center;
+      gap: 12px; flex-wrap: wrap;
+    }
+    .cta-note {
+      margin-left: auto; font-size: 10px;
+      color: rgba(255,255,255,0.18);
+    }
+
+    /* ── Lead form ────────────────────────── */
+    .lead-card {
+      background: linear-gradient(135deg, rgba(201,168,76,0.06), rgba(14,40,90,0.2));
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 12px; padding: 28px;
+      margin-bottom: 20px; text-align: center;
+    }
+    .lead-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; font-weight: 400;
+      color: #E8E0CC; margin-bottom: 8px;
+    }
+    .lead-card p { font-size: 13px; color: rgba(255,255,255,0.45); margin-bottom: 20px; }
+    .lead-form { display: flex; gap: 10px; max-width: 440px; margin: 0 auto; }
+    .lead-form input {
+      flex: 1; padding: 11px 14px; border-radius: 7px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      color: #E8E0CC; font-size: 13px;
+      font-family: 'DM Sans', sans-serif; outline: none;
+    }
+    .lead-form input::placeholder { color: rgba(255,255,255,0.25); }
+    .lead-form input:focus { border-color: rgba(201,168,76,0.4); }
+
+    /* ── Disclaimer ───────────────────────── */
+    .disclaimer {
+      font-size: 10px; color: rgba(255,255,255,0.18);
+      line-height: 1.6; margin-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: 16px;
+    }
+
+    /* ── Trust bar ────────────────────────── */
+    .trust-bar {
+      display: flex; align-items: center; gap: 24px;
+      flex-wrap: wrap; margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 11px; color: rgba(255,255,255,0.3);
+    }
+    .trust-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(201,168,76,0.4); }
+  </style>
+</head>
+
+<body>
+  <!-- Nav -->
+  <nav>
+    <a href="/" class="nav-logo">Plinthos</a>
+    <div class="nav-divider"></div>
+    <span class="nav-label">Stranded Asset Checker</span>
+    <span class="badge">Free Tool · CRREM 1.5°C · UK</span>
+    <a href="/" class="nav-back">← plinthos.io</a>
+  </nav>
+
+  <div class="page-wrap">
+
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero-eyebrow">Free · Instant · No login required</div>
+      <h1>When does your property<br/><em>become stranded?</em></h1>
+      <p class="hero-sub">
+        Enter your EPC rating and floor area to calculate the CRREM misalignment year —
+        the point at which your asset exceeds the 1.5°C carbon pathway and faces
+        stranded asset risk.
+      </p>
+    </div>
+
+    <!-- Progress steps -->
+    <div class="steps">
+      <div class="step active" id="step1">
+        <div class="step-num">1</div>
+        <span>Property details</span>
+      </div>
+      <div class="step-arrow">›</div>
+      <div class="step" id="step2">
+        <div class="step-num">2</div>
+        <span>Risk results</span>
+      </div>
+      <div class="step-arrow">›</div>
+      <div class="step" id="step3">
+        <div class="step-num">3</div>
+        <span>Full report</span>
+      </div>
+    </div>
+
+    <!-- ── INPUT FORM ── -->
+    <div id="input-section">
+      <div class="card">
+        <div class="card-title">Property Type</div>
+        <div class="field-group">
+          <div class="prop-btns" id="prop-btns">
+            <button class="prop-btn active" data-val="Office">Office</button>
+            <button class="prop-btn" data-val="Retail">Retail</button>
+            <button class="prop-btn" data-val="Industrial">Industrial</button>
+            <button class="prop-btn" data-val="Residential">Residential</button>
+            <button class="prop-btn" data-val="Hotel">Hotel</button>
+            <button class="prop-btn" data-val="Healthcare">Healthcare</button>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="field-group">
+            <label class="field-label">Current EPC Rating</label>
+            <div class="epc-row" id="epc-btns"></div>
+            <div class="field-hint" id="epc-hint">Estimated: — kgCO₂e/m²/yr</div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Floor Area (GIA)</label>
+            <div class="input-wrap">
+              <input type="number" id="area-input" value="2500" min="100" max="500000" />
+              <span class="input-unit">m²</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="field-group">
+            <label class="field-label">Gross Asset Value <span style="color:rgba(255,255,255,0.25);text-transform:none;letter-spacing:0">(optional)</span></label>
+            <div class="input-wrap has-prefix">
+              <span class="input-prefix">£</span>
+              <input type="number" id="gav-input" placeholder="e.g. 25000000" />
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Reporting Year</label>
+            <div class="input-wrap">
+              <input type="number" id="year-input" value="2024" min="2020" max="2030" />
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-primary" id="calc-btn">
+          Calculate Misalignment
+          <span style="font-size:16px;font-weight:400">→</span>
+        </button>
+
+        <p class="disclaimer" style="margin-top:16px">
+          GHG intensities are estimated from EPC band benchmarks per UK building regulations. For investment-grade analysis, Plinthos uses verified meter data. Pathways are approximate pending the official CRREM Pathway Dataset release (30 April 2026).
+        </p>
+      </div>
+    </div>
+
+    <!-- ── RESULTS ── -->
+    <div id="results">
+
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px">
+        <div>
+          <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(201,168,76,0.55);margin-bottom:5px" id="res-subtitle"></div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;color:#E8E0CC">CRREM Transition Risk Assessment</div>
+        </div>
+        <button class="btn-ghost" id="reset-btn">← New Assessment</button>
+      </div>
+
+      <!-- Metric cards -->
+      <div class="metrics">
+        <div class="metric" id="metric-strand" style="border-color:rgba(239,68,68,0.25)">
+          <div class="metric-label">Misalignment Year</div>
+          <div class="metric-value" id="val-strand" style="color:#ef4444">—</div>
+          <div class="metric-sub" id="sub-strand"></div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">GHG Intensity (2024)</div>
+          <div class="metric-value" id="val-ghg" style="color:#E8E0CC">—</div>
+          <div class="metric-sub" id="sub-ghg"></div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Excess Emissions</div>
+          <div class="metric-value" id="val-excess" style="color:#f97316">—</div>
+          <div class="metric-sub" id="sub-excess"></div>
+        </div>
+      </div>
+
+      <!-- Chart -->
+      <div class="chart-wrap">
+        <div class="chart-title">GHG Intensity vs CRREM 1.5°C Pathway · UK</div>
+        <canvas id="chart-canvas" height="240"></canvas>
+      </div>
+
+      <!-- Risk narrative -->
+      <div class="risk-box">
+        <div class="risk-box-title">Risk Summary</div>
+        <p id="risk-narrative"></p>
+      </div>
+
+      <!-- Lead capture -->
+      <div class="lead-card">
+        <h3>Get the full stranded asset report</h3>
+        <p>Complete analysis with retrofit cost modelling, MEES compliance timeline, GRESB impact, and investor-grade narrative — delivered by Plinthos within 5 working days.</p>
+        <div class="lead-form">
+          <input type="email" id="lead-email" placeholder="your@email.com" />
+          <button class="btn-primary" id="lead-btn" style="white-space:nowrap;padding:11px 22px">
+            Request Report
+          </button>
+        </div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.2);margin-top:10px">No spam. One email. Plinthos team will be in touch within 24 hours.</div>
+      </div>
+
+      <!-- CTA row -->
+      <div class="cta-row">
+        <a href="/valuers" class="btn-secondary">Plinthos for Valuers</a>
+        <a href="/#contact" class="btn-secondary">Talk to the team</a>
+        <span class="cta-note">Powered by CRREM methodology · Plinthos © 2026</span>
+      </div>
+
+      <!-- Trust bar -->
+      <div class="trust-bar">
+        <div class="trust-item"><div class="trust-dot"></div>CRREM V2.07 methodology</div>
+        <div class="trust-item"><div class="trust-dot"></div>136 UK REIT reports analysed</div>
+        <div class="trust-item"><div class="trust-dot"></div>University of Manchester research</div>
+        <div class="trust-item"><div class="trust-dot"></div>GRESB · SFDR · MEES aligned</div>
+      </div>
+    </div>
+
+  </div><!-- /page-wrap -->
+
+
+  <script>
+  // ────────────────────────────────────────────
+  // CRREM UK 1.5°C GHG Intensity Pathways
+  // kgCO₂e/m²/yr | years 2020–2050
+  // Approximate: replace post 30 April 2026
+  // ────────────────────────────────────────────
+  const YEARS = Array.from({length:31}, (_,i) => 2020+i);
+
+  const PATHWAYS = {
+    Office:      [38,35,32,29,27,24,22,20,18,16,15,13,12,10, 9, 8, 7, 6,5.5, 5,4.5, 4,3.5, 3,2.8,2.5,2.3,2.1,1.9,1.7,1.5],
+    Retail:      [23,21,19,17,15.5,14,12.5,11.5,10.5,9.5,8.5,7.5,6.8, 6,5.4,4.8,4.3,3.8,3.4, 3,2.7,2.4,2.1,1.9,1.7,1.5,1.4,1.2,1.1,1.0,0.9],
+    Industrial:  [15,13.8,12.7,11.6,10.6,9.7,8.8, 8,7.3,6.6, 6,5.4,4.9,4.4,3.9,3.5,3.1,2.8,2.5,2.2, 2,1.8,1.6,1.4,1.3,1.1, 1,0.9,0.8,0.75,0.7],
+    Residential: [25,23,21,19,17.5,16,14.5,13,11.8,10.5,9.5,8.5,7.5,6.7,5.9,5.2,4.6, 4,3.5,3.1,2.7,2.4,2.1,1.9,1.7,1.5,1.4,1.2,1.1,1.0,0.9],
+    Hotel:       [30,27.5,25,22.5,20.5,18.5,16.5,15,13.5,12,10.8,9.6,8.5,7.5,6.6,5.8,5.1,4.5,3.9,3.5,3.1,2.7,2.4,2.1,1.9,1.7,1.5,1.4,1.2,1.1,1.0],
+    Healthcare:  [28,25.5,23,21,19,17.5,16,14.5,13,11.5,10.5,9.5,8.5,7.5,6.7,5.9,5.2,4.6, 4,3.5,3.1,2.7,2.4,2.1,1.9,1.7,1.5,1.4,1.2,1.1,1.0],
+  };
+
+  // EPC → typical GHG intensity 2024 kgCO₂e/m²/yr
+  const EPC_GHG = {
+    Office:      {A:12, B:22, C:35, D:52, E:72, F:95,  G:130},
+    Retail:      {A: 8, B:15, C:24, D:36, E:50, F:68,  G:95},
+    Industrial:  {A: 5, B:10, C:16, D:25, E:36, F:50,  G:70},
+    Residential: {A: 8, B:15, C:25, D:38, E:55, F:75,  G:100},
+    Hotel:       {A:15, B:25, C:38, D:55, E:75, F:100, G:135},
+    Healthcare:  {A:12, B:22, C:36, D:52, E:72, F:96,  G:130},
+  };
+
+  const EPC_COLORS = {A:"#1a9641",B:"#52b74a",C:"#a6d96a",D:"#f5d938",E:"#e06b1f",F:"#d73027",G:"#a50026"};
+  const EPC_ORDER  = ["A","B","C","D","E","F","G"];
+  const MEES_MIN   = {Office:"E",Retail:"E",Industrial:"E",Residential:"D",Hotel:"E",Healthcare:"E"};
+
+  // ── State ──────────────────────────────────
+  let state = { propType:"Office", epc:"D", area:2500, gav:"", year:2024 };
+
+  // ── Init EPC buttons ───────────────────────
+  function initEpcBtns() {
+    const row = document.getElementById('epc-btns');
+    row.innerHTML = "";
+    EPC_ORDER.forEach(r => {
+      const btn = document.createElement('button');
+      btn.className = 'epc-btn' + (r === state.epc ? ' active-epc' : '');
+      btn.textContent = r;
+      btn.style.borderColor = r === state.epc ? EPC_COLORS[r] : 'rgba(255,255,255,0.1)';
+      btn.style.background  = r === state.epc ? EPC_COLORS[r]+'22' : 'rgba(255,255,255,0.03)';
+      btn.style.color       = r === state.epc ? EPC_COLORS[r] : 'rgba(255,255,255,0.4)';
+      btn.onclick = () => { state.epc = r; initEpcBtns(); updateHint(); };
+      row.appendChild(btn);
+    });
+  }
+
+  function updateHint() {
+    const ghg = EPC_GHG[state.propType]?.[state.epc] ?? '—';
+    document.getElementById('epc-hint').textContent = `Estimated intensity: ${ghg} kgCO₂e/m²/yr`;
+  }
+
+  // ── Prop type buttons ──────────────────────
+  document.getElementById('prop-btns').addEventListener('click', e => {
+    const btn = e.target.closest('.prop-btn');
+    if (!btn) return;
+    document.querySelectorAll('.prop-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    state.propType = btn.dataset.val;
+    initEpcBtns(); updateHint();
+  });
+
+  // ── Calculations ───────────────────────────
+  function getMisalignmentYear(ghg, propType) {
+    const pw = PATHWAYS[propType];
+    for (let i = 0; i < YEARS.length; i++) {
+      if (ghg > pw[i]) return YEARS[i];
+    }
+    return null;
+  }
+
+  function getCumulativeExcess(ghg, propType, fromYear) {
+    if (!fromYear) return 0;
+    const pw = PATHWAYS[propType];
+    const si = YEARS.indexOf(fromYear);
+    let total = 0;
+    for (let i = si; i < YEARS.length; i++) total += Math.max(0, ghg - pw[i]);
+    return total;
+  }
+
+  // ── Chart ──────────────────────────────────
+  function drawChart(propType, ghg, strandYear) {
+    const canvas = document.getElementById('chart-canvas');
+    const dpr    = window.devicePixelRatio || 1;
+    const W0     = canvas.parentElement.clientWidth - 32;
+    const H0     = Math.min(240, Math.round(W0 * 0.36));
+    canvas.width  = W0 * dpr;
+    canvas.height = H0 * dpr;
+    canvas.style.width  = W0 + 'px';
+    canvas.style.height = H0 + 'px';
+
+    const ctx  = canvas.getContext('2d');
+    ctx.scale(dpr, dpr);
+    const W = W0, H = H0;
+    const pad = {top:22, right:20, bottom:44, left:48};
+    ctx.clearRect(0, 0, W, H);
+
+    const pw   = PATHWAYS[propType];
+    const maxY = Math.max(ghg * 1.2, pw[0] * 1.1, 40);
+    const toX  = i => pad.left + (i / (YEARS.length-1)) * (W - pad.left - pad.right);
+    const toY  = v => H - pad.bottom - (v / maxY) * (H - pad.top - pad.bottom);
+
+    // Grid
+    ctx.strokeStyle = "rgba(255,255,255,0.05)";
+    ctx.lineWidth = 1;
+    for (let v = 0; v <= maxY; v += 10) {
+      ctx.beginPath(); ctx.moveTo(pad.left, toY(v)); ctx.lineTo(W-pad.right, toY(v)); ctx.stroke();
+    }
+    for (let i = 0; i < YEARS.length; i += 5) {
+      ctx.beginPath(); ctx.moveTo(toX(i), pad.top); ctx.lineTo(toX(i), H-pad.bottom); ctx.stroke();
+    }
+
+    // Stranded zone
+    if (strandYear) {
+      const si = YEARS.indexOf(strandYear);
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(toX(si), toY(ghg));
+      for (let i = si; i < YEARS.length; i++) ctx.lineTo(toX(i), toY(pw[i]));
+      ctx.lineTo(toX(YEARS.length-1), toY(ghg));
+      ctx.closePath();
+      ctx.fillStyle = "rgba(220,50,50,0.1)";
+      ctx.fill(); ctx.restore();
+    }
+
+    // CRREM pathway line
+    ctx.beginPath(); ctx.strokeStyle = "#C9A84C"; ctx.lineWidth = 2.5; ctx.setLineDash([]);
+    pw.forEach((v,i) => i===0 ? ctx.moveTo(toX(i),toY(v)) : ctx.lineTo(toX(i),toY(v)));
+    ctx.stroke();
+
+    // Building line
+    const lineColor = strandYear ? "#ef4444" : "#4ade80";
+    ctx.beginPath(); ctx.strokeStyle = lineColor; ctx.lineWidth = 2; ctx.setLineDash([7,4]);
+    ctx.moveTo(toX(0), toY(ghg)); ctx.lineTo(toX(YEARS.length-1), toY(ghg));
+    ctx.stroke(); ctx.setLineDash([]);
+
+    // Strand year marker
+    if (strandYear) {
+      const si = YEARS.indexOf(strandYear);
+      ctx.beginPath(); ctx.strokeStyle = "rgba(239,68,68,0.6)"; ctx.lineWidth = 1.5; ctx.setLineDash([4,3]);
+      ctx.moveTo(toX(si), pad.top); ctx.lineTo(toX(si), H-pad.bottom);
+      ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = "#ef4444";
+      ctx.font = `bold 11px 'DM Mono', monospace`;
+      ctx.textAlign = "center";
+      ctx.fillText(strandYear, toX(si), pad.top - 5);
+    }
+
+    // Axes labels
+    ctx.fillStyle = "rgba(255,255,255,0.3)";
+    ctx.font = "10px 'DM Sans', sans-serif";
+    ctx.textAlign = "right";
+    for (let v = 0; v <= maxY; v += 10) ctx.fillText(v, pad.left-5, toY(v)+3);
+    ctx.textAlign = "center";
+    for (let i = 0; i < YEARS.length; i += 5) ctx.fillText(YEARS[i], toX(i), H-pad.bottom+16);
+
+    // Y-axis label
+    ctx.save(); ctx.translate(11, H/2); ctx.rotate(-Math.PI/2);
+    ctx.fillStyle = "rgba(255,255,255,0.25)"; ctx.font = "9px 'DM Sans',sans-serif"; ctx.textAlign = "center";
+    ctx.fillText("kgCO₂e/m²/yr", 0, 0); ctx.restore();
+
+    // Legend
+    const lx = W - pad.right - 175, ly = pad.top + 8;
+    ctx.font = "10px 'DM Sans', sans-serif"; ctx.textAlign = "left";
+    ctx.strokeStyle = "#C9A84C"; ctx.lineWidth = 2.5; ctx.setLineDash([]);
+    ctx.beginPath(); ctx.moveTo(lx, ly); ctx.lineTo(lx+20, ly); ctx.stroke();
+    ctx.fillStyle = "rgba(255,255,255,0.5)"; ctx.fillText("CRREM 1.5°C pathway", lx+25, ly+3);
+    ctx.strokeStyle = lineColor; ctx.lineWidth = 2; ctx.setLineDash([6,3]);
+    ctx.beginPath(); ctx.moveTo(lx, ly+16); ctx.lineTo(lx+20, ly+16); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillText("Building intensity", lx+25, ly+19);
+  }
+
+  // ── Render results ─────────────────────────
+  function calculate() {
+    state.area = +document.getElementById('area-input').value || 0;
+    state.gav  = document.getElementById('gav-input').value;
+    state.year = +document.getElementById('year-input').value || 2024;
+
+    const ghg       = EPC_GHG[state.propType]?.[state.epc] ?? 45;
+    const strandYear= getMisalignmentYear(ghg, state.propType);
+    const excess    = getCumulativeExcess(ghg, state.propType, strandYear);
+    const excessT   = state.area ? Math.round(excess * state.area / 1000) : null;
+    const pw2024    = PATHWAYS[state.propType][4];
+    const gap       = Math.round(((ghg - pw2024) / pw2024) * 100);
+    const meesMin   = MEES_MIN[state.propType];
+    const meesOK    = EPC_ORDER.indexOf(state.epc) <= EPC_ORDER.indexOf(meesMin);
+    const yrsLeft   = strandYear ? strandYear - 2024 : null;
+    const urgency   = !strandYear ? "none" : yrsLeft <= 3 ? "critical" : yrsLeft <= 8 ? "high" : "moderate";
+    const urgColor  = {none:"#4ade80", critical:"#ef4444", high:"#f97316", moderate:"#eab308"}[urgency];
+
+    // Update metric cards
+    document.getElementById('res-subtitle').textContent =
+      `${state.propType} · EPC ${state.epc} · ${state.area.toLocaleString()} m²`;
+
+    const mStrand = document.getElementById('metric-strand');
+    mStrand.style.borderColor = strandYear ? "rgba(239,68,68,0.3)" : "rgba(74,222,128,0.25)";
+    document.getElementById('val-strand').textContent = strandYear ?? "—";
+    document.getElementById('val-strand').style.color = urgColor;
+    document.getElementById('sub-strand').textContent =
+      strandYear ? `Strands in ${yrsLeft} year${yrsLeft!==1?'s':''}` : "1.5°C aligned ✓";
+
+    document.getElementById('val-ghg').textContent = ghg;
+    document.getElementById('sub-ghg').innerHTML =
+      `vs target ${pw2024} kgCO₂e/m²/yr &nbsp;<span style="color:${gap>0?'#ef4444':'#4ade80'}">${gap>0?'+'+gap+'% above':Math.abs(gap)+'% below'}</span>`;
+
+    document.getElementById('val-excess').textContent = strandYear ? `${excessT?.toLocaleString()} t` : "0 t";
+    document.getElementById('sub-excess').innerHTML =
+      `CO₂e cumulative 2025–2050<br>${meesOK?'<span style="color:#4ade80">✓ MEES compliant</span>':'<span style="color:#ef4444">✗ MEES non-compliant</span>'}`;
+
+    // Draw chart
+    drawChart(state.propType, ghg, strandYear);
+
+    // Risk narrative
+    const meesText = meesOK ? "" :
+      ` The asset also fails current MEES minimum standards (requires EPC <strong>${meesMin}</strong> or above), creating immediate letting risk.`;
+    const narrativeEl = document.getElementById('risk-narrative');
+    if (strandYear) {
+      narrativeEl.innerHTML =
+        `This <strong>${state.propType.toLowerCase()}</strong> asset (EPC <strong>${state.epc}</strong>, ${state.area.toLocaleString()} m²) is projected to exceed the CRREM 1.5°C carbon pathway in <strong>${strandYear}</strong> — ${yrsLeft} year${yrsLeft!==1?'s':''} from today. At current performance, the building will accumulate approximately <strong>${excessT?.toLocaleString()} tCO₂e</strong> of excess emissions between ${strandYear} and 2050, creating material stranded asset risk.${meesText} A targeted retrofit programme reducing emissions to below <strong>${pw2024} kgCO₂e/m²/yr</strong> would restore alignment with the 1.5°C pathway.`;
+    } else {
+      narrativeEl.innerHTML =
+        `This <strong>${state.propType.toLowerCase()}</strong> asset (EPC <strong>${state.epc}</strong>) is currently aligned with the CRREM 1.5°C pathway and does not face near-term stranding risk. Continued monitoring is recommended as pathway targets tighten post-2030.`;
+    }
+
+    // Show/hide sections
+    document.getElementById('input-section').style.display = 'none';
+    const r = document.getElementById('results');
+    r.style.display = 'block';
+    requestAnimationFrame(() => r.classList.add('visible'));
+
+    // Progress
+    document.getElementById('step1').classList.remove('active');
+    document.getElementById('step2').classList.add('active');
+  }
+
+  // ── Event listeners ────────────────────────
+  document.getElementById('calc-btn').addEventListener('click', calculate);
+  document.getElementById('reset-btn').addEventListener('click', () => {
+    document.getElementById('results').classList.remove('visible');
+    setTimeout(() => {
+      document.getElementById('results').style.display = 'none';
+      document.getElementById('input-section').style.display = 'block';
+    }, 300);
+    document.getElementById('step1').classList.add('active');
+    document.getElementById('step2').classList.remove('active');
+  });
+
+  document.getElementById('lead-btn').addEventListener('click', () => {
+    const email = document.getElementById('lead-email').value.trim();
+    if (!email || !email.includes('@')) {
+      document.getElementById('lead-email').style.borderColor = '#ef4444';
+      return;
+    }
+    // TODO: connect to form handler / Formspree / Netlify Forms
+    document.getElementById('lead-btn').textContent = "✓ Sent — we'll be in touch";
+    document.getElementById('lead-btn').disabled = true;
+    document.getElementById('step3').classList.add('active');
+    // Log to console for now
+    console.log('Lead:', email, state);
+  });
+
+  // ── Init ───────────────────────────────────
+  initEpcBtns();
+  updateHint();
+  </script>
+</body>
+</html>
