@@ -1067,10 +1067,10 @@
           Download Sample Report →
         </button>
         <p id="download-msg" style="display:none; margin-top:1rem; font-size:0.85rem; color:#5DB87A; text-align:center;">
-          ✓ Your download has started. We'll be in touch shortly.
+          ✓ Details received. <a href="sample-risk-report.pdf" download="Plinthos-Sample-Risk-Assessment.pdf" style="color:#5DB87A; font-weight:500; text-decoration:underline;">Click here to download your sample report →</a>
         </p>
         <p id="download-err" style="display:none; margin-top:1rem; font-size:0.85rem; color:#E06060; text-align:center;">
-          Something went wrong. Please email us at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="452d2029292a0535292c2b312d2a366b2c2a">[email&#160;protected]</a>
+          Something went wrong. Please email us at <a href="mailto:hello@plinthos.io" style="color:#E06060;">hello@plinthos.io</a>
         </p>
       </form>
 
@@ -1149,7 +1149,7 @@
         <button type="submit" class="btn-primary form-submit">Submit Enquiry →</button>
       </form>
       <p style="font-size:0.78rem;color:var(--muted);margin-top:1.5rem;text-align:center;">
-        Or email directly: <a href="/cdn-cgi/l/email-protection#6d05080101022d1d0104031905021e430402" style="color:var(--gold-lt);text-decoration:none;"><span class="__cf_email__" data-cfemail="0169646d6d6e41716d686f75696e722f686e">[email&#160;protected]</span></a>
+        Or email directly: <a href="mailto:hello@plinthos.io" style="color:var(--gold-lt);text-decoration:none;">hello@plinthos.io</a>
       </p>
     </div>
   </div>
@@ -1168,7 +1168,7 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   // Gated download form
   const downloadForm = document.getElementById('download-form');
   if (downloadForm) {
@@ -1191,10 +1191,7 @@
         });
 
         if (response.ok) {
-          // Trigger PDF download (window.open avoids async browser blocking)
-          window.open('sample-risk-report.pdf', '_blank');
-
-          // Show success
+          // Show success with direct download link
           btn.style.display = 'none';
           msg.style.display = 'block';
         } else {
