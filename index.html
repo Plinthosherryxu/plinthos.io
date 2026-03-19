@@ -1191,13 +1191,8 @@
         });
 
         if (response.ok) {
-          // Trigger PDF download
-          const link = document.createElement('a');
-          link.href = 'sample-risk-report.pdf';
-          link.download = 'Plinthos-Sample-Risk-Assessment.pdf';
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
+          // Trigger PDF download (window.open avoids async browser blocking)
+          window.open('sample-risk-report.pdf', '_blank');
 
           // Show success
           btn.style.display = 'none';
