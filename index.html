@@ -1035,8 +1035,9 @@
       <h2>See the <em>Analysis</em> in Action</h2>
       <p>Download a two-page sample risk assessment for a fictional 10-asset portfolio. See exactly what we deliver — asset tiering, £ exposure, capex priorities — before committing to an engagement.</p>
 
-      <form id="download-form" class="contact-form">
+      <form id="download-form" class="contact-form" action="https://formspree.io/f/mojnpkek" method="POST">
         <input type="hidden" name="_subject" value="Sample Report Download — plinthos.io" />
+        <input type="hidden" name="_next" value="https://plinthos.io/sample-risk-report.pdf" />
         <div class="form-row">
           <div class="form-group">
             <label>Your Name</label>
@@ -1066,12 +1067,6 @@
         <button type="submit" class="btn-primary form-submit" id="download-btn">
           Download Sample Report →
         </button>
-        <p id="download-msg" style="display:none; margin-top:1rem; font-size:0.85rem; color:#5DB87A; text-align:center;">
-          ✓ Details received. <a href="sample-risk-report.pdf" download="Plinthos-Sample-Risk-Assessment.pdf" style="color:#5DB87A; font-weight:500; text-decoration:underline;">Click here to download your sample report →</a>
-        </p>
-        <p id="download-err" style="display:none; margin-top:1rem; font-size:0.85rem; color:#E06060; text-align:center;">
-          Something went wrong. Please email us at <a href="mailto:hello@plinthos.io" style="color:#E06060;">hello@plinthos.io</a>
-        </p>
       </form>
 
       <p style="font-size:0.78rem;color:var(--muted);margin-top:1.5rem;text-align:center;">
@@ -1169,42 +1164,6 @@
 </footer>
 
 <script>
-  // Gated download form
-  const downloadForm = document.getElementById('download-form');
-  if (downloadForm) {
-    downloadForm.addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const btn = document.getElementById('download-btn');
-      const msg = document.getElementById('download-msg');
-      const err = document.getElementById('download-err');
-
-      btn.textContent = 'Sending...';
-      btn.disabled = true;
-
-      const formData = new FormData(downloadForm);
-
-      try {
-        const response = await fetch('https://formspree.io/f/mojnpkek', {
-          method: 'POST',
-          body: formData,
-          headers: { 'Accept': 'application/json' }
-        });
-
-        if (response.ok) {
-          // Show success with direct download link
-          btn.style.display = 'none';
-          msg.style.display = 'block';
-        } else {
-          throw new Error('Submission failed');
-        }
-      } catch(error) {
-        btn.textContent = 'Download Sample Report →';
-        btn.disabled = false;
-        err.style.display = 'block';
-      }
-    });
-  }
-
   // Scroll-triggered fade-in for sections below the hero
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
