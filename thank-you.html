@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Sample Report — Plinthos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #0B1829;
+      --gold: #DAA520;
+      --gold-lt: #E8BC45;
+      --cream: #F5F1EA;
+      --muted: #8A96A3;
+    }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--navy);
+      color: var(--cream);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+    .card {
+      max-width: 520px;
+      width: 100%;
+    }
+    .icon {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: rgba(218,165,32,0.12);
+      border: 1px solid rgba(218,165,32,0.3);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 2rem;
+      font-size: 1.8rem;
+    }
+    h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 2.4rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      color: var(--cream);
+    }
+    h1 em { font-style: italic; color: var(--gold-lt); }
+    p {
+      font-weight: 300;
+      color: rgba(245,241,234,0.7);
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 1rem 2.2rem;
+      background: var(--gold);
+      color: var(--navy);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background 0.2s;
+    }
+    .btn:hover { background: var(--gold-lt); }
+    .back {
+      display: block;
+      margin-top: 2rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+    }
+    .back:hover { color: var(--cream); }
+    .note {
+      margin-top: 1.5rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="icon">✓</div>
+    <h1>Your <em>Report</em> is Ready</h1>
+    <p>Thank you for your interest in Plinthos. Your sample risk assessment is downloading now. If it doesn't start automatically, use the button below.</p>
+
+    <a href="sample-risk-report.pdf" download="Plinthos-Sample-Risk-Assessment.pdf" class="btn" id="download-btn">
+      Download Sample Report →
+    </a>
+
+    <p class="note">We'll be in touch shortly with relevant insights for your portfolio.</p>
+    <a href="https://plinthos.io" class="back">← Back to Plinthos</a>
+  </div>
+
+  <script>
+    // Auto-trigger download on page load (works because this is a direct user navigation, not async JS)
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.getElementById('download-btn').click();
+      }, 800);
+    });
+  </script>
+</body>
+</html>
