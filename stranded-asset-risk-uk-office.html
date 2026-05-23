@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Assess Stranded Asset Risk in UK Office Valuations Without a QS | Plinthos</title>
+    <meta name="description" content="How chartered surveyors can assess stranded asset risk for UK commercial property using CRREM pathway analysis — without instructing a separate quantity surveyor or sustainability consultant.">
+    <link rel="canonical" href="https://plinthos.io/stranded-asset-risk-uk-office.html">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How Do I Assess Stranded Asset Risk for a UK Office Building Without Instructing a Separate QS?",
+        "description": "A practical guide for chartered surveyors on using CRREM pathway analysis and proportionate technology tools to assess stranded asset risk, as permitted by RICS 4th Edition Section 3.",
+        "datePublished": "2026-05-24",
+        "dateModified": "2026-05-24",
+        "author": {
+            "@type": "Person",
+            "name": "Dr Yishuang (Sherry) Xu",
+            "jobTitle": "Founder & CEO, Plinthos",
+            "url": "https://plinthos.io",
+            "sameAs": ["https://www.linkedin.com/in/yishuang-sherry-xu/", "https://research.manchester.ac.uk/en/persons/yishuang.xu"]
+        },
+        "publisher": { "@type": "Organization", "name": "Plinthos", "url": "https://plinthos.io" },
+        "mainEntityOfPage": "https://plinthos.io/stranded-asset-risk-uk-office.html"
+    }
+    </script>
+
+    <style>
+        :root { --ink: #1a1a2e; --body: #3d3d5c; --muted: #6b7094; --accent: #0f5132; --accent-light: #e8f5e9; --surface: #fafaf8; --white: #ffffff; --border: #e2e2e0; --red: #c62828; --red-light: #ffebee; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'DM Sans', -apple-system, sans-serif; color: var(--body); background: var(--surface); line-height: 1.72; -webkit-font-smoothing: antialiased; }
+        nav { background: var(--white); border-bottom: 1px solid var(--border); padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+        .nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--accent); text-decoration: none; }
+        .nav-links { display: flex; gap: 1.5rem; }
+        .nav-links a { color: var(--body); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+        .nav-links a:hover { color: var(--accent); }
+        .article-header { max-width: 720px; margin: 3rem auto 2rem; padding: 0 1.5rem; }
+        .article-meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+        .article-header h1 { font-family: 'DM Serif Display', serif; font-size: 2.1rem; color: var(--ink); line-height: 1.25; letter-spacing: -0.02em; margin-bottom: 1rem; }
+        .article-header .subtitle { font-size: 1.15rem; color: var(--muted); line-height: 1.6; }
+        article { max-width: 720px; margin: 0 auto 3rem; padding: 0 1.5rem; }
+        article p { margin-bottom: 1.4rem; font-size: 1.05rem; }
+        article h2 { font-family: 'DM Serif Display', serif; font-size: 1.45rem; color: var(--ink); margin: 2.5rem 0 1rem; }
+        article strong { color: var(--ink); }
+        .key-takeaway { background: var(--accent-light); border-left: 4px solid var(--accent); padding: 1.25rem 1.5rem; margin: 2rem 0; border-radius: 0 8px 8px 0; }
+        .key-takeaway p { margin-bottom: 0.5rem; font-size: 1rem; }
+        .key-takeaway p:last-child { margin-bottom: 0; }
+        .example-box { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; margin: 2rem 0; }
+        .example-box h4 { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--ink); margin-bottom: 0.75rem; }
+        .example-row { display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--border); font-size: 0.95rem; }
+        .example-row:last-child { border-bottom: none; }
+        .example-row .label { color: var(--muted); }
+        .example-row .value { color: var(--ink); font-weight: 600; }
+        .example-row .value.red { color: var(--red); }
+        .example-row .value.green { color: var(--accent); }
+        .vs-table { width: 100%; border-collapse: collapse; margin: 2rem 0; background: var(--white); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+        .vs-table th { background: var(--ink); color: var(--white); padding: 0.75rem 1rem; text-align: left; font-size: 0.85rem; font-weight: 600; }
+        .vs-table td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); font-size: 0.95rem; }
+        .vs-table tr:last-child td { border-bottom: none; }
+        .related-section { max-width: 720px; margin: 0 auto 3rem; padding: 0 1.5rem; }
+        .related-section h3 { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: var(--ink); margin-bottom: 1rem; }
+        .related-links { display: flex; flex-direction: column; gap: 0.75rem; }
+        .related-links a { display: block; background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.25rem; color: var(--ink); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: border-color 0.2s, background 0.2s; }
+        .related-links a:hover { border-color: var(--accent); background: var(--accent-light); }
+        .related-links a span { color: var(--muted); font-weight: 400; font-size: 0.85rem; display: block; margin-top: 0.25rem; }
+        .cta-section { max-width: 690px; margin: 0 auto 3rem; padding: 2rem 1.5rem; background: var(--ink); border-radius: 12px; text-align: center; color: var(--white); }
+        .cta-section h3 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; margin-bottom: 0.75rem; }
+        .cta-section p { color: #b8b8d0; margin-bottom: 1.25rem; font-size: 0.95rem; }
+        .cta-button { display: inline-block; background: var(--accent); color: var(--white); padding: 0.75rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 600; }
+        footer { border-top: 1px solid var(--border); padding: 2rem; text-align: center; font-size: 0.85rem; color: var(--muted); }
+        @media (max-width: 640px) { .article-header h1 { font-size: 1.7rem; } .example-row { flex-direction: column; gap: 0.25rem; } }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="https://plinthos.io" class="nav-logo">Plinthos</a>
+    <div class="nav-links">
+        <a href="https://plinthos.io">For Funds</a>
+        <a href="https://plinthos.io/valuers.html">For Valuers</a>
+        <a href="https://plinthos.io/research.html">Research</a>
+        <a href="https://plinthos.io/whitepaper.html">White Paper</a>
+    </div>
+</nav>
+
+<header class="article-header">
+    <div class="article-meta">
+        <span>Dr Yishuang (Sherry) Xu</span>
+        <span>24 May 2026</span>
+        <span>5 min read</span>
+    </div>
+    <h1>How Do I Assess Stranded Asset Risk for a UK Office Building Without Instructing a Separate QS?</h1>
+    <p class="subtitle">Using CRREM pathway analysis and proportionate technology tools to assess transition risk — as explicitly permitted by RICS 4th Edition Section 3 — without the time and cost of a separate consultancy instruction.</p>
+</header>
+
+<article>
+
+    <p><strong>Chartered surveyors can assess stranded asset risk for UK commercial property using CRREM pathway analysis delivered through a technology tool, without instructing a separate quantity surveyor or sustainability consultant — the RICS 4th Edition standard explicitly permits technology solutions providing cost information to substitute for formal QS estimates where proportionate and where limitations are stated.</strong></p>
+
+    <p>The term "stranded asset" in a real estate context refers to a building whose energy and carbon performance trajectory will, at some point, cross the science-based decarbonisation pathway — making it non-compliant with tightening regulations, misaligned with investor climate commitments, or both. The practical question for valuers is: when does this happen for a specific building, and what does it mean for the valuation?</p>
+
+    <h2>EPC Ratings vs. CRREM Pathway Analysis: Two Different Questions</h2>
+
+    <p>Most surveyors are familiar with EPC ratings and use them as a proxy for sustainability risk in valuations. An EPC D is "worse" than a B, and the MEES threshold trajectory from E to C to B creates clear compliance milestones. This is necessary but not sufficient.</p>
+
+    <p>CRREM (Carbon Risk Real Estate Monitor) pathway analysis answers a different and more fundamental question: at the building's current rate of energy and carbon consumption, when does its trajectory cross the 1.5°C-aligned decarbonisation pathway? This crossing point — the CRREM misalignment year — is the stranding year. It tells you not just whether the building is currently below a regulatory threshold, but when it becomes a transition risk under science-based climate targets.</p>
+
+    <div class="example-box">
+        <h4>Worked Example: UK Office Building, EPC D</h4>
+        <div class="example-row">
+            <span class="label">Property type</span>
+            <span class="value">Office — City of Manchester</span>
+        </div>
+        <div class="example-row">
+            <span class="label">GIA</span>
+            <span class="value">2,500 m²</span>
+        </div>
+        <div class="example-row">
+            <span class="label">Current EPC rating</span>
+            <span class="value red">D (estimated ~52 kgCO₂e/m²/yr)</span>
+        </div>
+        <div class="example-row">
+            <span class="label">2026 CRREM pathway budget</span>
+            <span class="value">~22 kgCO₂e/m²/yr</span>
+        </div>
+        <div class="example-row">
+            <span class="label">CRREM misalignment year</span>
+            <span class="value red">NOW — currently stranded</span>
+        </div>
+        <div class="example-row">
+            <span class="label">Estimated retrofit cost (to EPC B)</span>
+            <span class="value">£200,000–£375,000 (£80–£150/sq ft)</span>
+        </div>
+        <div class="example-row">
+            <span class="label">MEES status (projected EPC C by 2028)</span>
+            <span class="value red">Non-compliant — would require upgrade</span>
+        </div>
+    </div>
+
+    <p>This example illustrates the key insight: an EPC D office building is not just "at risk of future stranding" — under CRREM pathway analysis, it is already stranded. Its current carbon intensity exceeds the 1.5°C pathway budget for 2026. This distinction matters enormously for investment committees, bank credit teams, and valuers assessing market rent and yield.</p>
+
+    <h2>The Proportionality Argument</h2>
+
+    <p>The traditional approach to this assessment would involve instructing a sustainability consultant to perform a CRREM analysis and a quantity surveyor to estimate retrofit costs. For a large portfolio valuation, this may be appropriate. For an individual valuation instruction, the cost and time are often disproportionate.</p>
+
+    <table class="vs-table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Separate QS + Consultant</th>
+                <th>Technology Tool</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Cost</strong></td>
+                <td>£2,000–£5,000+</td>
+                <td>Proportionate to instruction</td>
+            </tr>
+            <tr>
+                <td><strong>Timeline</strong></td>
+                <td>2–4 weeks</td>
+                <td>Under 10 minutes</td>
+            </tr>
+            <tr>
+                <td><strong>Output</strong></td>
+                <td>Bespoke report</td>
+                <td>Standardised insert with limitations</td>
+            </tr>
+            <tr>
+                <td><strong>Consistency</strong></td>
+                <td>Varies by provider</td>
+                <td>Standardised methodology</td>
+            </tr>
+            <tr>
+                <td><strong>RICS compliance</strong></td>
+                <td>Yes</td>
+                <td>Yes — Section 3 permits this</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>The RICS 4th Edition standard's explicit provision for technology solutions is not an afterthought — it recognises that proportionate compliance at scale requires tooling, not bespoke consultancy for every instruction.</p>
+
+    <div class="key-takeaway">
+        <p><strong>Key distinction:</strong> A technology tool does not replace the valuer's professional judgement. It provides the documented evidence base — EPC status, CRREM misalignment year, proportionate capex estimates — on which the valuer exercises their judgement about market rent and yield impact. The tool generates the data; the valuer applies it.</p>
+    </div>
+
+    <h2>The Free Starting Point: CRREM Misalignment Engine</h2>
+
+    <p>Plinthos provides a free CRREM Misalignment Engine on plinthos.io that calculates the misalignment year for any UK commercial property based on its property type, current energy intensity, and carbon intensity. Built on the open-access CRREM pathway methodology, it gives surveyors an immediate data point for any asset they are valuing — the year the building's trajectory crosses the 1.5°C pathway.</p>
+
+    <p>For a full RICS 4th Edition-compliant valuation insert — including the EPC/MEES classification, capex estimates, limitation clauses, and KPI dashboard — Plinthos for Valuers generates the complete four-module insert from a single data input workflow. Every estimate is traceable to the proprietary 120-point framework developed through analysis of 136 UK REIT sustainability reports.</p>
+
+</article>
+
+<div class="related-section">
+    <h3>Related Questions</h3>
+    <div class="related-links">
+        <a href="rics-4th-edition-esg-requirements.html">
+            What exactly does RICS 4th Edition require for ESG?
+            <span>The four core requirements and where the standard gives you flexibility</span>
+        </a>
+        <a href="esg-valuation-insert-template.html">
+            Is there a template or tool for ESG valuation inserts?
+            <span>The four modules every compliant insert needs</span>
+        </a>
+        <a href="mees-2028-epc-c-commercial-property.html">
+            How does MEES moving to EPC C by 2028 affect valuations?
+            <span>Enacted vs. projected thresholds — and why the distinction matters</span>
+        </a>
+        <a href="bank-climate-risk-valuation-data.html">
+            My bank client is asking for climate risk data — what do I provide?
+            <span>The demand chain from PRA expectations to your valuation report</span>
+        </a>
+    </div>
+</div>
+
+<div class="cta-section">
+    <h3>Try the Free CRREM Misalignment Engine</h3>
+    <p>Calculate the stranding year for any UK commercial property. No account required.</p>
+    <a href="https://plinthos.io/tools/misalignment-engine.html" class="cta-button">Use Free Tool</a>
+</div>
+
+<footer>
+    <p>&copy; 2026 Plinthos. Built on research, not assumptions. Based on analysis of 136 UK REIT sustainability reports.</p>
+</footer>
+
+</body>
+</html>

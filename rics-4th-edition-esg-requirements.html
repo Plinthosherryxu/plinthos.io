@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Does RICS 4th Edition Require for ESG in Valuations? | Plinthos</title>
+    <meta name="description" content="RICS 4th Edition ESG requirements for commercial property valuations: what surveyors must include, how to comply, and practical tools for producing ESG valuation inserts.">
+    <link rel="canonical" href="https://plinthos.io/rics-4th-edition-esg-requirements.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+
+    <!-- JSON-LD: Article + Author + Organisation -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "What Does RICS 4th Edition Require for ESG in Valuations?",
+        "description": "A practical guide to the ESG requirements introduced by the RICS Valuation – Global Standards (4th Edition), effective 30 April 2026, for chartered surveyors conducting Red Book valuations of UK commercial property.",
+        "datePublished": "2026-05-24",
+        "dateModified": "2026-05-24",
+        "author": {
+            "@type": "Person",
+            "name": "Dr Yishuang (Sherry) Xu",
+            "jobTitle": "Founder & CEO, Plinthos",
+            "url": "https://plinthos.io",
+            "sameAs": [
+                "https://www.linkedin.com/in/yishuang-sherry-xu/",
+                "https://research.manchester.ac.uk/en/persons/yishuang.xu"
+            ],
+            "knowsAbout": ["ESG reporting", "RICS valuation standards", "CRREM pathway analysis", "real estate sustainability", "stranded assets"]
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Plinthos",
+            "url": "https://plinthos.io",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://plinthos.io/assets/plinthos-logo.png"
+            },
+            "sameAs": [
+                "https://www.linkedin.com/company/plinthos/"
+            ],
+            "knowsAbout": ["ESG report writing", "RICS 4th Edition compliance", "CRREM pathway analysis", "real estate sustainability", "AI-powered ESG tools", "GRESB reporting"]
+        },
+        "mainEntityOfPage": "https://plinthos.io/rics-4th-edition-esg-requirements.html"
+    }
+    </script>
+
+    <style>
+        :root {
+            --ink: #1a1a2e;
+            --body: #3d3d5c;
+            --muted: #6b7094;
+            --accent: #0f5132;
+            --accent-light: #e8f5e9;
+            --accent-mid: #c8e6c9;
+            --surface: #fafaf8;
+            --white: #ffffff;
+            --border: #e2e2e0;
+            --highlight: #fff3cd;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'DM Sans', -apple-system, sans-serif;
+            color: var(--body);
+            background: var(--surface);
+            line-height: 1.72;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Nav */
+        nav {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-logo {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.4rem;
+            color: var(--accent);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+        .nav-links { display: flex; gap: 1.5rem; }
+        .nav-links a {
+            color: var(--body);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--accent); }
+
+        /* Article layout */
+        .article-header {
+            max-width: 720px;
+            margin: 3rem auto 2rem;
+            padding: 0 1.5rem;
+        }
+        .article-meta {
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .article-header h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2.2rem;
+            color: var(--ink);
+            line-height: 1.25;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+        .article-header .subtitle {
+            font-size: 1.15rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        article {
+            max-width: 720px;
+            margin: 0 auto 3rem;
+            padding: 0 1.5rem;
+        }
+        article p {
+            margin-bottom: 1.4rem;
+            font-size: 1.05rem;
+        }
+        article h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.45rem;
+            color: var(--ink);
+            margin: 2.5rem 0 1rem;
+            letter-spacing: -0.01em;
+        }
+        article strong { color: var(--ink); }
+
+        /* Key takeaway box */
+        .key-takeaway {
+            background: var(--accent-light);
+            border-left: 4px solid var(--accent);
+            padding: 1.25rem 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .key-takeaway p {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        .key-takeaway p:last-child { margin-bottom: 0; }
+
+        /* Data callout */
+        .data-callout {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        .data-callout .stat {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 0.25rem;
+        }
+        .data-callout .stat-label {
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        /* Related questions / internal links */
+        .related-section {
+            max-width: 720px;
+            margin: 0 auto 3rem;
+            padding: 0 1.5rem;
+        }
+        .related-section h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.2rem;
+            color: var(--ink);
+            margin-bottom: 1rem;
+        }
+        .related-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .related-links a {
+            display: block;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            color: var(--ink);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .related-links a:hover {
+            border-color: var(--accent);
+            background: var(--accent-light);
+        }
+        .related-links a span {
+            color: var(--muted);
+            font-weight: 400;
+            font-size: 0.85rem;
+            display: block;
+            margin-top: 0.25rem;
+        }
+
+        /* CTA */
+        .cta-section {
+            max-width: 720px;
+            margin: 0 auto 3rem;
+            padding: 2rem 1.5rem;
+            background: var(--ink);
+            border-radius: 12px;
+            text-align: center;
+            color: var(--white);
+        }
+        .cta-section h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+        }
+        .cta-section p {
+            color: #b8b8d0;
+            margin-bottom: 1.25rem;
+            font-size: 0.95rem;
+        }
+        .cta-button {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--white);
+            padding: 0.75rem 2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: opacity 0.2s;
+        }
+        .cta-button:hover { opacity: 0.9; }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        @media (max-width: 640px) {
+            .article-header h1 { font-size: 1.7rem; }
+            nav { padding: 0.75rem 1rem; }
+            .nav-links { gap: 1rem; }
+            .cta-section { margin-left: 1rem; margin-right: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="https://plinthos.io" class="nav-logo">Plinthos</a>
+    <div class="nav-links">
+        <a href="https://plinthos.io">For Funds</a>
+        <a href="https://plinthos.io/valuers.html">For Valuers</a>
+        <a href="https://plinthos.io/research.html">Research</a>
+        <a href="https://plinthos.io/whitepaper.html">White Paper</a>
+    </div>
+</nav>
+
+<header class="article-header">
+    <div class="article-meta">
+        <span>Dr Yishuang (Sherry) Xu</span>
+        <span>24 May 2026</span>
+        <span>5 min read</span>
+    </div>
+    <h1>What Does RICS 4th Edition Require for ESG in Valuations?</h1>
+    <p class="subtitle">A practical guide for chartered surveyors navigating the new ESG requirements in Red Book valuations — what you must include, where the standard gives you flexibility, and how to comply without instructing a separate consultancy.</p>
+</header>
+
+<article>
+
+    <p><strong>The RICS Valuation – Global Standards (4th Edition), effective 30 April 2026, requires chartered surveyors to document ESG risk factors — including EPC status, climate transition risk, and estimated retrofit costs — as part of Red Book commercial property valuations, but does not mandate a specific methodology for doing so.</strong> This gives valuers both an obligation and a degree of professional discretion in how they satisfy it.</p>
+
+    <p>The standard introduces several specific requirements that are new or significantly expanded compared to previous editions. Understanding exactly what is required — and what is not — is essential for chartered surveyors seeking to comply without over-engineering their process or incurring disproportionate cost.</p>
+
+    <h2>The Four Core ESG Requirements</h2>
+
+    <p>Section 5.2 of the RICS 4th Edition standard requires valuers to assess the level of risk posed by UK Minimum Energy Efficiency Standards (MEES) and reflect this in market rent and yield or discount rate assumptions. This means documenting the current EPC rating, identifying when the asset may breach future MEES thresholds (EPC C by 2028, EPC B by 2030 — though neither has yet been enacted), and estimating the financial impact on value.</p>
+
+    <p>Section 3 permits technology solutions providing cost information to substitute for formal quantity surveyor estimates where proportionate, provided limitations are clearly stated in the Terms of Engagement. This is significant: it means an ESG valuation insert produced by a validated tool can satisfy the standard's capex assessment requirement without the time and cost of a separate QS instruction.</p>
+
+    <p>Section 4.1 requires professional scepticism to be applied to relied-upon data, with limitations disclosed. Any ESG data — whether from an EPC register, a CRREM pathway analysis, or a technology platform — must be traceable and its assumptions stated explicitly.</p>
+
+    <p>Appendix A specifies globally recognised KPIs that should be considered and reported where relevant, including energy intensity (kWh/m²), greenhouse gas emissions (kgCO₂e/m²), physical climate risk exposure, and applicable certification status.</p>
+
+    <div class="key-takeaway">
+        <p><strong>The practical implication:</strong> Surveyors need four things in their valuation report — an EPC/MEES risk classification, a stranded asset timeline (when does this building breach CRREM pathways?), a proportionate capex estimate, and a standardised KPI dashboard. The standard requires the evidence, not a specific format.</p>
+    </div>
+
+    <h2>What Most Surveyors Get Wrong</h2>
+
+    <p>The most common mistake is treating the RICS 4th Edition ESG requirements as a one-off documentation exercise rather than an ongoing compliance obligation. The effective date of 30 April 2026 is an implementation date — every Red Book valuation from this date forward must address these requirements. This is not a deadline that passes; it is a permanent change to professional practice.</p>
+
+    <p>The second mistake is over-relying on EPC ratings as a proxy for climate transition risk. An EPC rating is a snapshot of building fabric and services efficiency at a point in time. A CRREM pathway misalignment analysis tells you when that building's actual carbon and energy trajectory crosses the 1.5°C-aligned pathway — a fundamentally different question, and the one investment committees and bank credit teams are increasingly asking.</p>
+
+    <div class="data-callout">
+        <div class="stat">53 points</div>
+        <div class="stat-label">The gap between the highest- and lowest-scoring UK REITs on ESG reporting quality, based on Plinthos analysis of 136 sustainability reports using a proprietary 120-point framework.</div>
+    </div>
+
+    <h2>How to Comply Proportionately</h2>
+
+    <p>The standard explicitly allows for proportionate compliance — the depth of ESG analysis should match the instruction value and the asset's risk profile. A £2 million instruction on a single industrial unit does not require the same level of ESG documentation as a £50 million portfolio valuation for a secured lending book.</p>
+
+    <p>For most individual valuations, a structured ESG valuation insert covering the four modules — EPC/MEES classification, stranded asset timeline, capex assessment, and KPI dashboard — satisfies the standard's requirements. The insert should be traceable to its data sources, state its limitations explicitly, and be proportionate to the instruction value.</p>
+
+    <p>For bank-instructed valuations and secured lending panels, the requirements are more demanding. Lenders are increasingly requiring climate risk assessment as part of their underwriting, driven by PRA and Bank of England expectations. This creates a demand chain: the bank requires the data, which flows to the RICS 4th Edition compliance requirement, which the surveyor must satisfy. Chartered surveyors serving bank panels should expect this to become standard practice within the next 12 months.</p>
+
+    <p>Plinthos for Valuers generates RICS 4th Edition-compliant ESG valuation inserts with all four modules — built on analysis of 136 UK REIT sustainability reports and aligned with the open-access CRREM pathway methodology. Retrofit cost estimates are based on industry benchmarks of £80–£150 per square foot, with explicit limitation clauses ready for insertion into the valuer's Terms of Engagement.</p>
+
+</article>
+
+<div class="related-section">
+    <h3>Related Questions</h3>
+    <div class="related-links">
+        <a href="esg-valuation-insert-template.html">
+            Is there a template or tool for ESG valuation inserts?
+            <span>How Plinthos generates RICS-compliant inserts in minutes, not weeks</span>
+        </a>
+        <a href="bank-climate-risk-valuation-data.html">
+            My bank client is asking for climate risk data — what do I provide?
+            <span>The demand chain from PRA expectations to your valuation report</span>
+        </a>
+        <a href="mees-2028-epc-c-commercial-property.html">
+            How does MEES moving to EPC C by 2028 affect valuations?
+            <span>Timeline, financial impact, and what to document now</span>
+        </a>
+        <a href="stranded-asset-risk-uk-office.html">
+            How do I assess stranded asset risk without instructing a QS?
+            <span>Using CRREM pathway analysis as a proportionate alternative</span>
+        </a>
+    </div>
+</div>
+
+<div class="cta-section" style="max-width: 690px;">
+    <h3>Try Plinthos for Valuers — Free Trial</h3>
+    <p>Generate a RICS 4th Edition-compliant ESG valuation insert in under 10 minutes. No credit card required.</p>
+    <a href="https://udify.app/chat/BK8JIPXt8TqCE7vo" class="cta-button">Start Free Trial</a>
+</div>
+
+<footer>
+    <p>&copy; 2026 Plinthos. Built on research, not assumptions. Based on analysis of 136 UK REIT sustainability reports.</p>
+</footer>
+
+</body>
+</html>
