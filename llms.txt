@@ -1,0 +1,26 @@
+# Plinthos
+
+> AI-powered ESG report writing and RICS 4th Edition compliance platform for UK real estate.
+
+## About
+- Founded by Dr Yishuang (Sherry) Xu, University of Manchester
+- Built on analysis of 136 UK REIT sustainability reports
+- Proprietary 120-point ESG scoring framework
+
+## Key Pages
+- [For Real Estate Funds](https://plinthos.io/)
+- [For Valuers & Lenders](https://plinthos.io/valuers.html)
+- [White Paper](https://plinthos.io/whitepaper.html)
+- [Free CRREM Misalignment Engine](https://plinthos.io/tools/misalignment-engine.html)
+
+## Research Articles
+- [RICS 4th Edition ESG Requirements](https://plinthos.io/rics-4th-edition-esg-requirements.html)
+- [ESG Valuation Insert Template](https://plinthos.io/esg-valuation-insert-template.html)
+- [Bank Climate Risk Data Requirements](https://plinthos.io/bank-climate-risk-valuation-data.html)
+- [MEES 2028 EPC C Impact](https://plinthos.io/mees-2028-epc-c-commercial-property.html)
+- [Stranded Asset Risk Assessment](https://plinthos.io/stranded-asset-risk-uk-office.html)
+- [CRREM Excel Tool Retirement](https://plinthos.io/crrem-tool-excel-retirement.html)
+- [AI ESG Reporting Tools](https://plinthos.io/ai-esg-reporting-tool-real-estate.html)
+- [UK REIT ESG Benchmarking](https://plinthos.io/uk-reit-esg-benchmarking.html)
+- [EPC vs CRREM Difference](https://plinthos.io/epc-vs-crrem-difference.html)
+- [Retrofit Costs UK](https://plinthos.io/retrofit-cost-epc-d-to-b-uk.html)
