@@ -1,68 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <!-- Core pages -->
-    <url>
-        <loc>https://plinthos.io/</loc>
-        <lastmod>2026-05-24</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://plinthos.io/valuers.html</loc>
-        <lastmod>2026-05-24</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://plinthos.io/whitepaper.html</loc>
-        <lastmod>2026-05-24</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://plinthos.io/thank-you.html</loc>
-        <lastmod>2026-05-24</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.3</priority>
-    </url>
-
+    <url><loc>https://plinthos.io/</loc><lastmod>2026-05-24</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
+    <url><loc>https://plinthos.io/valuers.html</loc><lastmod>2026-05-24</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+    <url><loc>https://plinthos.io/whitepaper.html</loc><lastmod>2026-05-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+    <url><loc>https://plinthos.io/thank-you.html</loc><lastmod>2026-05-24</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
     <!-- Free tool -->
-    <url>
-        <loc>https://plinthos.io/tools/misalignment-engine.html</loc>
-        <lastmod>2026-05-24</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- SEO+GEO content pages (NEW) -->
-    <url>
-        <loc>https://plinthos.io/rics-4th-edition-esg-requirements.html</loc>
-        <lastmod>2026-05-24</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://plinthos.io/esg-valuation-insert-template.html</loc>
-        <lastmod>2026-05-24</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://plinthos.io/bank-climate-risk-valuation-data.html</loc>
-        <lastmod>2026-05-24</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://plinthos.io/mees-2028-epc-c-commercial-property.html</loc>
-        <lastmod>2026-05-24</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://plinthos.io/stranded-asset-risk-uk-office.html</loc>
-        <lastmod>2026-05-24</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
+    <url><loc>https://plinthos.io/tools/misalignment-engine.html</loc><lastmod>2026-05-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+    <!-- Compliance Urgency (1-5) -->
+    <url><loc>https://plinthos.io/rics-4th-edition-esg-requirements.html</loc><lastmod>2026-05-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+    <url><loc>https://plinthos.io/esg-valuation-insert-template.html</loc><lastmod>2026-05-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+    <url><loc>https://plinthos.io/bank-climate-risk-valuation-data.html</loc><lastmod>2026-05-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+    <url><loc>https://plinthos.io/mees-2028-epc-c-commercial-property.html</loc><lastmod>2026-05-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+    <url><loc>https://plinthos.io/stranded-asset-risk-uk-office.html</loc><lastmod>2026-05-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+    <!-- Tool-Seeking (6-10) -->
+    <url><loc>https://plinthos.io/crrem-tool-excel-retirement.html</loc><lastmod>2026-05-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+    <url><loc>https://plinthos.io/crrem-portfolio-software.html</loc><lastmod>2026-05-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+    <url><loc>https://plinthos.io/ai-esg-reporting-tool-real-estate.html</loc><lastmod>2026-05-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+    <url><loc>https://plinthos.io/cheapest-rics-esg-data.html</loc><lastmod>2026-05-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+    <url><loc>https://plinthos.io/crrem-misalignment-calculation.html</loc><lastmod>2026-05-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+    <!-- Knowledge-Building (11-15) -->
+    <url><loc>https://plinthos.io/epc-vs-crrem-difference.html</loc><lastmod>2026-05-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+    <url><loc>https://plinthos.io/uk-reit-esg-benchmarking.html</loc><lastmod>2026-05-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+    <url><loc>https://plinthos.io/stranded-asset-meaning-commercial-property.html</loc><lastmod>2026-05-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+    <url><loc>https://plinthos.io/sfdr-article-8-real-estate.html</loc><lastmod>2026-05-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+    <url><loc>https://plinthos.io/esg-kpis-valuation-report.html</loc><lastmod>2026-05-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+    <!-- Risk Quantification (16-20) -->
+    <url><loc>https://plinthos.io/retrofit-cost-epc-d-to-b-uk.html</loc><lastmod>2026-05-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+    <url><loc>https://plinthos.io/uk-commercial-property-stranding-risk.html</loc><lastmod>2026-05-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+    <url><loc>https://plinthos.io/property-value-loss-mees.html</loc><lastmod>2026-05-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+    <url><loc>https://plinthos.io/consultant-vs-ai-esg-cost.html</loc><lastmod>2026-05-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+    <url><loc>https://plinthos.io/uk-reits-crrem-analysis.html</loc><lastmod>2026-05-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+    <!-- Bonus -->
+    <url><loc>https://plinthos.io/sll-esg-requirements.html</loc><lastmod>2026-05-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>
