@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Sustainability Intelligence Playbook — Plinthos</title>
+  <meta name="description" content="How AI is transforming ESG reporting for UK real estate. A free guide for sustainability officers, asset managers, consultants, and valuers navigating the UK SRS transition.">
+  <link rel="canonical" href="https://plinthos.io/playbook">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg-dark: #0a0f1a;
+      --bg-card: #111827;
+      --bg-card-hover: #1a2236;
+      --text-primary: #f0f2f5;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --accent: #60a5fa;
+      --accent-soft: rgba(96, 165, 250, 0.12);
+      --border: rgba(148, 163, 184, 0.12);
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.25rem 2.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(10, 15, 26, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--serif); font-size: 1.35rem;
+      color: var(--text-primary); text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a {
+      font-size: 0.875rem; color: var(--text-secondary);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text-primary); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center;
+      padding: 8rem 2.5rem 5rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -30%; right: -10%;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(96, 165, 250, 0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1100px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 4rem;
+      align-items: center;
+    }
+    .hero-text h1 {
+      font-family: var(--serif); font-size: clamp(2.5rem, 5vw, 3.5rem);
+      line-height: 1.15; margin-bottom: 1.5rem; font-weight: 400;
+    }
+    .hero-text h1 em {
+      font-style: italic; color: var(--accent);
+    }
+    .hero-text .subtitle {
+      font-size: 1.125rem; color: var(--text-secondary);
+      line-height: 1.7; margin-bottom: 2rem; max-width: 520px;
+    }
+    .hero-badge {
+      display: inline-block; padding: 0.4rem 1rem; border-radius: 100px;
+      background: var(--accent-soft); color: var(--accent);
+      font-size: 0.8rem; font-weight: 500; letter-spacing: 0.03em;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ─── PREVIEW CARD ─── */
+    .preview-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 2.5rem; position: relative;
+    }
+    .preview-card h3 {
+      font-family: var(--serif); font-size: 1.1rem; margin-bottom: 1.5rem;
+      color: var(--text-secondary); font-weight: 400;
+    }
+    .chapter-list { list-style: none; }
+    .chapter-list li {
+      display: flex; align-items: baseline; gap: 1rem;
+      padding: 0.65rem 0; border-bottom: 1px solid var(--border);
+      font-size: 0.925rem;
+    }
+    .chapter-list li:last-child { border-bottom: none; }
+    .chapter-num {
+      font-family: var(--serif); color: var(--text-muted);
+      font-size: 0.8rem; min-width: 1.5rem;
+    }
+    .chapter-title { color: var(--text-primary); }
+    .page-count {
+      margin-left: auto; color: var(--text-muted); font-size: 0.8rem;
+      white-space: nowrap;
+    }
+
+    /* ─── AUDIENCE SECTION ─── */
+    .section {
+      padding: 6rem 2.5rem;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .section-label {
+      font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--text-muted); margin-bottom: 0.75rem;
+    }
+    .section h2 {
+      font-family: var(--serif); font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+      font-weight: 400; line-height: 1.25; margin-bottom: 3rem;
+    }
+    .section h2 em { font-style: italic; color: var(--accent); }
+
+    .audience-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
+    }
+    .audience-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 2rem;
+      transition: background 0.25s, border-color 0.25s;
+    }
+    .audience-card:hover {
+      background: var(--bg-card-hover);
+      border-color: rgba(96, 165, 250, 0.2);
+    }
+    .audience-card h4 {
+      font-family: var(--serif); font-size: 1.1rem; font-weight: 400;
+      margin-bottom: 0.75rem;
+    }
+    .audience-card p {
+      color: var(--text-secondary); font-size: 0.9rem; line-height: 1.65;
+    }
+
+    /* ─── WHAT YOU'LL LEARN ─── */
+    .learn-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    }
+    .learn-item {
+      padding: 1.75rem; border-left: 2px solid var(--border);
+      transition: border-color 0.25s;
+    }
+    .learn-item:hover { border-color: var(--accent); }
+    .learn-item h4 {
+      font-size: 0.95rem; font-weight: 500; margin-bottom: 0.5rem;
+    }
+    .learn-item p {
+      color: var(--text-secondary); font-size: 0.875rem; line-height: 1.6;
+    }
+
+    /* ─── STATS BAR ─── */
+    .stats-bar {
+      display: flex; justify-content: center; gap: 4rem;
+      padding: 3.5rem 2.5rem;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      max-width: 1100px; margin: 0 auto;
+    }
+    .stat { text-align: center; }
+    .stat-number {
+      font-family: var(--serif); font-size: 2rem; color: var(--accent);
+      display: block; margin-bottom: 0.25rem;
+    }
+    .stat-label {
+      font-size: 0.8rem; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.05em;
+    }
+
+    /* ─── DOWNLOAD SECTION ─── */
+    .download-section {
+      padding: 6rem 2.5rem;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .download-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      align-items: start;
+    }
+    .download-text h2 {
+      font-family: var(--serif); font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+      font-weight: 400; line-height: 1.25; margin-bottom: 1.25rem;
+    }
+    .download-text h2 em { font-style: italic; color: var(--accent); }
+    .download-text p {
+      color: var(--text-secondary); font-size: 0.95rem;
+      line-height: 1.7; margin-bottom: 1rem;
+    }
+    .download-text .privacy-note {
+      font-size: 0.8rem; color: var(--text-muted); margin-top: 1.5rem;
+    }
+
+    /* ─── FORM ─── */
+    .download-form {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 2.5rem;
+    }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label {
+      display: block; font-size: 0.825rem; color: var(--text-secondary);
+      margin-bottom: 0.4rem; font-weight: 500;
+    }
+    .form-group input,
+    .form-group select {
+      width: 100%; padding: 0.75rem 1rem;
+      background: var(--bg-dark); border: 1px solid var(--border);
+      border-radius: 6px; color: var(--text-primary);
+      font-family: var(--sans); font-size: 0.9rem;
+      transition: border-color 0.2s;
+      -webkit-appearance: none; appearance: none;
+    }
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2364748b' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+    }
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none; border-color: var(--accent);
+    }
+    .form-group input::placeholder { color: var(--text-muted); }
+
+    .submit-btn {
+      width: 100%; padding: 0.9rem;
+      background: var(--accent); color: var(--bg-dark);
+      border: none; border-radius: 6px;
+      font-family: var(--sans); font-size: 0.95rem; font-weight: 600;
+      cursor: pointer; transition: opacity 0.2s;
+      margin-top: 0.5rem;
+    }
+    .submit-btn:hover { opacity: 0.88; }
+
+    /* ─── AUTHOR ─── */
+    .author-section {
+      padding: 4rem 2.5rem;
+      max-width: 1100px; margin: 0 auto;
+      border-top: 1px solid var(--border);
+    }
+    .author-inner {
+      display: flex; gap: 2.5rem; align-items: start;
+    }
+    .author-avatar {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: var(--bg-card); border: 1px solid var(--border);
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--serif); font-size: 1.5rem; color: var(--accent);
+    }
+    .author-info h4 {
+      font-family: var(--serif); font-size: 1.15rem; font-weight: 400;
+      margin-bottom: 0.5rem;
+    }
+    .author-info p {
+      color: var(--text-secondary); font-size: 0.9rem; line-height: 1.65;
+      max-width: 600px;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 3rem 2.5rem;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 1100px; margin: 0 auto;
+    }
+    footer a {
+      color: var(--text-muted); text-decoration: none;
+      font-size: 0.825rem; transition: color 0.2s;
+    }
+    footer a:hover { color: var(--text-primary); }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-copy { color: var(--text-muted); font-size: 0.8rem; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero { padding: 7rem 1.5rem 3rem; }
+      .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .audience-grid { grid-template-columns: 1fr; }
+      .learn-grid { grid-template-columns: 1fr; }
+      .stats-bar { flex-direction: column; gap: 2rem; align-items: center; }
+      .download-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .author-inner { flex-direction: column; }
+      .section, .download-section { padding: 4rem 1.5rem; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+
+    /* ─── FADE-IN ─── */
+    .fade-in {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="https://plinthos.io/" class="nav-logo">Plinthos.</a>
+    <div class="nav-links">
+      <a href="https://plinthos.io/">For Real Estate Funds</a>
+      <a href="https://plinthos.io/valuers">For Valuers &amp; Lenders</a>
+      <a href="https://plinthos.io/whitepaper.html">Research</a>
+      <a href="#download" style="color: var(--accent);">Get the Playbook</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-badge">Free Guide — 30 Pages</div>
+        <h1>The Sustainability Intelligence <em>Playbook</em></h1>
+        <p class="subtitle">How AI is transforming ESG reporting for UK real estate. A practical guide for sustainability officers, asset managers, consultants, and valuers navigating the UK SRS transition.</p>
+        <a href="#download" class="submit-btn" style="display: inline-block; width: auto; padding: 0.9rem 2rem; text-decoration: none; border-radius: 6px;">Download Free →</a>
+      </div>
+      <div class="preview-card">
+        <h3>Inside the playbook</h3>
+        <ul class="chapter-list">
+          <li><span class="chapter-num">01</span><span class="chapter-title">The Regulatory Earthquake</span><span class="page-count">UK SRS, MEES, CSRD</span></li>
+          <li><span class="chapter-num">02</span><span class="chapter-title">The Real Estate Data Problem</span><span class="page-count">Why property is different</span></li>
+          <li><span class="chapter-num">03</span><span class="chapter-title">What AI Can &amp; Cannot Do</span><span class="page-count">An honest assessment</span></li>
+          <li><span class="chapter-num">04</span><span class="chapter-title">A Framework for Getting Started</span><span class="page-count">Five practical steps</span></li>
+          <li><span class="chapter-num">05</span><span class="chapter-title">The Valuation Connection</span><span class="page-count">RICS 4th Edition &amp; beyond</span></li>
+          <li><span class="chapter-num">06</span><span class="chapter-title">What's Coming Next</span><span class="page-count">2027–2030 outlook</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-bar fade-in">
+    <div class="stat">
+      <span class="stat-number">87%</span>
+      <span class="stat-label">UK offices below EPC B</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">Jan 2027</span>
+      <span class="stat-label">UK SRS mandatory for listed cos</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">30 Apr 2026</span>
+      <span class="stat-label">RICS 4th Edition effective</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">6%+</span>
+      <span class="stat-label">London green premium (EPC A/B)</span>
+    </div>
+  </div>
+
+  <!-- WHO THIS IS FOR -->
+  <section class="section fade-in">
+    <p class="section-label">Who This Is For</p>
+    <h2>Written for the people navigating this <em>transition</em></h2>
+    <div class="audience-grid">
+      <div class="audience-card">
+        <h4>Sustainability Officers</h4>
+        <p>Reporting demands are multiplying — GRESB, UK SRS, lender KPIs, investor requests. This playbook provides a framework for getting ahead of them, not just surviving each deadline.</p>
+      </div>
+      <div class="audience-card">
+        <h4>Asset Managers</h4>
+        <p>Sustainability data now affects acquisition diligence, hold-period monitoring, and exit pricing. Understand what good ESG data infrastructure looks like before its absence costs you.</p>
+      </div>
+      <div class="audience-card">
+        <h4>Property Consultants</h4>
+        <p>Your clients are asking for ESG help. The firms that build credible sustainability data capability now will capture a growing share of advisory spend.</p>
+      </div>
+      <div class="audience-card">
+        <h4>Valuers</h4>
+        <p>RICS 4th Edition makes ESG assessment mandatory from April 2026. This playbook covers what you need — the evidence, the data sources, and the professional opportunity.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT YOU'LL LEARN -->
+  <section class="section fade-in">
+    <p class="section-label">What You'll Learn</p>
+    <h2>Practical intelligence, no <em>sales pitch</em></h2>
+    <div class="learn-grid">
+      <div class="learn-item">
+        <h4>The regulatory timeline mapped</h4>
+        <p>UK SRS S1, S2, Scope 3 phasing, MEES tightening, CSRD ripple effects — who's in scope, when, and what it means for firms that aren't.</p>
+      </div>
+      <div class="learn-item">
+        <h4>Why property data is uniquely hard</h4>
+        <p>Fragmented ownership, landlord-tenant splits, legacy stock, mixed-use complexity — and a self-assessment framework for your organisation.</p>
+      </div>
+      <div class="learn-item">
+        <h4>An honest view of AI</h4>
+        <p>Where AI genuinely helps with sustainability reporting, where it still needs human judgement, and three questions that cut through vendor noise.</p>
+      </div>
+      <div class="learn-item">
+        <h4>A five-step action framework</h4>
+        <p>Audit, prioritise, build infrastructure, choose your approach, prepare for assurance — sequenced so each step builds on the last.</p>
+      </div>
+      <div class="learn-item">
+        <h4>The valuation connection</h4>
+        <p>Green premium evidence, stranded asset economics, and what the RICS 4th Edition means for how sustainability enters property value.</p>
+      </div>
+      <div class="learn-item">
+        <h4>What's coming in 2027–2030</h4>
+        <p>Private company reporting expansion, Scope 3 expectations, biodiversity disclosure, and why starting now creates compound advantage.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD FORM -->
+  <section class="download-section fade-in" id="download">
+    <div class="download-inner">
+      <div class="download-text">
+        <h2>Get the <em>playbook</em></h2>
+        <p>Thirty pages of practical intelligence on the intersection of AI, sustainability, and UK real estate — written by a researcher and founder who works in both worlds.</p>
+        <p>The playbook is free. We'll also add you to our weekly newsletter with insights on AI and sustainability in real estate. Unsubscribe anytime.</p>
+        <p class="privacy-note">Your details are used to deliver the playbook and relevant insights only. We do not share your information with third parties.</p>
+      </div>
+      <div class="download-form">
+        <!-- Formspree Ajax integration — stays on page, shows inline success -->
+        <div data-fs-success style="display:none; text-align:center; padding: 2rem 0;">
+          <div style="font-family: var(--serif); font-size: 1.5rem; margin-bottom: 1rem;">Thank you!</div>
+          <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.5rem;">Your playbook is on its way. Check your email for the download link.</p>
+          <p style="color: var(--text-secondary); font-size: 0.9rem;">In the meantime, subscribe to our free weekly newsletter:</p>
+          <a href="https://substack.com/@sherryxucom" target="_blank" rel="noopener" class="submit-btn" style="display: inline-block; width: auto; padding: 0.75rem 1.75rem; text-decoration: none; margin-top: 1rem;">Subscribe on Substack →</a>
+        </div>
+        <div data-fs-error style="color: #f87171; font-size: 0.875rem; margin-bottom: 1rem;"></div>
+        <form id="playbook-form">
+          <input type="hidden" name="_subject" value="New Playbook Download">
+          <div class="form-group">
+            <label for="pb-name">Your Name</label>
+            <input type="text" id="pb-name" name="name" placeholder="Full name" required data-fs-field>
+            <span data-fs-error="name" style="color: #f87171; font-size: 0.8rem;"></span>
+          </div>
+          <div class="form-group">
+            <label for="pb-email">Work Email</label>
+            <input type="email" id="pb-email" name="email" placeholder="you@company.com" required data-fs-field>
+            <span data-fs-error="email" style="color: #f87171; font-size: 0.8rem;"></span>
+          </div>
+          <div class="form-group">
+            <label for="pb-company">Company or Fund</label>
+            <input type="text" id="pb-company" name="company" placeholder="Organisation name" data-fs-field>
+          </div>
+          <div class="form-group">
+            <label for="pb-role">Your Role</label>
+            <select id="pb-role" name="role" required data-fs-field>
+              <option value="" disabled selected>Select your role</option>
+              <option value="sustainability">Sustainability Officer / ESG Manager</option>
+              <option value="asset-manager">Asset Manager / Fund Manager</option>
+              <option value="consultant">Property Consultant / Advisor</option>
+              <option value="valuer">Valuer / Surveyor</option>
+              <option value="lender">Lender / Investor</option>
+              <option value="developer">Developer</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <button type="submit" class="submit-btn" data-fs-submit-btn>Download the Playbook →</button>
+        </form>
+        <script>
+          window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+          formspree('initForm', { formElement: '#playbook-form', formId: 'mredoapn' });
+        </script>
+        <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT AUTHOR -->
+  <section class="author-section fade-in">
+    <div class="author-inner">
+      <div class="author-avatar">YX</div>
+      <div class="author-info">
+        <h4>Yishuang Xu</h4>
+        <p>University researcher and founder of Plinthos — an AI-powered sustainability intelligence platform for UK real estate. Her academic work on AI applications in the built environment is published through Routledge. This playbook draws on both the rigour of research and the practical urgency of building tools for an industry under regulatory pressure.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-copy">&copy; 2026 Plinthos. All rights reserved.</span>
+    <div class="footer-links">
+      <a href="https://plinthos.io/">For Real Estate Funds</a>
+      <a href="https://plinthos.io/valuers">For Valuers &amp; Lenders</a>
+      <a href="https://plinthos.io/whitepaper.html">Research</a>
+      <!-- Replace with your actual Substack URL -->
+      <a href="https://substack.com/@sherryxucom">Substack</a>
+    </div>
+  </footer>
+
+  <!-- SCROLL FADE-IN -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
