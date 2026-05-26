@@ -433,34 +433,24 @@
         <p class="privacy-note">Your details are used to deliver the playbook and relevant insights only. We do not share your information with third parties.</p>
       </div>
       <div class="download-form">
-        <!-- Formspree Ajax integration — stays on page, shows inline success -->
-        <div data-fs-success style="display:none; text-align:center; padding: 2rem 0;">
-          <div style="font-family: var(--serif); font-size: 1.5rem; margin-bottom: 1rem;">Thank you!</div>
-          <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.5rem;">Your playbook is ready to download.</p>
-          <a href="/The_Sustainability_Intelligence_Playbook.pdf" download="The_Sustainability_Intelligence_Playbook.pdf" class="submit-btn" style="display: inline-block; width: auto; padding: 0.75rem 1.75rem; text-decoration: none;">Download PDF →</a>
-          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 1.5rem;">Subscribe for weekly insights on AI and sustainability in real estate:</p>
-          <a href="https://substack.com/@sherryxucom" target="_blank" rel="noopener" style="color: #60a5fa; text-decoration: none; font-size: 0.9rem;">Subscribe on Substack →</a>
-        </div>
-        <div data-fs-error style="color: #f87171; font-size: 0.875rem; margin-bottom: 1rem;"></div>
-        <form id="playbook-form">
+        <form action="https://formspree.io/f/mredoapn" method="POST">
           <input type="hidden" name="_subject" value="New Playbook Download">
+          <input type="hidden" name="_next" value="https://plinthos.io/playbook-thanks.html">
           <div class="form-group">
             <label for="pb-name">Your Name</label>
-            <input type="text" id="pb-name" name="name" placeholder="Full name" required data-fs-field>
-            <span data-fs-error="name" style="color: #f87171; font-size: 0.8rem;"></span>
+            <input type="text" id="pb-name" name="name" placeholder="Full name" required>
           </div>
           <div class="form-group">
             <label for="pb-email">Work Email</label>
-            <input type="email" id="pb-email" name="email" placeholder="you@company.com" required data-fs-field>
-            <span data-fs-error="email" style="color: #f87171; font-size: 0.8rem;"></span>
+            <input type="email" id="pb-email" name="email" placeholder="you@company.com" required>
           </div>
           <div class="form-group">
             <label for="pb-company">Company or Fund</label>
-            <input type="text" id="pb-company" name="company" placeholder="Organisation name" data-fs-field>
+            <input type="text" id="pb-company" name="company" placeholder="Organisation name">
           </div>
           <div class="form-group">
             <label for="pb-role">Your Role</label>
-            <select id="pb-role" name="role" required data-fs-field>
+            <select id="pb-role" name="role" required>
               <option value="" disabled selected>Select your role</option>
               <option value="sustainability">Sustainability Officer / ESG Manager</option>
               <option value="asset-manager">Asset Manager / Fund Manager</option>
@@ -471,13 +461,8 @@
               <option value="other">Other</option>
             </select>
           </div>
-          <button type="submit" class="submit-btn" data-fs-submit-btn>Download the Playbook →</button>
+          <button type="submit" class="submit-btn">Download the Playbook →</button>
         </form>
-        <script>
-          window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-          formspree('initForm', { formElement: '#playbook-form', formId: 'mredoapn' });
-        </script>
-        <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
       </div>
     </div>
   </section>
@@ -516,26 +501,6 @@
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-  </script>
-
-  <!-- AUTO-DOWNLOAD PDF ON FORM SUCCESS -->
-  <script>
-    const successDiv = document.querySelector('[data-fs-success]');
-    if (successDiv) {
-      const dlObserver = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-          if (successDiv.style.display !== 'none') {
-            const link = document.createElement('a');
-            link.href = '/The_Sustainability_Intelligence_Playbook.pdf';
-            link.download = 'The_Sustainability_Intelligence_Playbook.pdf';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-          }
-        });
-      });
-      dlObserver.observe(successDiv, { attributes: true, attributeFilter: ['style'] });
-    }
   </script>
 
 </body>
