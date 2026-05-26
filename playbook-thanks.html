@@ -105,7 +105,7 @@
     </div>
     <h1>Thank you!</h1>
     <p>Your download should start automatically. If it doesn't, click the button below.</p>
-    <a href="/The_Sustainability_Intelligence_Playbook.pdf" download class="btn btn-primary">Download PDF →</a>
+    <a href="/The_Sustainability_Intelligence_Playbook.pdf" target="_blank" class="btn btn-primary">Download PDF →</a>
     <div class="divider"></div>
     <p>Get weekly insights on AI and sustainability in real estate:</p>
     <a href="https://substack.com/@sherryxucom" target="_blank" rel="noopener" class="btn btn-secondary">Subscribe on Substack →</a>
@@ -117,13 +117,8 @@
   <script>
     window.addEventListener('load', function() {
       setTimeout(function() {
-        var link = document.createElement('a');
-        link.href = '/The_Sustainability_Intelligence_Playbook.pdf';
-        link.download = 'The_Sustainability_Intelligence_Playbook.pdf';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      }, 1000);
+        window.location.href = '/The_Sustainability_Intelligence_Playbook.pdf';
+      }, 1500);
     });
   </script>
 
