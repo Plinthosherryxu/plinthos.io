@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Point crawlers to sitemap
+Sitemap: https://plinthos.io/sitemap.xml
+
+# Block direct PDF indexing — we want people to find the landing page or guide page instead
+Disallow: /The_Sustainability_Intelligence_Playbook.pdf
