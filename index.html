@@ -1,1289 +1,801 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="canonical" href="https://plinthos.io/">
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Plinthos",
-    "url": "https://plinthos.io",
-    "description": "AI-powered ESG report writing and RICS 4th Edition compliance platform for UK real estate",
-    "founder": {
-        "@type": "Person",
-        "name": "Dr Yishuang (Sherry) Xu",
-        "jobTitle": "Founder & CEO",
-        "sameAs": ["https://www.linkedin.com/in/yishuang-sherry-xu/", "https://research.manchester.ac.uk/en/persons/yishuang.xu"]
-    },
-    "sameAs": ["https://www.linkedin.com/company/plinthos/"],
-    "knowsAbout": ["ESG reporting", "RICS 4th Edition", "CRREM pathway analysis", "GRESB", "stranded assets", "real estate sustainability"]
-}
-</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Plinthos — The Last Mile Between ESG Data and Real Estate Decisions</title>
-  <meta name="description" content="ESG data exists. The narrative that investors, valuers, and lenders need to act on it doesn't. Plinthos bridges the last mile — built on analysis of 136 UK REIT sustainability reports.">
+  <title>Plinthos Disclosure Quality Index | UK Real Estate ESG Benchmarking</title>
+  <meta name="description" content="The Plinthos DQI scores ESG disclosure quality — not performance — across 136 UK-listed real estate companies. The 2025 baseline reveals a 53-point quality gap between the sector's best and worst reporters." />
+  <link rel="canonical" href="https://plinthos.io/dqi" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="The Plinthos Disclosure Quality Index" />
+  <meta property="og:description" content="A 53-point quality gap separates the UK real estate sector's best and worst ESG reporters. Annual benchmarking across 136 companies." />
+  <meta property="og:url" content="https://plinthos.io/dqi" />
+  <meta property="og:type" content="website" />
+
+  <!-- JSON-LD structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    "name": "The Plinthos Disclosure Quality Index",
+    "description": "Annual benchmarking index scoring the quality of ESG disclosure by UK-listed real estate companies. 2025 baseline covers 136 companies using a 120-point framework.",
+    "creator": {
+      "@type": "Organization",
+      "name": "Plinthos",
+      "url": "https://plinthos.io",
+      "founder": {
+        "@type": "Person",
+        "name": "Dr. Yishuang Xu",
+        "affiliation": "University of Manchester"
+      }
+    },
+    "keywords": ["ESG disclosure", "UK REIT", "real estate sustainability", "GRESB", "disclosure quality", "ESG benchmarking"],
+    "temporalCoverage": "2025",
+    "spatialCoverage": "United Kingdom",
+    "license": "https://plinthos.io/dqi#methodology",
+    "url": "https://plinthos.io/dqi"
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
   <style>
+    /* ── Reset & tokens ─────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --navy:    #0B1829;
-      --navy-2:  #122035;
-      --navy-3:  #1A2F4A;
-      --gold:    #DAA520;
-      --gold-lt: #E8BC45;
-      --cream:   #F5F1EA;
-      --white:   #FDFCFA;
-      --muted:   #8A96A3;
-      --border:  rgba(184,150,62,0.18);
-      --ff-display: 'Cormorant Garamond', Georgia, serif;
-      --ff-body:    'DM Sans', sans-serif;
-      --ff-mono:    'DM Mono', monospace;
-      --transition: 0.35s cubic-bezier(0.4,0,0.2,1);
+      --navy:   #1A2F4A;
+      --teal:   #2E7D6B;
+      --teal-lt:#EAF4F1;
+      --teal-md:#A8D5C8;
+      --gold:   #C8973A;
+      --white:  #FFFFFF;
+      --off:    #F7F8FA;
+      --grey1:  #F0F2F5;
+      --grey2:  #D1D8E0;
+      --grey3:  #8A97A5;
+      --text:   #1A2F4A;
+      --body:   #3D4F60;
+
+      --max: 1060px;
+      --gutter: 1.5rem;
+      --mono: 'DM Mono', monospace;
+      --sans: 'Inter', system-ui, sans-serif;
+
+      /* grade colours */
+      --a: #1E6B4E;
+      --b: #2E7D6B;
+      --c: #C8973A;
+      --d: #B05A2A;
+      --e: #7A2020;
     }
 
-    html { scroll-behavior: smooth; font-size: 16px; }
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: var(--ff-body);
-      background: var(--navy);
-      color: var(--cream);
-      line-height: 1.6;
-      overflow-x: hidden;
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--text);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* ─── SCROLLBAR ─── */
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: var(--navy); }
-    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+    /* ── Layout helpers ─────────────────────────────────────────────── */
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+    .sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); }
 
-    /* ─── NOISE TEXTURE OVERLAY ─── */
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.4;
-    }
-
-    /* ─── TYPOGRAPHY ─── */
-    h1,h2,h3,h4 { font-family: var(--ff-display); font-weight: 500; line-height: 1.15; }
-    h1 { font-size: clamp(2.8rem, 6vw, 5.2rem); letter-spacing: -0.01em; }
-    h2 { font-size: clamp(2rem, 4vw, 3.4rem); letter-spacing: -0.01em; }
-    h3 { font-size: clamp(1.3rem, 2.5vw, 1.9rem); }
-    h4 { font-size: 1.1rem; font-weight: 400; }
-    p  { font-weight: 300; line-height: 1.75; }
-
-    .gold   { color: var(--gold-lt); }
-    .italic { font-style: italic; }
-    .mono   { font-family: var(--ff-mono); font-size: 0.75rem; letter-spacing: 0.08em; color: var(--muted); text-transform: uppercase; }
-
-    /* ─── LAYOUT ─── */
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
-    .container--narrow { max-width: 860px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
-    section { padding: 7rem 0; }
-
-    /* ─── DIVIDER ─── */
-    .divider {
-      width: 100%; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      opacity: 0.3;
-      margin: 0;
-    }
-
-    /* ─── NAV ─── */
+    /* ── NAV ─────────────────────────────────────────────────────────── */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 1.4rem 2rem;
+      position: sticky; top: 0; z-index: 100;
+      background: var(--navy);
+      border-bottom: 2px solid var(--teal);
+    }
+    .nav-inner {
+      max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter);
       display: flex; align-items: center; justify-content: space-between;
-      background: rgba(11,24,41,0.88);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-      transition: var(--transition);
+      height: 52px;
     }
-    .nav-logo {
-      font-family: var(--ff-display);
-      font-size: 1.5rem;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      color: var(--cream);
-      text-decoration: none;
+    .nav-brand {
+      font-family: var(--mono); font-size: 0.8rem; font-weight: 500;
+      color: var(--white); text-decoration: none; letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
-    .nav-logo span { color: var(--gold-lt); }
-    .nav-links { display: flex; gap: 2.5rem; align-items: center; }
+    .nav-brand span { color: var(--teal-md); }
+    .nav-links { display: flex; gap: 1.5rem; }
     .nav-links a {
-      font-size: 0.82rem;
-      font-weight: 400;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color var(--transition);
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--grey2); text-decoration: none;
+      transition: color 0.2s;
     }
-    .nav-links a:hover { color: var(--cream); }
-    .nav-cta {
-      font-size: 0.82rem !important;
-      font-weight: 500 !important;
-      letter-spacing: 0.06em;
-      color: var(--gold-lt) !important;
-      border: 1px solid var(--border);
-      padding: 0.55rem 1.3rem;
-      border-radius: 2px;
-      transition: all var(--transition) !important;
-    }
-    .nav-cta:hover {
-      background: var(--gold) !important;
-      color: var(--navy) !important;
-      border-color: var(--gold) !important;
-    }
+    .nav-links a:hover { color: var(--white); }
 
-    /* ─── HERO ─── */
-    #hero {
-      min-height: 100vh;
-      display: flex; flex-direction: column; justify-content: center;
-      padding-top: 6rem;
+    /* ── HERO ─────────────────────────────────────────────────────────── */
+    .hero {
+      background: var(--navy);
+      padding: 5rem var(--gutter) 4rem;
       position: relative;
       overflow: hidden;
     }
-    .hero-bg {
+    /* Subtle grid overlay */
+    .hero::before {
+      content: '';
       position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 80% 60% at 60% 40%, rgba(184,150,62,0.06) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 80% at 10% 80%, rgba(26,47,74,0.8) 0%, transparent 70%);
-    }
-    .hero-grid {
-      position: absolute; inset: 0; z-index: 0;
       background-image:
-        linear-gradient(rgba(184,150,62,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(184,150,62,0.04) 1px, transparent 1px);
-      background-size: 60px 60px;
-      mask-image: radial-gradient(ellipse 70% 70% at 70% 50%, black 0%, transparent 80%);
+        linear-gradient(rgba(46,125,107,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46,125,107,0.08) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
     }
-    .hero-content { position: relative; z-index: 2; }
-    .hero-label {
-      display: inline-flex; align-items: center; gap: 0.7rem;
-      font-family: var(--ff-mono); font-size: 0.72rem;
+    .hero-inner { max-width: var(--max); margin: 0 auto; position: relative; }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
       letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 2.5rem;
+      color: var(--teal-md);
+      margin-bottom: 1.5rem;
     }
-    .hero-label::before {
+    .hero-eyebrow::before {
       content: '';
-      display: block; width: 24px; height: 1px;
-      background: var(--gold);
+      display: block; width: 24px; height: 2px;
+      background: var(--teal);
     }
-    .hero-headline { margin-bottom: 1.5rem; }
-    .hero-headline em {
-      font-style: italic;
-      color: var(--gold-lt);
+
+    .hero-title {
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 700; line-height: 1.1;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      max-width: 720px;
+      margin-bottom: 1.25rem;
     }
+    .hero-title em {
+      font-style: normal;
+      color: var(--teal-md);
+    }
+
     .hero-sub {
-      font-size: 1.1rem; font-weight: 300;
-      color: rgba(245,241,234,0.7);
-      max-width: 560px;
-      margin-bottom: 3rem;
-      line-height: 1.8;
+      font-size: 1.05rem; font-weight: 300;
+      color: var(--grey2); max-width: 580px;
+      line-height: 1.7; margin-bottom: 2.5rem;
     }
-    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 0.6rem;
-      padding: 0.9rem 2rem;
-      background: var(--gold);
-      color: var(--navy);
-      font-family: var(--ff-body);
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border: none; cursor: pointer;
-      border-radius: 2px;
-      transition: all var(--transition);
-    }
-    .btn-primary:hover { background: var(--gold-lt); transform: translateY(-1px); }
-    .btn-secondary {
-      display: inline-flex; align-items: center; gap: 0.6rem;
-      padding: 0.9rem 2rem;
-      background: transparent;
-      color: var(--cream);
-      font-family: var(--ff-body);
-      font-size: 0.85rem;
-      font-weight: 400;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border: 1px solid rgba(245,241,234,0.2);
-      cursor: pointer;
-      border-radius: 2px;
-      transition: all var(--transition);
-    }
-    .btn-secondary:hover { border-color: var(--gold); color: var(--gold-lt); }
 
+    /* ── HERO STAT ROW ──────────────────────────────────────────────── */
     .hero-stats {
-      display: flex; gap: 3rem; flex-wrap: wrap;
-      margin-top: 5rem;
-      padding-top: 3rem;
-      border-top: 1px solid var(--border);
-    }
-    .stat-item {}
-    .stat-number {
-      font-family: var(--ff-display);
-      font-size: 2.6rem;
-      font-weight: 500;
-      color: var(--gold-lt);
-      line-height: 1;
-      margin-bottom: 0.4rem;
-    }
-    .stat-label {
-      font-size: 0.78rem;
-      font-weight: 300;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    /* ─── RISK SECTION ─── */
-    #risk { background: var(--navy-2); }
-    .risk-intro {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
-      align-items: center; margin-bottom: 5rem;
-    }
-    .risk-intro-text .section-label {
-      font-family: var(--ff-mono); font-size: 0.72rem;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 1.5rem;
-      display: flex; align-items: center; gap: 0.7rem;
-    }
-    .risk-intro-text .section-label::before {
-      content: ''; display: block;
-      width: 24px; height: 1px; background: var(--gold);
-    }
-    .risk-intro-text h2 { margin-bottom: 1.5rem; }
-    .risk-intro-text p { color: rgba(245,241,234,0.65); margin-bottom: 1rem; }
-
-    .risk-card {
-      background: var(--navy-3);
-      border: 1px solid var(--border);
-      border-radius: 3px;
-      padding: 2rem;
-    }
-    .risk-card-header {
-      display: flex; justify-content: space-between; align-items: flex-start;
-      margin-bottom: 1.5rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .risk-tag {
-      font-family: var(--ff-mono); font-size: 0.65rem;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 0.3rem 0.7rem;
-      border-radius: 2px;
-    }
-    .tag-red    { background: rgba(220,50,50,0.15); color: #E06060; border: 1px solid rgba(220,50,50,0.25); }
-    .tag-amber  { background: rgba(220,140,30,0.15); color: #D4923A; border: 1px solid rgba(220,140,30,0.25); }
-    .tag-green  { background: rgba(50,160,80,0.15); color: #5DB87A; border: 1px solid rgba(50,160,80,0.25); }
-
-    .asset-row {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 0.75rem 0;
-      border-bottom: 1px solid rgba(184,150,62,0.08);
-      font-size: 0.85rem;
-    }
-    .asset-row:last-child { border-bottom: none; }
-    .asset-name { font-weight: 400; }
-    .asset-meta { display: flex; gap: 1rem; align-items: center; }
-    .asset-rating {
-      font-family: var(--ff-mono); font-size: 0.72rem;
-      color: var(--muted);
-    }
-
-    /* ─── TIER CARDS ─── */
-    .tier-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-    .tier-card {
-      padding: 2rem 1.5rem;
-      border: 1px solid var(--border);
-      border-radius: 3px;
-      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 4px;
       overflow: hidden;
-      transition: transform var(--transition);
+      max-width: 640px;
     }
-    .tier-card:hover { transform: translateY(-3px); }
-    .tier-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    .hero-stat {
+      background: rgba(255,255,255,0.04);
+      padding: 1.25rem 1.5rem;
     }
-    .tier-card.red::before    { background: #E06060; }
-    .tier-card.amber::before  { background: #D4923A; }
-    .tier-card.green::before  { background: #5DB87A; }
-    .tier-card.red   { background: rgba(220,50,50,0.05); }
-    .tier-card.amber { background: rgba(220,140,30,0.05); }
-    .tier-card.green { background: rgba(50,160,80,0.05); }
-    .tier-icon { font-size: 1.5rem; margin-bottom: 1rem; }
-    .tier-card h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
-    .tier-card p { font-size: 0.85rem; color: rgba(245,241,234,0.6); }
-    .tier-pct {
-      font-family: var(--ff-display);
-      font-size: 2.4rem;
-      margin-top: 1.5rem;
+    .hero-stat-value {
+      font-family: var(--mono);
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 500;
+      color: var(--teal-md);
       line-height: 1;
+      margin-bottom: 0.35rem;
     }
-    .tier-card.red   .tier-pct { color: #E06060; }
-    .tier-card.amber .tier-pct { color: #D4923A; }
-    .tier-card.green .tier-pct { color: #5DB87A; }
-    .tier-pct-label { font-size: 0.72rem; font-family: var(--ff-mono); color: var(--muted); margin-top: 0.25rem; letter-spacing: 0.08em; text-transform: uppercase; }
-
-    /* ─── SERVICES ─── */
-    #services { background: var(--navy); }
-    .services-header { text-align: center; margin-bottom: 4rem; }
-    .services-header .section-label {
-      font-family: var(--ff-mono); font-size: 0.72rem;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 1.5rem;
-      display: block;
-    }
-    .services-header p { color: rgba(245,241,234,0.6); max-width: 600px; margin: 1.5rem auto 0; }
-
-    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 3px; overflow: hidden; }
-    .service-card {
-      background: var(--navy);
-      padding: 2.5rem 2rem;
-      transition: background var(--transition);
-    }
-    .service-card:hover { background: var(--navy-2); }
-    .service-number {
-      font-family: var(--ff-mono); font-size: 0.68rem;
-      letter-spacing: 0.1em; color: var(--gold);
-      margin-bottom: 1.5rem;
-    }
-    .service-card h3 { font-size: 1.3rem; margin-bottom: 0.75rem; }
-    .service-card p { font-size: 0.85rem; color: rgba(245,241,234,0.6); line-height: 1.7; margin-bottom: 1.5rem; }
-    .service-price {
-      font-family: var(--ff-display);
-      font-size: 1.6rem;
-      color: var(--gold-lt);
-    }
-    .service-price span {
-      font-family: var(--ff-body);
-      font-size: 0.78rem;
-      color: var(--muted);
-      font-weight: 300;
+    .hero-stat-label {
+      font-size: 0.72rem; font-weight: 400;
+      color: var(--grey3); text-transform: uppercase;
+      letter-spacing: 0.06em; line-height: 1.4;
     }
 
-    /* ─── HOW IT WORKS ─── */
-    #process { background: var(--navy-2); }
-    .process-header { margin-bottom: 4rem; }
-    .process-header .section-label {
-      font-family: var(--ff-mono); font-size: 0.72rem;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 1.5rem;
-      display: flex; align-items: center; gap: 0.7rem;
+    /* ── SECTION BASE ───────────────────────────────────────────────── */
+    section { padding: 4.5rem var(--gutter); }
+    .section-label {
+      font-family: var(--mono); font-size: 0.68rem; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--teal); margin-bottom: 0.6rem;
     }
-    .process-header .section-label::before {
-      content: ''; display: block; width: 24px; height: 1px; background: var(--gold);
+    h2 {
+      font-size: clamp(1.35rem, 3vw, 1.9rem);
+      font-weight: 700; line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+      margin-bottom: 1rem;
     }
+    .lead {
+      font-size: 1.05rem; font-weight: 400;
+      color: var(--body); line-height: 1.75;
+      max-width: 660px;
+      margin-bottom: 2rem;
+    }
+    p { color: var(--body); line-height: 1.75; margin-bottom: 1rem; }
 
-    .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
-    .process-steps::before {
-      content: '';
-      position: absolute; top: 2rem; left: 12.5%; right: 12.5%;
-      height: 1px;
-      background: linear-gradient(90deg, var(--gold), rgba(184,150,62,0.3), var(--gold));
-      opacity: 0.3;
+    /* ── DISTINCTION BAND ───────────────────────────────────────────── */
+    .distinction {
+      background: var(--teal-lt);
+      border-left: 4px solid var(--teal);
     }
-    .process-step { padding: 0 1.5rem; text-align: center; position: relative; }
-    .step-dot {
-      width: 2.5rem; height: 2.5rem;
-      border-radius: 50%;
-      background: var(--navy-3);
-      border: 1px solid var(--gold);
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 1.5rem;
-      font-family: var(--ff-mono); font-size: 0.7rem;
-      color: var(--gold);
-      position: relative; z-index: 1;
+    .distinction-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2rem;
     }
-    .process-step h4 { font-family: var(--ff-display); font-size: 1.1rem; margin-bottom: 0.75rem; }
-    .process-step p { font-size: 0.82rem; color: rgba(245,241,234,0.55); line-height: 1.65; }
-
-    /* ─── FRAMEWORKS ─── */
-    #frameworks { background: var(--navy); }
-    .frameworks-header { text-align: center; margin-bottom: 3rem; }
-    .frameworks-header .section-label {
-      font-family: var(--ff-mono); font-size: 0.72rem;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 1.5rem; display: block;
-    }
-    .frameworks-grid {
-      display: grid; grid-template-columns: repeat(6, 1fr); gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border); border-radius: 3px; overflow: hidden;
-      margin-bottom: 3rem;
-    }
-    .framework-item {
-      background: var(--navy);
-      padding: 1.8rem 1rem;
-      text-align: center;
-      transition: background var(--transition);
-    }
-    .framework-item:hover { background: var(--navy-3); }
-    .framework-name {
-      font-family: var(--ff-mono); font-size: 0.72rem;
-      letter-spacing: 0.1em; color: var(--gold-lt);
-      margin-bottom: 0.4rem;
-    }
-    .framework-desc { font-size: 0.72rem; color: var(--muted); line-height: 1.4; }
-
-    /* ─── WHY PLINTHOS ─── */
-    #why { background: var(--navy-2); }
-    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-    .why-left .section-label {
-      font-family: var(--ff-mono); font-size: 0.72rem;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 1.5rem;
-      display: flex; align-items: center; gap: 0.7rem;
-    }
-    .why-left .section-label::before {
-      content: ''; display: block; width: 24px; height: 1px; background: var(--gold);
-    }
-    .why-left h2 { margin-bottom: 1.5rem; }
-    .why-left p { color: rgba(245,241,234,0.65); margin-bottom: 1rem; }
-
-    .comparison-table { width: 100%; border-collapse: collapse; }
-    .comparison-table th {
-      font-family: var(--ff-mono); font-size: 0.68rem;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--muted); padding: 0.75rem 1rem;
-      text-align: left; border-bottom: 1px solid var(--border);
-    }
-    .comparison-table th:last-child { color: var(--gold); }
-    .comparison-table td {
-      padding: 0.85rem 1rem; font-size: 0.82rem;
-      border-bottom: 1px solid rgba(184,150,62,0.06);
-      vertical-align: top;
-    }
-    .comparison-table td:first-child { color: var(--muted); }
-    .comparison-table td:nth-child(2) { color: rgba(245,241,234,0.4); }
-    .comparison-table td:last-child { color: var(--cream); font-weight: 400; }
-    .check { color: #5DB87A; }
-    .cross { color: rgba(245,241,234,0.25); }
-
-    /* ─── CTA / CONTACT ─── */
-    #contact {
-      background: var(--navy);
-      position: relative; overflow: hidden;
-    }
-    .contact-bg {
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(184,150,62,0.05) 0%, transparent 70%);
-    }
-    .contact-inner {
-      position: relative; z-index: 1;
-      text-align: center; max-width: 720px; margin: 0 auto;
-    }
-    .contact-inner .section-label {
-      font-family: var(--ff-mono); font-size: 0.72rem;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 1.5rem; display: block;
-    }
-    .contact-inner h2 { margin-bottom: 1.5rem; }
-    .contact-inner p { color: rgba(245,241,234,0.65); margin-bottom: 3rem; font-size: 1.05rem; }
-
-    .contact-form { text-align: left; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
-    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-    .form-group label {
-      font-family: var(--ff-mono); font-size: 0.65rem;
+    .distinction-card h3 {
+      font-size: 0.72rem; font-weight: 600;
       letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--muted);
+      color: var(--teal); margin-bottom: 0.5rem;
     }
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      background: var(--navy-2);
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      padding: 0.8rem 1rem;
-      color: var(--cream);
-      font-family: var(--ff-body);
-      font-size: 0.9rem;
-      font-weight: 300;
-      outline: none;
-      transition: border-color var(--transition);
-      width: 100%;
-    }
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus { border-color: var(--gold); }
-    .form-group select option { background: var(--navy-2); }
-    .form-group textarea { resize: vertical; min-height: 100px; }
-    .form-full { margin-bottom: 1rem; }
-    .form-submit { margin-top: 1.5rem; width: 100%; justify-content: center; font-size: 0.9rem; padding: 1.1rem 2rem; }
+    .distinction-card .who { font-size: 1.25rem; font-weight: 700; color: var(--navy); margin-bottom: 0.4rem; }
+    .distinction-card p { font-size: 0.88rem; color: var(--body); margin: 0; }
+    .distinction-card.us { background: var(--navy); padding: 1.25rem 1.5rem; border-radius: 2px; }
+    .distinction-card.us h3 { color: var(--teal-md); }
+    .distinction-card.us .who { color: var(--white); }
+    .distinction-card.us p { color: var(--grey2); }
 
-    /* ─── FOOTER ─── */
+    /* ── TIER LADDER ─────────────────────────────────────────────────── */
+    .tiers-section { background: var(--off); }
+    .tier-ladder {
+      display: flex; flex-direction: column; gap: 0;
+      border: 1px solid var(--grey2);
+      border-radius: 4px; overflow: hidden;
+    }
+    .tier-row {
+      display: grid;
+      grid-template-columns: 56px 1fr auto;
+      gap: 0;
+      border-bottom: 1px solid var(--grey2);
+      transition: background 0.15s;
+    }
+    .tier-row:last-child { border-bottom: none; }
+    .tier-row:hover { background: rgba(46,125,107,0.04); }
+
+    .tier-grade {
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--mono); font-size: 1.1rem; font-weight: 500;
+      color: var(--white); min-height: 72px;
+    }
+    .tier-grade.ga { background: var(--a); }
+    .tier-grade.gb { background: var(--b); }
+    .tier-grade.gc { background: var(--c); }
+    .tier-grade.gd { background: var(--d); }
+    .tier-grade.ge { background: var(--e); }
+
+    .tier-body {
+      padding: 1rem 1.25rem;
+      background: var(--white);
+    }
+    .tier-name {
+      font-weight: 600; font-size: 0.92rem;
+      color: var(--navy); margin-bottom: 0.25rem;
+    }
+    .tier-desc {
+      font-size: 0.82rem; color: var(--body); line-height: 1.5;
+    }
+    .tier-score {
+      display: flex; align-items: center; justify-content: flex-end;
+      padding: 1rem 1.25rem;
+      background: var(--white);
+    }
+    .tier-score-val {
+      font-family: var(--mono); font-size: 0.8rem;
+      color: var(--grey3); white-space: nowrap;
+    }
+    .tier-header {
+      background: var(--navy);
+      display: grid; grid-template-columns: 56px 1fr auto;
+      border-bottom: 2px solid var(--teal);
+    }
+    .tier-header-cell {
+      padding: 0.6rem 1.25rem;
+      font-family: var(--mono); font-size: 0.68rem;
+      font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--teal-md);
+    }
+    .tier-header-cell:first-child { text-align: center; padding: 0.6rem 0; }
+
+    /* ── METHODOLOGY ─────────────────────────────────────────────────── */
+    .method-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+      background: var(--grey2); border: 1px solid var(--grey2);
+      border-radius: 4px; overflow: hidden;
+    }
+    .method-cell {
+      background: var(--white); padding: 1.25rem 1.5rem;
+    }
+    .method-cell h3 {
+      font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--teal); margin-bottom: 0.5rem;
+    }
+    .method-cell ul { list-style: none; }
+    .method-cell li {
+      font-size: 0.88rem; color: var(--body);
+      padding: 0.25rem 0;
+      display: flex; gap: 0.6rem; align-items: baseline;
+    }
+    .method-cell li::before {
+      content: '→'; color: var(--teal); font-size: 0.75rem; flex-shrink: 0;
+    }
+    .method-total {
+      grid-column: 1 / -1;
+      background: var(--teal-lt);
+      padding: 1rem 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .method-total-num {
+      font-family: var(--mono); font-size: 2rem; font-weight: 500;
+      color: var(--teal); flex-shrink: 0;
+    }
+    .method-total-text { font-size: 0.88rem; color: var(--body); }
+
+    /* ── FINDINGS ────────────────────────────────────────────────────── */
+    .findings-section { background: var(--navy); }
+    .findings-section .section-label { color: var(--teal-md); }
+    .findings-section h2 { color: var(--white); }
+    .findings-section .lead { color: var(--grey2); }
+    .finding-list { list-style: none; }
+    .finding-list li {
+      display: flex; gap: 1rem;
+      padding: 1.1rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .finding-list li:last-child { border-bottom: none; }
+    .finding-num {
+      font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
+      color: var(--teal); padding-top: 0.18rem; flex-shrink: 0;
+      min-width: 24px;
+    }
+    .finding-text { font-size: 0.95rem; color: var(--grey2); line-height: 1.65; }
+    .finding-text strong { color: var(--white); }
+
+    /* ── CTA (score request) ─────────────────────────────────────────── */
+    .cta-section {
+      background: var(--teal);
+      padding: 4rem var(--gutter);
+    }
+    .cta-inner {
+      max-width: var(--max); margin: 0 auto;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 2rem; align-items: center;
+    }
+    .cta-section h2 {
+      color: var(--white); font-size: clamp(1.3rem, 3vw, 1.8rem);
+      margin-bottom: 0.5rem;
+    }
+    .cta-section p {
+      color: rgba(255,255,255,0.8); font-size: 0.95rem; margin: 0;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: var(--white); color: var(--teal);
+      font-size: 0.85rem; font-weight: 600;
+      letter-spacing: 0.04em; text-decoration: none;
+      padding: 0.85rem 1.75rem;
+      border-radius: 2px;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+    .cta-btn:hover { opacity: 0.9; }
+
+    /* ── ABOUT ───────────────────────────────────────────────────────── */
+    .about-section { background: var(--off); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.5rem; margin-top: 2rem;
+    }
+    .about-card {
+      background: var(--white);
+      border: 1px solid var(--grey2);
+      border-top: 3px solid var(--teal);
+      padding: 1.5rem;
+    }
+    .about-card h3 {
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--teal); margin-bottom: 0.6rem;
+    }
+    .about-card p { font-size: 0.88rem; color: var(--body); margin: 0; }
+
+    /* ── FOOTER ──────────────────────────────────────────────────────── */
     footer {
-      background: var(--navy-2);
-      padding: 3rem 0;
-      border-top: 1px solid var(--border);
+      background: var(--navy);
+      border-top: 2px solid var(--teal);
+      padding: 2rem var(--gutter);
     }
     .footer-inner {
-      display: flex; justify-content: space-between; align-items: center;
-      position: relative; z-index: 1;
+      max-width: var(--max); margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; flex-wrap: wrap;
     }
-    .footer-logo {
-      font-family: var(--ff-display);
-      font-size: 1.2rem; color: var(--cream);
-      text-decoration: none;
+    .footer-brand {
+      font-family: var(--mono); font-size: 0.78rem;
+      color: var(--grey3); letter-spacing: 0.08em;
     }
-    .footer-logo span { color: var(--gold-lt); }
-    .footer-copy { font-size: 0.78rem; color: var(--muted); }
-    .footer-links { display: flex; gap: 2rem; }
+    .footer-links {
+      display: flex; gap: 1.5rem;
+    }
     .footer-links a {
-      font-size: 0.78rem; color: var(--muted);
-      text-decoration: none; transition: color var(--transition);
+      font-size: 0.78rem; color: var(--grey3);
+      text-decoration: none; transition: color 0.2s;
     }
-    .footer-links a:hover { color: var(--gold-lt); }
-
-    /* ─── ANIMATIONS ─── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
+    .footer-links a:hover { color: var(--teal-md); }
+    .footer-note {
+      width: 100%; font-size: 0.72rem;
+      color: rgba(255,255,255,0.2);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 1rem; margin-top: 1rem;
     }
-    .fade-up { opacity: 0; animation: fadeUp 0.7s ease forwards; }
-    .delay-1 { animation-delay: 0.1s; }
-    .delay-2 { animation-delay: 0.25s; }
-    .delay-3 { animation-delay: 0.4s; }
-    .delay-4 { animation-delay: 0.55s; }
-    .delay-5 { animation-delay: 0.7s; }
 
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 900px) {
-      .risk-intro { grid-template-columns: 1fr; gap: 2.5rem; }
-      .tier-grid { grid-template-columns: 1fr; }
-      .services-grid { grid-template-columns: 1fr; }
-      .process-steps { grid-template-columns: 1fr 1fr; gap: 2rem; }
-      .process-steps::before { display: none; }
-      .frameworks-grid { grid-template-columns: repeat(3, 1fr); }
-      .why-grid { grid-template-columns: 1fr; }
-      .form-row { grid-template-columns: 1fr; }
+    /* ── RESPONSIVE ──────────────────────────────────────────────────── */
+    @media (max-width: 720px) {
+      .hero-stats { grid-template-columns: 1fr; }
+      .distinction-grid { grid-template-columns: 1fr; }
+      .method-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; }
+      .cta-inner { grid-template-columns: 1fr; }
+      .tier-row { grid-template-columns: 48px 1fr; }
+      .tier-score { display: none; }
+    }
+    @media (max-width: 500px) {
       .nav-links { display: none; }
-      .footer-inner { flex-direction: column; gap: 1.5rem; text-align: center; }
     }
-    @media (max-width: 600px) {
-      h1 { font-size: 2.4rem; }
-      section { padding: 4rem 0; }
-      .hero-stats { gap: 2rem; }
-      .frameworks-grid { grid-template-columns: repeat(2, 1fr); }
-      .process-steps { grid-template-columns: 1fr; }
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; animation: none !important; }
     }
 
-    /* ─── AUDIENCE SWITCHER ─── */
-    .nav-audience-group { display: flex; align-items: center; gap: 0.5rem; margin-right: 0.5rem; }
-    .nav-sep { color: rgba(245,241,234,0.15); font-size: 0.75rem; }
-    .nav-audience {
-      font-size: 0.72rem; font-weight: 400;
-      letter-spacing: 0.06em; text-transform: uppercase;
-      color: rgba(245,241,234,0.35); text-decoration: none;
-      transition: color var(--transition);
+    /* ── SCROLL REVEAL (lightweight) ────────────────────────────────── */
+    .reveal {
+      opacity: 0; transform: translateY(18px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
     }
-    .nav-audience:hover { color: var(--muted); }
-    .nav-audience.active { color: var(--gold-lt) !important; }
+    .reveal.visible {
+      opacity: 1; transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; }
+    }
   </style>
 </head>
+
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="/" class="nav-logo">Plinth<span>os</span></a>
-  <div class="nav-links">
-    <div class="nav-audience-group">
-      <span class="nav-sep">For</span>
-      <a href="/" class="nav-audience active">Real Estate Funds</a>
-      <span class="nav-sep">/</span>
-      <a href="/valuers" class="nav-audience">Valuers &amp; Lenders</a>
+<!-- ── NAV ─────────────────────────────────────────────────────────────── -->
+<nav aria-label="Site navigation">
+  <div class="nav-inner">
+    <a href="https://plinthos.io" class="nav-brand">Plinthos<span>.io</span></a>
+    <div class="nav-links">
+      <a href="#methodology">Methodology</a>
+      <a href="#tiers">Quality Tiers</a>
+      <a href="#findings">Findings</a>
+      <a href="#request">Request Score</a>
+      <a href="https://plinthos.io">← Home</a>
     </div>
-    <a href="#risk">Risk Assessment</a>
-    <a href="#services">Services</a>
-    <a href="#process">Process</a>
-    <a href="#frameworks">Frameworks</a>
-    <a href="/whitepaper.html">Research</a>
-    <a href="/playbook.html">Free Guide</a>
-    <a href="/tools/misalignment-engine.html" style="color:var(--gold-lt)!important;border:1px solid rgba(184,150,62,0.25);padding:0.4rem 0.9rem;border-radius:2px;font-size:0.75rem!important;">Free Risk Checker</a>
-    <a href="#download" class="nav-cta">Download Sample Report</a>
   </div>
 </nav>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-  <div class="container hero-content">
-    <div class="hero-label fade-up">ESG Risk & Reporting — UK Real Estate</div>
-    <h1 class="hero-headline fade-up delay-1">
-      Protect Your<br/>
-      <em>Portfolio Value.</em><br/>
-      Satisfy Your Investors.
+<!-- ── HERO ─────────────────────────────────────────────────────────────── -->
+<header class="hero" role="banner">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Research Publication · 2025 Baseline</div>
+    <h1 class="hero-title">
+      The Plinthos<br><em>Disclosure Quality</em><br>Index
     </h1>
-    <p class="hero-sub fade-up delay-2">
-      Plinthos identifies stranded asset risk across your portfolio and delivers
-      institutional-grade ESG reports — in weeks, not months.
-      Built for UK real estate funds navigating an increasingly complex regulatory landscape.
+    <p class="hero-sub">
+      Annual benchmarking of ESG disclosure quality across UK-listed real estate.
+      Not performance. Not ratings. What investors can actually read, verify, and act on.
     </p>
-    <div class="hero-actions fade-up delay-3">
-      <a href="#contact" class="btn-primary">Request Consultation →</a>
-      <a href="#risk" class="btn-secondary">See Risk Assessment</a>
-    </div>
-    <div class="hero-stats fade-up delay-4">
-      <div class="stat-item">
-        <div class="stat-number">60%</div>
-        <div class="stat-label">UK office stock below EPC B</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">2030</div>
-        <div class="stat-label">Potential MEES tightening deadline</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">2 wks</div>
-        <div class="stat-label">Typical report delivery</div>
-      </div>
 
+    <div class="hero-stats" role="region" aria-label="Key statistics">
+      <div class="hero-stat">
+        <div class="hero-stat-value">136</div>
+        <div class="hero-stat-label">Companies scored<br>2025 baseline</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">53 pts</div>
+        <div class="hero-stat-label">Quality gap between<br>top &amp; bottom reporters</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">120</div>
+        <div class="hero-stat-label">Maximum possible<br>DQI score</div>
+      </div>
     </div>
+  </div>
+</header>
+
+<!-- ── WHAT IS THE DQI ───────────────────────────────────────────────────── -->
+<section class="distinction" aria-labelledby="distinction-heading">
+  <div class="wrap">
+    <p class="section-label">What the DQI measures</p>
+    <h2 id="distinction-heading">Scoring disclosure, not performance</h2>
+    <p class="lead">
+      Most ESG indices score what companies <em>do</em>. The Plinthos DQI scores what they <em>say</em> — and whether what they say gives investors the data they need to make decisions.
+    </p>
+
+    <div class="distinction-grid reveal">
+      <div class="distinction-card">
+        <h3>GRESB scores</h3>
+        <div class="who">Performance</div>
+        <p>Operational outcomes, targets met, certification status.</p>
+      </div>
+      <div class="distinction-card">
+        <h3>MSCI rates</h3>
+        <div class="who">ESG Risk</div>
+        <p>Exposure to material ESG risks relative to industry peers.</p>
+      </div>
+      <div class="distinction-card us">
+        <h3>Plinthos DQI scores</h3>
+        <div class="who">Disclosure Quality</div>
+        <p>Completeness, specificity, comparability, and decision-usefulness of what a company publishes.</p>
+      </div>
+    </div>
+
+    <p style="margin-top:1.75rem; max-width:660px; font-size:0.95rem; color:var(--body);">
+      A fund with strong carbon performance but poor disclosure loses GRESB points, fails LP due diligence, and struggles to access green finance. The 53-point gap in the 2025 baseline shows this is systemic — not an outlier problem.
+    </p>
   </div>
 </section>
 
-<div class="divider"></div>
+<!-- ── QUALITY TIERS ─────────────────────────────────────────────────────── -->
+<section class="tiers-section" id="tiers" aria-labelledby="tiers-heading">
+  <div class="wrap">
+    <p class="section-label">Quality tiers</p>
+    <h2 id="tiers-heading">Five levels of disclosure maturity</h2>
+    <p class="lead">
+      Each company in the 2025 baseline is assigned a DQI grade based on their overall score. Grades reflect the decision-usefulness of disclosure, not the quality of ESG operations.
+    </p>
 
-<!-- RISK SECTION -->
-<section id="risk">
-  <div class="container">
-    <div class="risk-intro">
-      <div class="risk-intro-text">
-        <div class="section-label">Stranded Asset Risk</div>
-        <h2>Do You Know Which Assets Are <em>Exposed?</em></h2>
-        <p>
-          With MEES regulation potentially tightening to EPC B by 2030–2035,
-          portfolios carrying C, D, or E-rated assets face significant valuation risk.
-          D and E-rated assets already attract a 10–25% valuation discount —
-          and some are becoming illiquid.
-        </p>
-        <p>
-          Plinthos maps every asset in your portfolio against current and projected
-          regulatory thresholds, quantifying £ exposure and identifying the highest-ROI
-          retrofit opportunities.
-        </p>
-        <a href="#contact" class="btn-primary" style="margin-top:1.5rem;">Get Your Risk Assessment →</a>
+    <div class="tier-ladder reveal" role="table" aria-label="DQI quality tiers">
+      <div class="tier-header" role="row">
+        <div class="tier-header-cell" role="columnheader">Grade</div>
+        <div class="tier-header-cell" role="columnheader">Tier & description</div>
+        <div class="tier-header-cell" role="columnheader" style="text-align:right;">Score range</div>
       </div>
-      <div>
-        <div class="risk-card">
-          <div class="risk-card-header">
-            <div>
-              <div class="mono" style="margin-bottom:0.3rem;">Sample Portfolio Analysis</div>
-              <div style="font-size:0.82rem;color:var(--muted);">10 assets · £180M AUM</div>
-            </div>
-            <div class="risk-tag tag-red">Risk Active</div>
-          </div>
-          <div class="asset-row">
-            <span class="asset-name">14 King Street, Manchester</span>
-            <div class="asset-meta">
-              <span class="asset-rating">EPC D</span>
-              <span class="risk-tag tag-amber">MODERATE</span>
-            </div>
-          </div>
-          <div class="asset-row">
-            <span class="asset-name">Riverside Court, Birmingham</span>
-            <div class="asset-meta">
-              <span class="asset-rating">EPC E</span>
-              <span class="risk-tag tag-red">HIGH</span>
-            </div>
-          </div>
-          <div class="asset-row">
-            <span class="asset-name">Central Exchange, Leeds</span>
-            <div class="asset-meta">
-              <span class="asset-rating">EPC C</span>
-              <span class="risk-tag tag-amber">MODERATE</span>
-            </div>
-          </div>
-          <div class="asset-row">
-            <span class="asset-name">Innovation Park, Bristol</span>
-            <div class="asset-meta">
-              <span class="asset-rating">EPC C</span>
-              <span class="risk-tag tag-amber">MODERATE</span>
-            </div>
-          </div>
-          <div class="asset-row">
-            <span class="asset-name">Apex Tower, Edinburgh</span>
-            <div class="asset-meta">
-              <span class="asset-rating">EPC B</span>
-              <span class="risk-tag tag-green">COMPLIANT</span>
-            </div>
-          </div>
-          <div style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
-            <span style="font-size:0.78rem;color:var(--muted);">Estimated value at risk</span>
-            <span style="font-family:var(--ff-display);font-size:1.4rem;color:#E06060;">£23.4M</span>
-          </div>
+
+      <div class="tier-row" role="row">
+        <div class="tier-grade ga" role="cell">A</div>
+        <div class="tier-body" role="cell">
+          <div class="tier-name">Sector Leader</div>
+          <div class="tier-desc">Investor-grade disclosure across all pillars. Multi-framework aligned, SBTi validated, 30+ externally assured metrics. SLL-ready KPI presentation.</div>
         </div>
+        <div class="tier-score" role="cell"><span class="tier-score-val">95–120</span></div>
       </div>
-    </div>
 
-    <div class="tier-grid">
-      <div class="tier-card red">
-        <div class="tier-icon">⚠</div>
-        <h3>High Risk Assets</h3>
-        <p><strong style="color:var(--gold-lt);">EPC F or G:</strong> Non-compliant under current commercial MEES (in force April 2023) — unlettable without a registered exemption. <strong style="color:var(--gold-lt);">EPC D or E:</strong> Currently compliant, but at significant risk under the projected tightening to EPC B by 2030–2035. Immediate capex planning required.</p>
-        <div class="tier-pct">D–G</div>
-        <div class="tier-pct-label">10–25% valuation discount risk</div>
-      </div>
-      <div class="tier-card amber">
-        <div class="tier-icon">◈</div>
-        <h3>Moderate Risk Assets</h3>
-        <p>EPC C rated. Currently compliant but exposed to future regulatory tightening. Strategic retrofit planning recommended within 2–3 years.</p>
-        <div class="tier-pct">C</div>
-        <div class="tier-pct-label">5–10% valuation at risk by 2030</div>
-      </div>
-      <div class="tier-card green">
-        <div class="tier-icon">✦</div>
-        <h3>Compliant Assets</h3>
-        <p>EPC A or B rated. Aligned with projected future standards. Eligible for green premium capture and sustainability-linked loan advantages.</p>
-        <div class="tier-pct">A–B</div>
-        <div class="tier-pct-label">5–10% potential green premium</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- SERVICES -->
-<section id="services">
-  <div class="container">
-    <div class="services-header">
-      <span class="section-label">What We Deliver</span>
-      <h2>Three Levels of <em>Engagement</em></h2>
-      <p>From targeted risk assessment to full annual partnership — structured around where your fund needs the most support.</p>
-    </div>
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-number">01 — RISK ASSESSMENT</div>
-        <h3>Strategic Risk Report</h3>
-        <p>Asset-by-asset RED/AMBER/GREEN tiering with £ exposure quantification, retrofit cost estimates, ROI analysis, and prioritised action roadmap. Delivered in one week.</p>
-        <div class="service-price">£8,000 – £10,000 <span>/ one-time</span></div>
-      </div>
-      <div class="service-card" style="border-top: 2px solid var(--gold); background: var(--navy-2);">
-        <div class="service-number" style="color:var(--gold-lt);">02 — FULL REPORT ★ MOST POPULAR</div>
-        <h3>Comprehensive ESG Report</h3>
-        <p>Complete Environmental, Social and Governance sections. GRESB-optimised. Framework-compliant across SFDR, TCFD, EU Taxonomy. Risk assessment included. Delivered in two weeks.</p>
-        <div class="service-price">£15,000 <span>/ pilot pricing (reg. £25,000)</span></div>
-      </div>
-      <div class="service-card">
-        <div class="service-number">03 — PARTNERSHIP</div>
-        <h3>Annual ESG Partnership</h3>
-        <p>Initial full report plus quarterly updates, unlimited revisions, monthly advisory hours, and priority turnaround. For funds requiring continuous ESG disclosure support.</p>
-        <div class="service-price">£40,000 – £60,000 <span>/ per year</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- PROCESS -->
-<section id="process">
-  <div class="container">
-    <div class="process-header">
-      <div class="section-label">How It Works</div>
-      <h2>From Portfolio Data to <em>Investor-Ready</em> Documentation</h2>
-    </div>
-    <div class="process-steps">
-      <div class="process-step">
-        <div class="step-dot">01</div>
-        <h4>Portfolio Walkthrough</h4>
-        <p>Guided data intake captures asset-level metrics, certifications, and strategic context. Upload from Measurabl, Deepki, or raw data.</p>
-      </div>
-      <div class="process-step">
-        <div class="step-dot">02</div>
-        <h4>Risk Assessment</h4>
-        <p>Every asset is tiered against current and projected regulatory thresholds. Capex estimates and ROI analysis produced within 48 hours.</p>
-      </div>
-      <div class="process-step">
-        <div class="step-dot">03</div>
-        <h4>Report Generation</h4>
-        <p>AI-assisted narrative synthesis across all E, S and G sections. Every claim is traceable to validated data. 120-point proprietary quality framework applied throughout.</p>
-      </div>
-      <div class="process-step">
-        <div class="step-dot">04</div>
-        <h4>Review & Delivery</h4>
-        <p>Client review, one round of revisions, then final print-ready and digital formats. Formatted for LP due diligence and lender review.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- FRAMEWORKS -->
-<section id="frameworks">
-  <div class="container">
-    <div class="frameworks-header">
-      <span class="section-label">Regulatory Coverage</span>
-      <h2>Every Framework. <em>One Engagement.</em></h2>
-    </div>
-    <div class="frameworks-grid">
-      <div class="framework-item">
-        <div class="framework-name">GRESB</div>
-        <div class="framework-desc">Management & Performance Components</div>
-      </div>
-      <div class="framework-item">
-        <div class="framework-name">SFDR</div>
-        <div class="framework-desc">Article 8 & 9 Fund Classification</div>
-      </div>
-      <div class="framework-item">
-        <div class="framework-name">TCFD</div>
-        <div class="framework-desc">Climate Risk Disclosure</div>
-      </div>
-      <div class="framework-item">
-        <div class="framework-name">EU Taxonomy</div>
-        <div class="framework-desc">Climate Mitigation & Adaptation</div>
-      </div>
-      <div class="framework-item">
-        <div class="framework-name">CRREM</div>
-        <div class="framework-desc">Decarbonisation Pathways</div>
-      </div>
-      <div class="framework-item">
-        <div class="framework-name">UK MEES</div>
-        <div class="framework-desc">Minimum Energy Efficiency Standards</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<div class="divider"></div>
-
-<!-- FREE TOOL: CRREM MISALIGNMENT ENGINE -->
-<section id="tool" style="background: var(--navy-2); position: relative; overflow: hidden;">
-  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 70% 50%, rgba(184,150,62,0.04) 0%, transparent 65%);pointer-events:none;"></div>
-  <div class="container" style="position:relative;z-index:1;">
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;">
-
-      <!-- Left: copy -->
-      <div>
-        <div class="section-label" style="font-family:var(--ff-mono);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:flex;align-items:center;gap:0.7rem;">
-          <span style="display:block;width:24px;height:1px;background:var(--gold);flex-shrink:0;"></span>
-          Free Tool · No Login Required
+      <div class="tier-row" role="row">
+        <div class="tier-grade gb" role="cell">B</div>
+        <div class="tier-body" role="cell">
+          <div class="tier-name">Advanced</div>
+          <div class="tier-desc">Strong disclosure with minor gaps. Full ESG pillar coverage, external assurance on key metrics, GRESB 4–5 star aligned.</div>
         </div>
-        <h2 style="margin-bottom:1.2rem;">
-          When Does Your Asset<br/><em>Become Stranded?</em>
-        </h2>
-        <p style="color:rgba(245,241,234,0.65);margin-bottom:1.75rem;font-size:1rem;line-height:1.8;">
-          Our CRREM Misalignment Engine calculates the exact year your property exceeds
-          the 1.5°C carbon pathway — instantly, from just your EPC rating. No data upload required.
-        </p>
+        <div class="tier-score" role="cell"><span class="tier-score-val">80–94</span></div>
+      </div>
 
-        <ul style="list-style:none;margin-bottom:2rem;display:flex;flex-direction:column;gap:0.85rem;">
-          <li style="display:flex;align-items:center;gap:0.75rem;font-size:0.88rem;color:rgba(245,241,234,0.6);">
-            <span style="color:var(--gold-lt);font-size:0.8rem;flex-shrink:0;">✦</span>
-            Stranding year against CRREM 1.5°C pathway
-          </li>
-          <li style="display:flex;align-items:center;gap:0.75rem;font-size:0.88rem;color:rgba(245,241,234,0.6);">
-            <span style="color:var(--gold-lt);font-size:0.8rem;flex-shrink:0;">✦</span>
-            Cumulative excess emissions to 2050
-          </li>
-          <li style="display:flex;align-items:center;gap:0.75rem;font-size:0.88rem;color:rgba(245,241,234,0.6);">
-            <span style="color:var(--gold-lt);font-size:0.8rem;flex-shrink:0;">✦</span>
-            MEES compliance status &amp; retrofit gap
-          </li>
-          <li style="display:flex;align-items:center;gap:0.75rem;font-size:0.88rem;color:rgba(245,241,234,0.6);">
-            <span style="color:var(--gold-lt);font-size:0.8rem;flex-shrink:0;">✦</span>
-            Instant · Office, Retail, Industrial, Residential, Hotel, Healthcare
-          </li>
+      <div class="tier-row" role="row">
+        <div class="tier-grade gc" role="cell">C</div>
+        <div class="tier-body" role="cell">
+          <div class="tier-name">Developing</div>
+          <div class="tier-desc">Meets basic requirements but significant gaps in depth or coverage. Scope 1–3 reported, EPRA/GRI aligned, limited or no assurance.</div>
+        </div>
+        <div class="tier-score" role="cell"><span class="tier-score-val">65–79</span></div>
+      </div>
+
+      <div class="tier-row" role="row">
+        <div class="tier-grade gd" role="cell">D</div>
+        <div class="tier-body" role="cell">
+          <div class="tier-name">Foundation</div>
+          <div class="tier-desc">Minimal disclosure. Primarily qualitative, limited comparability. Absolute emissions only, single framework.</div>
+        </div>
+        <div class="tier-score" role="cell"><span class="tier-score-val">50–64</span></div>
+      </div>
+
+      <div class="tier-row" role="row">
+        <div class="tier-grade ge" role="cell">E</div>
+        <div class="tier-body" role="cell">
+          <div class="tier-name">Pre-Disclosure</div>
+          <div class="tier-desc">Material gaps across multiple pillars. Narrative-only with no baselines, no framework alignment. Not usable for institutional due diligence.</div>
+        </div>
+        <div class="tier-score" role="cell"><span class="tier-score-val">Below 50</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── METHODOLOGY ───────────────────────────────────────────────────────── -->
+<section id="methodology" aria-labelledby="method-heading">
+  <div class="wrap">
+    <p class="section-label">Scoring methodology</p>
+    <h2 id="method-heading">A 120-point framework across six dimensions</h2>
+    <p class="lead">
+      Every company in the 2025 baseline is scored by primary analysis of its published sustainability report, annual report, and publicly available ESG data.
+    </p>
+
+    <div class="method-grid reveal">
+      <div class="method-total">
+        <div class="method-total-num">120</div>
+        <div class="method-total-text">Total points available across three ESG pillars and three cross-cutting dimensions. Scores are derived from empirical analysis of what best-in-class disclosure actually looks like — not from a theoretical checklist.</div>
+      </div>
+
+      <div class="method-cell">
+        <h3>Environmental (E1–E4)</h3>
+        <ul>
+          <li>Emissions data completeness &amp; intensity metrics</li>
+          <li>Climate targets &amp; CRREM pathway alignment</li>
+          <li>EPC &amp; BREEAM certification coverage</li>
+          <li>Net Zero pathway specificity</li>
         </ul>
-
-        <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
-          <a href="/tools/misalignment-engine.html" class="btn-primary">
-            Try the Free Checker →
-          </a>
-          <span style="font-size:0.78rem;color:var(--muted);">Takes 30 seconds</span>
-        </div>
       </div>
 
-      <!-- Right: preview card -->
-      <div>
-        <div style="background:var(--navy-3);border:1px solid var(--border);border-radius:3px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,0.4);">
-
-          <!-- Card header -->
-          <div style="padding:0.9rem 1.25rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
-            <span style="font-family:var(--ff-mono);font-size:0.65rem;letter-spacing:0.08em;color:var(--muted);">Misalignment Engine</span>
-            <span style="font-family:var(--ff-mono);font-size:0.62rem;color:var(--gold);background:rgba(184,150,62,0.08);border:1px solid var(--border);border-radius:2px;padding:0.2rem 0.55rem;">CRREM 1.5°C · UK</span>
-          </div>
-
-          <!-- Inputs display -->
-          <div style="padding:1rem 1.25rem;border-bottom:1px solid rgba(184,150,62,0.08);display:flex;flex-direction:column;gap:0.7rem;">
-            <div style="display:flex;justify-content:space-between;align-items:center;">
-              <span style="font-size:0.72rem;color:var(--muted);">Property type</span>
-              <span style="font-family:var(--ff-mono);font-size:0.72rem;color:var(--cream);">Office</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;align-items:center;">
-              <span style="font-size:0.72rem;color:var(--muted);">EPC rating</span>
-              <div style="display:flex;gap:4px;">
-                <span style="width:20px;height:20px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;font-family:var(--ff-mono);border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3);">A</span>
-                <span style="width:20px;height:20px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;font-family:var(--ff-mono);border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3);">B</span>
-                <span style="width:20px;height:20px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;font-family:var(--ff-mono);border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3);">C</span>
-                <span style="width:20px;height:20px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;font-family:var(--ff-mono);border:1px solid #f5d938;background:rgba(245,217,56,0.12);color:#f5d938;">D</span>
-                <span style="width:20px;height:20px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;font-family:var(--ff-mono);border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3);">E</span>
-                <span style="width:20px;height:20px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;font-family:var(--ff-mono);border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3);">F</span>
-                <span style="width:20px;height:20px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;font-family:var(--ff-mono);border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3);">G</span>
-              </div>
-            </div>
-            <div style="display:flex;justify-content:space-between;align-items:center;">
-              <span style="font-size:0.72rem;color:var(--muted);">Floor area</span>
-              <span style="font-family:var(--ff-mono);font-size:0.72rem;color:var(--cream);">2,500 m²</span>
-            </div>
-          </div>
-
-          <!-- Result metrics -->
-          <div style="padding:1rem 1.25rem;border-bottom:1px solid rgba(184,150,62,0.08);display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
-            <div style="padding:0.85rem;background:rgba(220,50,50,0.07);border:1px solid rgba(220,50,50,0.18);border-radius:2px;">
-              <div style="font-family:var(--ff-mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(245,241,234,0.35);margin-bottom:0.5rem;">Misalignment Year</div>
-              <div style="font-family:var(--ff-display);font-size:1.9rem;font-weight:500;color:#E06060;line-height:1;margin-bottom:0.25rem;">2031</div>
-              <div style="font-size:0.68rem;color:rgba(245,241,234,0.3);">Strands in 7 years</div>
-            </div>
-            <div style="padding:0.85rem;background:var(--navy);border:1px solid var(--border);border-radius:2px;">
-              <div style="font-family:var(--ff-mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(245,241,234,0.35);margin-bottom:0.5rem;">Excess Emissions</div>
-              <div style="font-family:var(--ff-display);font-size:1.9rem;font-weight:500;color:#D4923A;line-height:1;margin-bottom:0.25rem;">482 t</div>
-              <div style="font-size:0.68rem;color:rgba(245,241,234,0.3);">CO₂e to 2050</div>
-            </div>
-          </div>
-
-          <!-- Mini SVG chart -->
-          <div style="padding:0.9rem 1.25rem 0.75rem;border-bottom:1px solid rgba(184,150,62,0.08);">
-            <div style="font-family:var(--ff-mono);font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;color:rgba(245,241,234,0.2);margin-bottom:0.6rem;">GHG Intensity vs 1.5°C Pathway</div>
-            <svg viewBox="0 0 260 72" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
-              <line x1="0" y1="18" x2="260" y2="18" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-              <line x1="0" y1="36" x2="260" y2="36" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-              <line x1="0" y1="54" x2="260" y2="54" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-              <polygon points="130,10 260,10 260,68 220,64 180,60 155,57 130,55" fill="rgba(220,50,50,0.08)"/>
-              <polyline points="0,8 50,16 100,27 130,38 165,50 210,60 260,67" fill="none" stroke="#DAA520" stroke-width="2" stroke-linecap="round"/>
-              <line x1="0" y1="29" x2="260" y2="29" stroke="#E06060" stroke-width="1.5" stroke-dasharray="6,4"/>
-              <line x1="130" y1="0" x2="130" y2="72" stroke="rgba(224,96,96,0.45)" stroke-width="1" stroke-dasharray="3,2"/>
-              <text x="134" y="8" fill="#E06060" font-size="7.5" font-family="monospace" font-weight="bold">2031</text>
-              <text x="2" y="26" fill="rgba(218,165,32,0.6)" font-size="6.5" font-family="monospace">CRREM 1.5°C</text>
-            </svg>
-          </div>
-
-          <!-- Card CTA -->
-          <a href="/tools/misalignment-engine.html" style="display:block;padding:0.9rem 1.25rem;text-align:center;font-size:0.78rem;font-weight:500;letter-spacing:0.06em;color:var(--gold-lt);text-decoration:none;transition:color var(--transition);">
-            Run your own analysis →
-          </a>
-
-        </div>
+      <div class="method-cell">
+        <h3>Social (S1–S4)</h3>
+        <ul>
+          <li>Workforce metrics &amp; health and safety data</li>
+          <li>Community investment quantification</li>
+          <li>DEI data specificity and comparability</li>
+          <li>Supply chain engagement</li>
+        </ul>
       </div>
 
+      <div class="method-cell">
+        <h3>Governance (G1–G5)</h3>
+        <ul>
+          <li>ESG governance structure &amp; board accountability</li>
+          <li>Remuneration linkage to ESG KPIs</li>
+          <li>Stakeholder engagement disclosure</li>
+          <li>Ethics &amp; whistleblowing framework</li>
+        </ul>
+      </div>
+
+      <div class="method-cell">
+        <h3>Data Quality (DQ1–DQ3)</h3>
+        <ul>
+          <li>Third-party assurance scope</li>
+          <li>Coverage methodology &amp; boundary definitions</li>
+          <li>Data collection &amp; restatement policy</li>
+        </ul>
+      </div>
+
+      <div class="method-cell">
+        <h3>Framework Alignment (RC1–RC2)</h3>
+        <ul>
+          <li>EPRA sBPR, TCFD, GRI, SASB alignment</li>
+          <li>SFDR, SBTi, UN SDG integration</li>
+          <li>Cross-framework consistency</li>
+        </ul>
+      </div>
+
+      <div class="method-cell">
+        <h3>Benchmarking &amp; Context (BC1–BC3)</h3>
+        <ul>
+          <li>Peer comparison &amp; sector positioning</li>
+          <li>Historical trend analysis</li>
+          <li>GRESB performance context</li>
+        </ul>
+      </div>
     </div>
+
+    <p style="margin-top:1.5rem; font-size:0.88rem; color:var(--grey3); max-width:640px;">
+      The framework is calibrated against a seven-year maturity analysis of the UK sector's highest-rated REIT reporter, producing a benchmark anchored in observed best practice rather than theoretical standards.
+    </p>
   </div>
 </section>
 
+<!-- ── KEY FINDINGS ──────────────────────────────────────────────────────── -->
+<section class="findings-section" id="findings" aria-labelledby="findings-heading">
+  <div class="wrap">
+    <p class="section-label">2025 baseline findings</p>
+    <h2 id="findings-heading">What the data shows</h2>
+    <p class="lead">
+      The 2025 baseline is the first systematic scoring of disclosure quality across the full UK listed real estate sector. The findings are consistent across subsectors and property types.
+    </p>
 
-<!-- WHY PLINTHOS -->
-<section id="why">
-  <div class="container">
-    <div class="why-grid">
-      <div class="why-left">
-        <div class="section-label">Why Plinthos</div>
-        <h2>The Last Mile Between <em>Data and Decision</em></h2>
-        <p>Data platforms solve the collection problem. Consultancies provide the strategy. But neither produces the decision-grade narrative that a valuer needs in a Red Book report, a lawyer needs in a report on title, a lender needs in underwriting, or a fund manager needs in front of LPs. That last mile is where Plinthos sits.</p>
-        <p>Our methodology is built on analysis of 136 UK REIT sustainability reports and a proprietary 120-point scoring framework. Every output meets the standard your LPs and lenders actually expect.</p>
-      </div>
-      <div>
-        <table class="comparison-table">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Consultancy</th>
-              <th>Plinthos</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Delivery time</td>
-              <td>4–6 months</td>
-              <td>✦ 1–2 weeks</td>
-            </tr>
-            <tr>
-              <td>Cost</td>
-              <td>£40k–£60k+</td>
-              <td>✦ From £8,000</td>
-            </tr>
-            <tr>
-              <td>Stranded asset risk analysis</td>
-              <td>Rarely included</td>
-              <td>✦ Every engagement</td>
-            </tr>
-            <tr>
-              <td>Capex ROI modelling</td>
-              <td>Extra cost</td>
-              <td>✦ Included</td>
-            </tr>
-            <tr>
-              <td>Multi-framework output</td>
-              <td>Single framework</td>
-              <td>✦ All frameworks</td>
-            </tr>
-            <tr>
-              <td>Methodology transparency</td>
-              <td>Proprietary black box</td>
-              <td>✦ Documented & traceable</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <ul class="finding-list reveal">
+      <li>
+        <span class="finding-num">01</span>
+        <span class="finding-text"><strong>The 53-point gap is systemic.</strong> The quality difference between the sector's best and worst disclosers is not explained by portfolio size, GRESB participation, or asset quality. Disclosure quality is primarily a function of internal infrastructure and disclosure architecture — both correctable.</span>
+      </li>
+      <li>
+        <span class="finding-num">02</span>
+        <span class="finding-text"><strong>Industrial/logistics REITs score highest.</strong> Driven by strong GRESB participation, investor pressure on net zero pathways, and earlier adoption of intensity metrics. The sector sets the practical benchmark for what "good" looks like.</span>
+      </li>
+      <li>
+        <span class="finding-num">03</span>
+        <span class="finding-text"><strong>Residential and healthcare show the highest variance.</strong> Sector-leading reporters coexist with pre-disclosure companies within the same subsector. The spread is wider than in any other property type.</span>
+      </li>
+      <li>
+        <span class="finding-num">04</span>
+        <span class="finding-text"><strong>The median sits at DQI Grade C (Developing).</strong> Most companies report Scope 1–3 emissions and are aligned to at least one framework, but significant gaps remain in data assurance and pillar completeness — the fields that LP due diligence questionnaires now require.</span>
+      </li>
+      <li>
+        <span class="finding-num">05</span>
+        <span class="finding-text"><strong>The disclosure gap is not primarily a data collection problem.</strong> Most companies below DQI Grade B have the underlying ESG data. What they lack is the analytical and narrative infrastructure to translate it into investor-readable disclosure. This is the last-mile translation problem the Plinthos platform addresses.</span>
+      </li>
+    </ul>
   </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- GATED DOWNLOAD -->
-<section id="download" style="background: var(--navy-3);">
-  <div class="contact-bg"></div>
-  <div class="container--narrow">
-    <div class="contact-inner">
-      <span class="section-label">Sample Report</span>
-      <h2>See the <em>Analysis</em> in Action</h2>
-      <p>Download a two-page sample risk assessment for a fictional 10-asset portfolio. See exactly what we deliver — asset tiering, £ exposure, capex priorities — before committing to an engagement.</p>
-
-      <form id="download-form" class="contact-form" action="https://api.web3forms.com/submit" method="POST">
-        <input type="hidden" name="access_key" value="d5c968e2-0db8-4e80-a5c0-8cc72407cc01" />
-        <input type="hidden" name="subject" value="Sample Report Download — plinthos.io" />
-        <input type="hidden" name="redirect" value="https://plinthos.io/thank-you.html" />
-        <div class="form-row">
-          <div class="form-group">
-            <label>Your Name</label>
-            <input type="text" name="name" placeholder="Jane Smith" required />
-          </div>
-          <div class="form-group">
-            <label>Work Email</label>
-            <input type="email" name="email" placeholder="j.smith@fund.com" required />
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Fund or Company Name</label>
-            <input type="text" name="fund_name" placeholder="Meridian Property Fund" required />
-          </div>
-          <div class="form-group">
-            <label>Number of Assets in Portfolio</label>
-            <select name="asset_count" required>
-              <option value="">Select range</option>
-              <option value="1-10">1 – 10 assets</option>
-              <option value="11-30">11 – 30 assets</option>
-              <option value="31-50">31 – 50 assets</option>
-              <option value="50+">50+ assets</option>
-            </select>
-          </div>
-        </div>
-        <button type="submit" class="btn-primary form-submit" id="download-btn">
-          Download Sample Report →
-        </button>
-      </form>
-
-      <p style="font-size:0.78rem;color:var(--muted);margin-top:1.5rem;text-align:center;">
-        No spam. We use your details to follow up with relevant insights only.
+<!-- ── CTA ───────────────────────────────────────────────────────────────── -->
+<section class="cta-section" id="request" aria-labelledby="cta-heading">
+  <div class="cta-inner">
+    <div>
+      <h2 id="cta-heading">Request your company's score</h2>
+      <p>
+        If your company is in the 2025 dataset, you can request your individual DQI score and pillar breakdown as a complimentary research output — no obligation, no pitch.
+        Contact Dr. Yishuang Xu, University of Manchester / Plinthos.
       </p>
     </div>
+    <a href="mailto:yishuang.xu@manchester.ac.uk?subject=DQI%20Score%20Request&body=Please%20share%20the%20DQI%20score%20for%20[Company%20Name]." class="cta-btn" aria-label="Request your DQI score by email">
+      Request score →
+    </a>
   </div>
 </section>
 
-<div class="divider"></div>
+<!-- ── ABOUT ─────────────────────────────────────────────────────────────── -->
+<section class="about-section" aria-labelledby="about-heading">
+  <div class="wrap">
+    <p class="section-label">About the index</p>
+    <h2 id="about-heading">Publication, methodology, and access</h2>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="contact-bg"></div>
-  <div class="container--narrow">
-    <div class="contact-inner">
-      <span class="section-label">Get Started</span>
-      <h2>Secure Your Q2 2026 <em>Allocation</em></h2>
-      <p>We work with a limited number of funds per quarter to maintain quality. Submit your details and we will be in touch within 24 hours.</p>
-      <form class="contact-form" action="https://formspree.io/f/mojnpkek" method="POST">
-        <input type="hidden" name="_subject" value="New Plinthos Enquiry — plinthos.io" />
-        <input type="hidden" name="_next" value="https://plinthos.io#contact" />
-        <div class="form-row">
-          <div class="form-group">
-            <label>Fund Name</label>
-            <input type="text" placeholder="Greenfield Property Fund I" required />
-          </div>
-          <div class="form-group">
-            <label>Your Name</label>
-            <input type="text" placeholder="Jane Smith" required />
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Email Address</label>
-            <input type="email" placeholder="j.smith@fund.com" required />
-          </div>
-          <div class="form-group">
-            <label>Portfolio AUM</label>
-            <select>
-              <option value="">Select range</option>
-              <option>£50M – £200M</option>
-              <option>£200M – £500M</option>
-              <option>£500M+</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Primary Need</label>
-            <select>
-              <option value="">Select service</option>
-              <option>Risk Assessment (£8–10k)</option>
-              <option>Full ESG Report (£15k pilot)</option>
-              <option>Annual Partnership (£40–60k)</option>
-              <option>Not sure — need advice</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Data Platform</label>
-            <select>
-              <option value="">Select platform</option>
-              <option>Measurabl</option>
-              <option>Deepki</option>
-              <option>Envizi</option>
-              <option>Internal system</option>
-              <option>None / raw data</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-full form-group">
-          <label>Additional Context (optional)</label>
-          <textarea placeholder="Tell us about your portfolio, upcoming reporting deadlines, or specific challenges..."></textarea>
-        </div>
-        <button type="submit" class="btn-primary form-submit">Submit Enquiry →</button>
-      </form>
-      <p style="font-size:0.78rem;color:var(--muted);margin-top:1.5rem;text-align:center;">
-      
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- RESOURCES -->
-<div class="divider"></div>
-<section style="padding:5rem 0;">
-  <div class="container" style="max-width:860px;">
-    <div class="section-label" style="font-family:var(--ff-mono); font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:1.2rem; display:flex; align-items:center; gap:0.8rem;"><span style="display:block; width:24px; height:1px; background:var(--gold);"></span>Resources</div>
-    <h2 style="font-family:var(--ff-display); font-size:clamp(2rem,4vw,3rem); margin-bottom:2.5rem;">ESG Reporting &<br><em style="color:var(--gold-lt);">Transition Risk Intelligence</em></h2>
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:2.5rem;">
-      <!-- Playbook Banner -->
-<div style="
-  background: linear-gradient(135deg, rgba(96, 165, 250, 0.08) 0%, rgba(96, 165, 250, 0.02) 100%);
-  border: 1px solid rgba(96, 165, 250, 0.15);
-  border-radius: 12px;
-  padding: 2.5rem;
-  margin-bottom: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-  flex-wrap: wrap;
-">
-  <div style="max-width: 600px;">
-    <div style="
-      display: inline-block;
-      padding: 0.3rem 0.8rem;
-      border-radius: 100px;
-      background: rgba(96, 165, 250, 0.12);
-      color: #60a5fa;
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.03em;
-      margin-bottom: 0.75rem;
-    ">FREE GUIDE — 32 PAGES</div>
-    <h3 style="
-      font-size: 1.3rem;
-      font-weight: 400;
-      margin-bottom: 0.5rem;
-      line-height: 1.3;
-    ">The Sustainability Intelligence Playbook</h3>
-    <p style="
-      color: #94a3b8;
-      font-size: 0.9rem;
-      line-height: 1.6;
-      margin: 0;
-    ">How AI is transforming ESG reporting for UK real estate. Covers UK SRS, MEES, GRESB, the role of AI, and a practical framework for getting started — written for sustainability officers, asset managers, consultants, and valuers.</p>
-  </div>
-  <a href="/playbook.html" style="
-    display: inline-block;
-    padding: 0.8rem 1.8rem;
-    background: #60a5fa;
-    color: #0a0f1a;
-    border-radius: 6px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    text-decoration: none;
-    white-space: nowrap;
-    transition: opacity 0.2s;
-  " onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">Download Free →</a>
-</div>
-<!-- End Playbook Banner -->
-      <div>
-        <h4 style="font-family:var(--ff-mono); font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem;">For Fund Managers</h4>
-        <ul style="list-style:none; display:flex; flex-direction:column; gap:0.6rem;">
-          <li><a href="ai-esg-reporting-tool-real-estate.html" style="color:var(--cream); text-decoration:none; font-size:0.9rem; font-weight:300;">AI tools for GRESB-quality ESG reports</a></li>
-          <li><a href="uk-reit-esg-benchmarking.html" style="color:var(--cream); text-decoration:none; font-size:0.9rem; font-weight:300;">UK REIT ESG reporting quality benchmarking</a></li>
-          <li><a href="uk-reits-crrem-analysis.html" style="color:var(--cream); text-decoration:none; font-size:0.9rem; font-weight:300;">How many UK REITs include CRREM analysis?</a></li>
-          <li><a href="sfdr-article-8-real-estate.html" style="color:var(--cream); text-decoration:none; font-size:0.9rem; font-weight:300;">SFDR Article 8 for real estate funds</a></li>
-          <li><a href="sll-esg-requirements.html" style="color:var(--cream); text-decoration:none; font-size:0.9rem; font-weight:300;">Sustainability-linked loan ESG requirements</a></li>
-          <li><a href="consultant-vs-ai-esg-cost.html" style="color:var(--cream); text-decoration:none; font-size:0.9rem; font-weight:300;">Consultant vs AI tool: cost comparison</a></li>
-          <li><a href="crrem-portfolio-software.html" style="color:var(--cream); text-decoration:none; font-size:0.9rem; font-weight:300;">CRREM portfolio misalignment software</a></li>
-        </ul>
+    <div class="about-grid reveal">
+      <div class="about-card">
+        <h3>Publication rhythm</h3>
+        <p>Annual. 2025 baseline published Q3 2026. Annual refresh from Q1 2027, scored against each company's most recently published sustainability report.</p>
       </div>
-      <div>
-        <h4 style="font-family:var(--ff-mono); font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem;">CRREM, MEES & Stranded Assets</h4>
-        <ul style="list-style:none; display:flex; flex-direction:column; gap:0.6rem;">
-          <li><a href="crrem-tool-excel-retirement.html" style="color:var(--cream); text-decoration:none; font-size:0.9rem; font-weight:300;">CRREM Excel tool retiring July 2026 — alternatives</a></li>
-          <li><a href="crrem-misalignment-calculation.html" style="color:var(--cream); text-decoration:none; font-size:0.9rem; font-weight:300;">How to calculate CRREM pathway misalignment</a></li>
-          <li><a href="epc-vs-crrem-difference.html" style="color:var(--cream); text-decoration:none; font-size:0.9rem; font-weight:300;">EPC ratings vs CRREM pathway alignment</a></li>
-          <li><a href="stranded-asset-meaning-commercial-property.html" style="color:var(--cream); text-decoration:none; font-size:0.9rem; font-weight:300;">What does 'stranded asset' mean?</a></li>
-          <li><a href="uk-commercial-property-stranding-risk.html" style="color:var(--cream); text-decoration:none; font-size:0.9rem; font-weight:300;">UK commercial property stranding risk</a></li>
-          <li><a href="retrofit-cost-epc-d-to-b-uk.html" style="color:var(--cream); text-decoration:none; font-size:0.9rem; font-weight:300;">Retrofit costs: EPC D to EPC B</a></li>
-          <li><a href="property-value-loss-mees.html" style="color:var(--cream); text-decoration:none; font-size:0.9rem; font-weight:300;">Value loss from MEES non-compliance</a></li>
-          <li><a href="mees-2028-epc-c-commercial-property.html" style="color:var(--cream); text-decoration:none; font-size:0.9rem; font-weight:300;">MEES 2028 EPC C impact on valuations</a></li>
-        </ul>
+      <div class="about-card">
+        <h3>What is published</h3>
+        <p>Aggregate findings, sector distributions, tier breakdowns, and year-on-year trends. Individual company scores are kept private and shared only on request.</p>
+      </div>
+      <div class="about-card">
+        <h3>Research anchor</h3>
+        <p>The Plinthos DQI is an independent research publication by Dr. Yishuang Xu, University of Manchester. The 120-point framework is derived from empirical analysis of 136 UK REIT sustainability reports.</p>
       </div>
     </div>
-    <div style="margin-top:2rem;">
-      <h4 style="font-family:var(--ff-mono); font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem;">For Valuers & Lenders</h4>
-      <ul style="list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:0.6rem;">
-        <li><a href="rics-4th-edition-esg-requirements.html" style="color:var(--cream); text-decoration:none; font-size:0.9rem; font-weight:300;">What does RICS 4th Edition require for ESG?</a></li>
-        <li><a href="esg-valuation-insert-template.html" style="color:var(--cream); text-decoration:none; font-size:0.9rem; font-weight:300;">ESG valuation insert template and tool</a></li>
-        <li><a href="bank-climate-risk-valuation-data.html" style="color:var(--cream); text-decoration:none; font-size:0.9rem; font-weight:300;">Climate risk data for bank valuations</a></li>
-        <li><a href="cheapest-rics-esg-data.html" style="color:var(--cream); text-decoration:none; font-size:0.9rem; font-weight:300;">Cheapest way to get RICS-compliant ESG data</a></li>
-        <li><a href="stranded-asset-risk-uk-office.html" style="color:var(--cream); text-decoration:none; font-size:0.9rem; font-weight:300;">Assessing stranded asset risk without a QS</a></li>
-        <li><a href="esg-kpis-valuation-report.html" style="color:var(--cream); text-decoration:none; font-size:0.9rem; font-weight:300;">ESG KPIs for valuation reports</a></li>
-      </ul>
-    </div>
+
+    <p style="margin-top:2rem; font-size:0.85rem; color:var(--grey3); max-width:580px;">
+      The detailed 120-point scoring rubric is proprietary. Methodology notes sufficient to assess the framework's validity are available on request to researchers and institutional investors.
+    </p>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="container footer-inner">
-    <a href="#" class="footer-logo">Plinth<span>os</span></a>
-    <div class="footer-links">
-      <a href="/">For Real Estate Funds</a>
-      <a href="/valuers">For Valuers &amp; Lenders</a>
-      <a href="whitepaper.html">White Paper</a>
-      <a href="/playbook.html">Free Guide</a>
-      <a href="#contact">Contact</a>
-    </div>
-    <div class="footer-copy">© 2026 Plinthos. All rights reserved.</div>
+<!-- ── FOOTER ─────────────────────────────────────────────────────────────── -->
+<footer role="contentinfo">
+  <div class="footer-inner">
+    <span class="footer-brand">PLINTHOS · DISCLOSURE QUALITY INDEX</span>
+    <nav class="footer-links" aria-label="Footer links">
+      <a href="https://plinthos.io">Home</a>
+      <a href="https://plinthos.io/valuers">For Valuers</a>
+      <a href="https://plinthos.io/funds">For Funds</a>
+      <a href="mailto:yishuang.xu@manchester.ac.uk">Contact</a>
+    </nav>
+  </div>
+  <div class="wrap">
+    <p class="footer-note">
+      The Plinthos Disclosure Quality Index is an independent research publication. Individual company scores are not published publicly. Plinthos is a research-led AI platform for ESG disclosure in real estate, founded at the University of Manchester. © 2026 Plinthos.
+    </p>
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // Scroll-triggered fade-in
+<!-- ── JS: scroll reveal ─────────────────────────────────────────────────── -->
+<script>
+  (function () {
+    if (!('IntersectionObserver' in window)) {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  })();
+</script>
+
+</body>
+</html>
