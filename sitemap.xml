@@ -75,7 +75,18 @@
   <changefreq>yearly</changefreq>
   <priority>0.8</priority>
 </url>
-
+<url>
+  <loc>https://plinthos.io/what-is-plinthos-dqi.html</loc>
+  <lastmod>2026-06-29</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://plinthos.io/rics-4th-edition-esg-checklist.html</loc>
+  <lastmod>2026-06-29</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.7</priority>
+</url>
   <url>
     <loc>https://plinthos.io/crrem-misalignment-calculation.html</loc>
     <lastmod>2026-05-25</lastmod>
