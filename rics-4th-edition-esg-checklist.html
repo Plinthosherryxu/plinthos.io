@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RICS 4th Edition ESG Compliance Checklist for Valuers | Plinthos</title>
+  <meta name="description" content="A practical RICS 4th Edition ESG checklist for chartered surveyors. Every item required in a compliant Red Book valuation from 30 April 2026 — EPC/MEES, stranded asset timeline, capex assessment, and KPI dashboard." />
+  <link rel="canonical" href="https://plinthos.io/rics-4th-edition-esg-checklist.html" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What ESG items must be included in a RICS 4th Edition compliant valuation?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A RICS 4th Edition compliant Red Book valuation must include four ESG elements: (1) EPC and MEES classification with RAG rating, (2) a stranded asset timeline showing when the asset's carbon trajectory crosses CRREM 1.5°C pathways, (3) a proportionate capex assessment estimating retrofit costs from current EPC to target rating, and (4) a KPI dashboard covering energy intensity, GHG emissions, physical climate risk, and applicable certifications."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When did RICS 4th Edition ESG requirements come into force?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The RICS Valuation – Global Standards 4th Edition became effective on 30 April 2026. All Red Book commercial property valuations from this date must address the ESG requirements. This is a permanent change to professional practice, not a transitional arrangement."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need a quantity surveyor for the RICS 4th Edition capex assessment?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Not necessarily. Section 3 of RICS 4th Edition permits technology solutions providing cost information to substitute for formal QS estimates where proportionate, provided limitations are clearly stated in the Terms of Engagement. A validated tool producing benchmark-based capex estimates (e.g. £80–£150 per sq ft for EPC D to B upgrades) satisfies the standard for most individual instructions."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is proportionate compliance under RICS 4th Edition?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "RICS 4th Edition explicitly allows the depth of ESG analysis to match the instruction value and asset risk profile. A £2M single-unit instruction does not require the same ESG documentation as a £50M secured lending portfolio valuation. The four required elements — EPC/MEES, stranded asset timeline, capex assessment, KPI dashboard — must be present, but their depth can be proportionate."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a stranded asset timeline in a Red Book valuation?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A stranded asset timeline shows the year in which the property's carbon and energy trajectory is projected to exceed the CRREM 1.5°C-aligned decarbonisation pathway. This is distinct from EPC compliance — an EPC B-rated building can still strand under CRREM pathways if its operational energy intensity does not improve on the required trajectory. RICS 4th Edition requires this analysis to be included where it is material to value."
+        }
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Serif+Display&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #1A2F4A; --teal: #2E7D6B; --teal-lt: #EAF4F1;
+      --gold: #C8973A; --gold-lt: #E8C87A;
+      --cream: #F5F1EA; --white: #FFFFFF;
+      --off: #F7F8FA; --grey1: #F0F2F5; --grey2: #D1D8E0; --grey3: #8A97A5;
+      --text: #1A2F4A; --body: #3D4F60;
+      --red: #C0392B; --amber: #E67E22; --green: #1E6B4E;
+      --ff-display: 'DM Serif Display', Georgia, serif;
+      --ff-sans: 'Inter', system-ui, sans-serif;
+      --ff-mono: 'DM Mono', monospace;
+      --max: 780px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--ff-sans); font-size: 16px; line-height: 1.7; color: var(--text); background: var(--white); -webkit-font-smoothing: antialiased; }
+    a { color: var(--teal); }
+    nav { background: var(--navy); border-bottom: 2px solid var(--teal); padding: 0 1.5rem; }
+    .nav-inner { max-width: 1060px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 52px; }
+    .nav-brand { font-family: var(--ff-mono); font-size: 0.82rem; font-weight: 500; color: var(--white); text-decoration: none; letter-spacing: 0.06em; }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.04em; color: var(--grey2); text-decoration: none; }
+    .nav-links a:hover { color: var(--white); }
+    .article-wrap { max-width: var(--max); margin: 0 auto; padding: 3.5rem 1.5rem 5rem; }
+    .article-meta { font-size: 0.78rem; color: var(--grey3); margin-bottom: 1.5rem; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+    h1 { font-family: var(--ff-display); font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.15; color: var(--navy); margin-bottom: 1.25rem; }
+    .lede { font-size: 1.08rem; color: var(--body); line-height: 1.75; border-left: 3px solid var(--teal); padding-left: 1rem; margin-bottom: 2.5rem; }
+    h2 { font-family: var(--ff-display); font-size: 1.4rem; color: var(--navy); margin: 2.5rem 0 0.75rem; }
+    h3 { font-size: 1rem; font-weight: 600; color: var(--navy); margin: 1.75rem 0 0.5rem; }
+    p { color: var(--body); margin-bottom: 1rem; }
+    /* MODULE CHECKLIST */
+    .module { border: 1px solid var(--grey2); margin: 1.5rem 0; overflow: hidden; }
+    .module-header { background: var(--navy); padding: 0.9rem 1.25rem; display: flex; align-items: center; gap: 1rem; }
+    .module-num { font-family: var(--ff-mono); font-size: 0.72rem; font-weight: 500; color: var(--gold-lt); letter-spacing: 0.1em; }
+    .module-title { font-weight: 600; font-size: 0.95rem; color: var(--white); }
+    .module-ref { margin-left: auto; font-size: 0.72rem; color: rgba(255,255,255,0.4); font-family: var(--ff-mono); }
+    .checklist { list-style: none; }
+    .checklist li { display: flex; gap: 1rem; padding: 0.75rem 1.25rem; border-bottom: 1px solid var(--grey2); align-items: flex-start; }
+    .checklist li:last-child { border-bottom: none; }
+    .checklist li:nth-child(even) { background: var(--off); }
+    .check-box { width: 18px; height: 18px; border: 2px solid var(--grey2); border-radius: 2px; flex-shrink: 0; margin-top: 2px; }
+    .check-text { flex: 1; }
+    .check-label { font-size: 0.9rem; color: var(--navy); font-weight: 500; display: block; margin-bottom: 0.15rem; }
+    .check-note { font-size: 0.78rem; color: var(--grey3); }
+    .check-note.required { color: var(--red); font-weight: 500; }
+    .check-note.important { color: var(--amber); }
+    /* RAG BADGE */
+    .rag { display: inline-flex; gap: 0.4rem; margin: 1rem 0 1.5rem; }
+    .rag-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+    .rag-label { font-size: 0.78rem; color: var(--body); display: flex; align-items: center; gap: 0.35rem; margin-right: 0.75rem; }
+    .r { background: var(--red); } .a { background: var(--amber); } .g { background: var(--green); }
+    /* STAT */
+    .stat-callout { background: var(--navy); padding: 1.25rem 1.5rem; margin: 1.5rem 0; display: flex; gap: 1.25rem; align-items: center; }
+    .stat-callout .num { font-family: var(--ff-mono); font-size: 2.2rem; color: var(--gold-lt); line-height: 1; flex-shrink: 0; }
+    .stat-callout p { font-size: 0.88rem; color: rgba(255,255,255,0.7); margin: 0; }
+    /* ALERT */
+    .alert { padding: 1rem 1.25rem; margin: 1.5rem 0; border-left: 4px solid; font-size: 0.9rem; }
+    .alert.red { background: #FDF2F2; border-color: var(--red); color: #7A1F1F; }
+    .alert.amber { background: #FDF8F0; border-color: var(--amber); color: #7A4A10; }
+    .alert.teal { background: var(--teal-lt); border-color: var(--teal); color: var(--navy); }
+    .alert strong { display: block; margin-bottom: 0.25rem; }
+    /* FAQ */
+    .faq-item { border-bottom: 1px solid var(--grey2); padding: 1.25rem 0; }
+    .faq-item:first-child { border-top: 1px solid var(--grey2); }
+    .faq-q { font-weight: 600; color: var(--navy); margin-bottom: 0.5rem; }
+    .faq-a { font-size: 0.9rem; color: var(--body); margin: 0; }
+    /* CTA */
+    .cta-box { background: var(--teal-lt); border-left: 4px solid var(--teal); padding: 1.5rem; margin: 2.5rem 0; }
+    .cta-box h3 { color: var(--navy); margin: 0 0 0.4rem; font-size: 1rem; }
+    .cta-box p { font-size: 0.88rem; color: var(--body); margin: 0 0 1rem; }
+    .cta-btn { display: inline-block; background: var(--teal); color: var(--white); font-size: 0.85rem; font-weight: 600; padding: 0.65rem 1.4rem; text-decoration: none; }
+    /* RELATED */
+    .related { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--grey2); }
+    .related h3 { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey3); margin-bottom: 1rem; }
+    .related-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+    .related-list li a { font-size: 0.92rem; color: var(--teal); text-decoration: none; font-weight: 500; }
+    .related-list li span { display: block; font-size: 0.8rem; color: var(--grey3); }
+    footer { background: var(--navy); padding: 1.5rem; text-align: center; font-size: 0.78rem; color: var(--grey3); margin-top: 4rem; }
+    @media (max-width: 500px) { .nav-links { display: none; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="https://plinthos.io" class="nav-brand">Plinthos</a>
+    <div class="nav-links">
+      <a href="https://plinthos.io">For Funds</a>
+      <a href="https://plinthos.io/valuers.html">For Valuers</a>
+      <a href="https://plinthos.io/dqi">DQI</a>
+      <a href="https://plinthos.io/whitepaper.html">White Paper</a>
+    </div>
+  </div>
+</nav>
+
+<div class="article-wrap">
+
+  <div class="article-meta">
+    <span>Dr Yishuang (Sherry) Xu</span>
+    <span>·</span>
+    <span>University of Manchester / Plinthos</span>
+    <span>·</span>
+    <span>June 2026</span>
+    <span>·</span>
+    <span>5 min read</span>
+  </div>
+
+  <h1>RICS 4th Edition ESG Compliance Checklist for Valuers</h1>
+
+  <p class="lede">Every ESG item required in a RICS 4th Edition compliant Red Book valuation, effective 30 April 2026 — organised by the four modules a compliant valuation insert must cover.</p>
+
+  <div class="alert red">
+    <strong>In force from 30 April 2026</strong>
+    Every Red Book commercial property valuation from this date must address these requirements. This is not a transitional arrangement — it is a permanent change to professional practice.
+  </div>
+
+  <p>The RICS Valuation – Global Standards 4th Edition requires chartered surveyors to document ESG risk factors as part of Red Book valuations. The standard does not mandate a specific format, but it does specify four areas that must be addressed. This checklist translates those requirements into practical items a valuer can work through for each instruction.</p>
+
+  <h2>The four required modules</h2>
+
+  <!-- MODULE 1 -->
+  <div class="module">
+    <div class="module-header">
+      <span class="module-num">MODULE 01</span>
+      <span class="module-title">EPC & MEES Classification</span>
+      <span class="module-ref">§5.2</span>
+    </div>
+    <ul class="checklist">
+      <li>
+        <div class="check-box"></div>
+        <div class="check-text">
+          <span class="check-label">Current EPC rating confirmed and documented</span>
+          <span class="check-note required">Required — check EPC register for validity date</span>
+        </div>
+      </li>
+      <li>
+        <div class="check-box"></div>
+        <div class="check-text">
+          <span class="check-label">MEES compliance status assessed against current threshold (EPC E)</span>
+          <span class="check-note required">Required — note any registered exemptions</span>
+        </div>
+      </li>
+      <li>
+        <div class="check-box"></div>
+        <div class="check-text">
+          <span class="check-label">RAG rating assigned and included in the report</span>
+          <span class="check-note">Red = EPC F/G (non-compliant now) · Amber = EPC C/D/E (at risk) · Green = EPC A/B</span>
+        </div>
+      </li>
+      <li>
+        <div class="check-box"></div>
+        <div class="check-text">
+          <span class="check-label">Future MEES threshold risk noted (EPC C by 2028, EPC B by 2030)</span>
+          <span class="check-note important">Neither threshold has been enacted — caveat accordingly</span>
+        </div>
+      </li>
+      <li>
+        <div class="check-box"></div>
+        <div class="check-text">
+          <span class="check-label">Valuation impact of MEES risk quantified or stated as not material</span>
+          <span class="check-note required">Must be reflected in market rent and yield/discount rate assumptions</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- MODULE 2 -->
+  <div class="module">
+    <div class="module-header">
+      <span class="module-num">MODULE 02</span>
+      <span class="module-title">Stranded Asset Timeline</span>
+      <span class="module-ref">§5.2 / Appendix A</span>
+    </div>
+    <ul class="checklist">
+      <li>
+        <div class="check-box"></div>
+        <div class="check-text">
+          <span class="check-label">CRREM 1.5°C pathway misalignment year calculated</span>
+          <span class="check-note required">The year the asset's carbon trajectory exceeds the pathway — not the EPC expiry date</span>
+        </div>
+      </li>
+      <li>
+        <div class="check-box"></div>
+        <div class="check-text">
+          <span class="check-label">Property type and floor area confirmed for CRREM calculation</span>
+          <span class="check-note">Office, retail, industrial, residential, hotel, healthcare — each has a different CRREM pathway</span>
+        </div>
+      </li>
+      <li>
+        <div class="check-box"></div>
+        <div class="check-text">
+          <span class="check-label">Stranding risk narrative included: years to misalignment stated</span>
+          <span class="check-note important">Assets stranding within 10 years should be flagged as material to value</span>
+        </div>
+      </li>
+      <li>
+        <div class="check-box"></div>
+        <div class="check-text">
+          <span class="check-label">Physical climate risk assessed — flood, overheating, subsidence</span>
+          <span class="check-note">Required under Appendix A KPIs — use Environment Agency flood map and published risk data</span>
+        </div>
+      </li>
+      <li>
+        <div class="check-box"></div>
+        <div class="check-text">
+          <span class="check-label">Data source and methodology stated, limitations disclosed</span>
+          <span class="check-note required">§4.1 professional scepticism — all relied-upon data must be traceable</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- MODULE 3 -->
+  <div class="module">
+    <div class="module-header">
+      <span class="module-num">MODULE 03</span>
+      <span class="module-title">Capex Assessment</span>
+      <span class="module-ref">§3</span>
+    </div>
+    <ul class="checklist">
+      <li>
+        <div class="check-box"></div>
+        <div class="check-text">
+          <span class="check-label">Indicative retrofit cost to achieve EPC B included</span>
+          <span class="check-note required">Range acceptable where exact figure not available — state basis (e.g. £80–£150/sq ft benchmark)</span>
+        </div>
+      </li>
+      <li>
+        <div class="check-box"></div>
+        <div class="check-text">
+          <span class="check-label">Cost source documented: benchmark tool, QS estimate, or published data</span>
+          <span class="check-note teal">§3 permits technology-based estimates as substitute for QS where proportionate — state this explicitly in Terms of Engagement</span>
+        </div>
+      </li>
+      <li>
+        <div class="check-box"></div>
+        <div class="check-text">
+          <span class="check-label">Limitations clause drafted for Terms of Engagement</span>
+          <span class="check-note required">Required where a technology solution is used — must state that estimate is indicative and not a formal QS report</span>
+        </div>
+      </li>
+      <li>
+        <div class="check-box"></div>
+        <div class="check-text">
+          <span class="check-label">Proportionality applied — depth matches instruction value</span>
+          <span class="check-note">£2M single unit ≠ £50M secured lending portfolio. Capex depth should reflect instruction size and risk profile</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- MODULE 4 -->
+  <div class="module">
+    <div class="module-header">
+      <span class="module-num">MODULE 04</span>
+      <span class="module-title">KPI Dashboard</span>
+      <span class="module-ref">Appendix A</span>
+    </div>
+    <ul class="checklist">
+      <li>
+        <div class="check-box"></div>
+        <div class="check-text">
+          <span class="check-label">Energy intensity (kWh/m²) included where available</span>
+          <span class="check-note required">Appendix A globally recognised KPI — include or note as not available with reason</span>
+        </div>
+      </li>
+      <li>
+        <div class="check-box"></div>
+        <div class="check-text">
+          <span class="check-label">GHG emissions intensity (kgCO₂e/m²) included where available</span>
+          <span class="check-note required">Appendix A KPI — distinguish Scope 1+2 from whole-building if data supports it</span>
+        </div>
+      </li>
+      <li>
+        <div class="check-box"></div>
+        <div class="check-text">
+          <span class="check-label">Physical climate risk exposure noted</span>
+          <span class="check-note">Flood zone, overheating risk, subsidence — even a brief qualitative statement satisfies the requirement</span>
+        </div>
+      </li>
+      <li>
+        <div class="check-box"></div>
+        <div class="check-text">
+          <span class="check-label">Applicable certifications noted: BREEAM, WELL, EPC, Fitwel</span>
+          <span class="check-note">State rating, year, and scope. Note if expired or if recertification is due.</span>
+        </div>
+      </li>
+      <li>
+        <div class="check-box"></div>
+        <div class="check-text">
+          <span class="check-label">Data limitations disclosed where KPIs are unavailable</span>
+          <span class="check-note important">§4.1 — document why a KPI is not included; do not simply omit it</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="stat-callout">
+    <div class="num">30 Apr</div>
+    <p>The RICS 4th Edition effective date. Every Red Book commercial valuation from this date requires all four modules above. Valuations already issued since this date without them may carry compliance risk.</p>
+  </div>
+
+  <h2>Common questions</h2>
+
+  <div class="faq-item">
+    <div class="faq-q">Do I need to instruct a QS for the capex assessment?</div>
+    <p class="faq-a">Not for most instructions. Section 3 of RICS 4th Edition explicitly permits technology solutions providing cost information to substitute for formal QS estimates where proportionate, provided limitations are clearly stated in the Terms of Engagement. For high-value or complex instructions, a QS instruction may be more appropriate.</p>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">My client has no ESG data. What do I document?</div>
+    <p class="faq-a">Document what is absent and why. Section 4.1 requires professional scepticism to be applied to relied-upon data — which implies that where data is not available, the valuer should state this explicitly in the report with the reason, and note any limitations this places on the assessment. The absence of data is itself a finding worth noting.</p>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Is there a RICS-approved format for the ESG insert?</div>
+    <p class="faq-a">No. The standard requires the evidence, not a specific format. A structured four-module insert covering EPC/MEES, stranded asset timeline, capex assessment, and KPI dashboard satisfies the requirement. Consistency across a practice's instructions is good practice — it reduces drafting time and makes review easier.</p>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Does this apply to residential valuations?</div>
+    <p class="faq-a">The RICS 4th Edition ESG requirements are primarily directed at commercial property valuations, particularly secured lending and investment. Residential valuations have different standards and the applicability varies by instruction type. If in doubt, refer to RICS guidance notes for residential valuations.</p>
+  </div>
+
+  <div class="cta-box">
+    <h3>Generate a compliant ESG insert in under 10 minutes</h3>
+    <p>Plinthos for Valuers produces RICS 4th Edition-compliant inserts covering all four modules — EPC/MEES classification, stranded asset timeline, capex assessment, and KPI dashboard. Free trial, no credit card required.</p>
+    <a href="https://udify.app/chat/BK8JIPXt8TqCE7vo" class="cta-btn">Start free trial →</a>
+  </div>
+
+  <div class="related">
+    <h3>Related</h3>
+    <ul class="related-list">
+      <li><a href="https://plinthos.io/rics-4th-edition-esg-requirements.html">What does RICS 4th Edition require for ESG in valuations?</a><span>Full explainer — all requirements and practical implications</span></li>
+      <li><a href="https://plinthos.io/esg-valuation-insert-template.html">ESG valuation insert template and tool</a><span>How Plinthos generates RICS-compliant inserts</span></li>
+      <li><a href="https://plinthos.io/stranded-asset-risk-uk-office.html">Assessing stranded asset risk without a QS</a><span>Using CRREM pathway analysis as a proportionate alternative</span></li>
+      <li><a href="https://plinthos.io/bank-climate-risk-valuation-data.html">Climate risk data for bank valuations</a><span>The demand chain from PRA to your Red Book report</span></li>
+    </ul>
+  </div>
+
+</div>
+
+<footer>© 2026 Plinthos. Built on research, not assumptions. Based on analysis of 136 UK REIT sustainability reports.</footer>
+
+</body>
+</html>
