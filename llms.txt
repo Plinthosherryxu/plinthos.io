@@ -1,26 +1,58 @@
 # Plinthos
 
-> AI-powered ESG report writing and RICS 4th Edition compliance platform for UK real estate.
+> AI-powered ESG compliance documentation for UK real estate funds and chartered surveyors. Founded by Dr Yishuang (Sherry) Xu, based on analysis of 136 UK REIT sustainability reports scored on a 120-point Disclosure Quality Index.
 
-## About
-- Founded by Dr Yishuang (Sherry) Xu, University of Manchester
-- Built on analysis of 136 UK REIT sustainability reports
-- Proprietary 120-point ESG scoring framework
+## Core Pages
 
-## Key Pages
-- [For Real Estate Funds](https://plinthos.io/)
-- [For Valuers & Lenders](https://plinthos.io/valuers.html)
-- [White Paper](https://plinthos.io/whitepaper.html)
-- [Free CRREM Misalignment Engine](https://plinthos.io/tools/misalignment-engine.html)
+- [Homepage](https://plinthos.io/): Plinthos platform overview — AI-generated ESG reports for real estate funds covering GRESB, SFDR, TCFD, and EU Taxonomy compliance.
+- [Plinthos for Valuers](https://plinthos.io/valuers): RICS 4th Edition-compliant ESG valuation inserts for chartered surveyors — EPC/MEES risk classification, CRREM misalignment year, capex estimates, and KPI dashboards in under 10 minutes.
+- [ESG Playbook](https://plinthos.io/playbook.html): Step-by-step guide to ESG compliance for UK real estate, from regulatory mapping through implementation.
+- [Playbook Guide](https://plinthos.io/playbook/guide.html): Detailed walkthrough of the Plinthos ESG implementation methodology.
+- [White Paper](https://plinthos.io/whitepaper.html): Full research paper — 136 UK REIT sustainability reports analysed on a 120-point framework revealing a 53-point gap between best and worst reporters.
+- [Plinthos DQI](https://plinthos.io/dqi/): The Plinthos Disclosure Quality Index — a 120-point framework for scoring ESG reporting quality across 10 dimensions.
+- [What Is the Plinthos DQI?](https://plinthos.io/what-is-plinthos-dqi.html): Explainer of the DQI methodology, scoring dimensions, and how it benchmarks UK REITs.
 
-## Research Articles
-- [RICS 4th Edition ESG Requirements](https://plinthos.io/rics-4th-edition-esg-requirements.html)
-- [ESG Valuation Insert Template](https://plinthos.io/esg-valuation-insert-template.html)
-- [Bank Climate Risk Data Requirements](https://plinthos.io/bank-climate-risk-valuation-data.html)
-- [MEES 2028 EPC C Impact](https://plinthos.io/mees-2028-epc-c-commercial-property.html)
-- [Stranded Asset Risk Assessment](https://plinthos.io/stranded-asset-risk-uk-office.html)
-- [CRREM Excel Tool Retirement](https://plinthos.io/crrem-tool-excel-retirement.html)
-- [AI ESG Reporting Tools](https://plinthos.io/ai-esg-reporting-tool-real-estate.html)
-- [UK REIT ESG Benchmarking](https://plinthos.io/uk-reit-esg-benchmarking.html)
-- [EPC vs CRREM Difference](https://plinthos.io/epc-vs-crrem-difference.html)
-- [Retrofit Costs UK](https://plinthos.io/retrofit-cost-epc-d-to-b-uk.html)
+## RICS & Valuation
+
+- [RICS 4th Edition ESG Requirements](https://plinthos.io/rics-4th-edition-esg-requirements.html): What the RICS Valuation Global Standards 4th Edition (effective 30 April 2026) requires for ESG in Red Book valuations — four core requirements and proportionate compliance.
+- [RICS 4th Edition ESG Checklist](https://plinthos.io/rics-4th-edition-esg-checklist.html): Practical checklist for chartered surveyors implementing RICS 4th Edition ESG requirements.
+- [RICS 4th Edition at 100 Days](https://plinthos.io/rics-4th-edition-100-days.html): Assessment of compliance patterns 100 days after the RICS 4th Edition took effect — structured workflows vs manual approaches, bank panel expectations.
+- [ESG Valuation Insert Template](https://plinthos.io/esg-valuation-insert-template.html): What an ESG valuation insert should contain — four modules (EPC/MEES, stranded asset timeline, capex, KPI dashboard) and how AI tools replace separate QS instructions.
+- [ESG Commentary in Red Book Valuations](https://plinthos.io/esg-commentary-red-book-valuation.html): How to write defensible ESG commentary in Red Book valuation reports.
+- [ESG Data Sources for Chartered Surveyors](https://plinthos.io/esg-data-sources-chartered-surveyors.html): Where surveyors find ESG data — EPC registers, CRREM pathways, flood risk, and how to assess data quality.
+- [Bank Climate Risk Valuation Data](https://plinthos.io/bank-climate-risk-valuation-data.html): Why UK banks require climate risk data in secured lending valuations — PRA expectations, what to provide, and the demand chain from regulator to valuation.
+
+## CRREM & Stranded Assets
+
+- [CRREM Misalignment Calculation](https://plinthos.io/crrem-misalignment-calculation.html): How to calculate a building's CRREM misalignment year — the point when its energy/carbon trajectory crosses the 1.5C pathway.
+- [CRREM Excel Tool Retired July 2026](https://plinthos.io/crrem-excel-tool-retired-july-2026.html): What happened after the CRREM Excel tool was permanently retired — alternatives, Licence Partner platforms, and free browser-based tools.
+- [Stranded Asset Risk UK Office](https://plinthos.io/stranded-asset-risk-uk-office.html): How to assess stranded asset risk for UK office buildings without instructing a quantity surveyor.
+
+## ESG Reporting & Cost
+
+- [ESG Reporting Cost UK Real Estate](https://plinthos.io/esg-reporting-cost-uk-real-estate.html): ESG reporting costs £15K-£150K/year for UK real estate funds — full breakdown of where the money goes and how AI tools reduce cost by 80-90%.
+- [AI vs Traditional ESG Consulting](https://plinthos.io/ai-vs-traditional-esg-consulting.html): Decision framework — when to use a consultant (strategy), when to use AI (documentation), and the hybrid model most funds are adopting.
+- [Consultant vs AI ESG Cost](https://plinthos.io/consultant-vs-ai-esg-cost.html): Direct cost comparison between traditional ESG consultancy and AI-powered alternatives for UK real estate.
+- [Cheapest RICS ESG Data](https://plinthos.io/cheapest-rics-esg-data.html): Cost-effective approaches to sourcing ESG data for RICS-compliant valuations.
+- [AI ESG Reporting Tool Real Estate](https://plinthos.io/ai-esg-reporting-tool-real-estate.html): How AI-powered ESG reporting tools work for real estate — capabilities, limitations, and what to look for.
+- [AI ESG Consulting Services UK Real Estate](https://plinthos.io/ai-esg-consulting-services-uk-real-estate.html): AI ESG consulting services for UK real estate cost 80-90% less than traditional advisory — what AI handles, what needs a human, pricing, and how to evaluate providers.
+
+## Regulation & Compliance
+
+- [MEES 2028 EPC C Commercial Property](https://plinthos.io/mees-2028-epc-c-commercial-property.html): How the projected MEES EPC C threshold by 2028 affects commercial property valuations — enacted vs projected thresholds and financial exposure.
+- [MEES Compliance Checklist Commercial Landlords](https://plinthos.io/mees-compliance-checklist-commercial-landlords.html): Three-phase MEES compliance checklist — assess, plan, document — with capex benchmarks and sequencing.
+- [GRESB 2026 Submission Lessons](https://plinthos.io/gresb-2026-submission-lessons.html): Lessons from the GRESB 2026 cycle — what separated improvers from stallers and how to prepare for 2027.
+- [TCFD Reporting Real Estate](https://plinthos.io/tcfd-reporting-real-estate.html): TCFD reporting requirements for UK real estate — governance, strategy, risk management, and metrics/targets.
+- [EU Taxonomy UK Real Estate](https://plinthos.io/eu-taxonomy-uk-real-estate.html): How the EU Taxonomy affects UK real estate funds with European investors or cross-border portfolios.
+- [ESG Due Diligence Property Acquisition](https://plinthos.io/esg-due-diligence-property-acquisition.html): ESG due diligence checklist for commercial property acquisitions — what to assess before exchanging.
+
+## Market & Investment
+
+- [Green Premium Brown Discount UK](https://plinthos.io/green-premium-brown-discount-uk.html): Evidence for the green premium and brown discount in UK commercial property — the brown discount is accelerating faster than the green premium.
+- [Physical Climate Risk UK Property](https://plinthos.io/physical-climate-risk-uk-property.html): Physical climate risk assessment for UK commercial property — flood, heat stress, subsidence, and insurance implications.
+- [Net Zero Pathway Commercial Property](https://plinthos.io/net-zero-pathway-commercial-property.html): How to build a credible net zero pathway for a commercial property portfolio.
+- [Business Case Retrofit UK Commercial](https://plinthos.io/business-case-retrofit-uk-commercial.html): The financial case for retrofitting UK commercial buildings — capex benchmarks, green premium capture, and hold-vs-divest analysis.
+
+## Optional
+
+- [Tools: CRREM Misalignment Engine](https://plinthos.io/tools/misalignment-engine.html): Free browser-based CRREM misalignment calculator.
