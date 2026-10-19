@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plinthos Institute — Independent Research on ESG Disclosure Quality in Real Estate</title>
+  <meta name="description" content="The Plinthos Institute publishes independent research on ESG disclosure quality in real estate. Home of the Disclosure Quality Index, policy submissions, and the annual UK REIT benchmarking report.">
+  <link rel="canonical" href="https://plinthos.io/institute">
+  <meta property="og:title" content="Plinthos Institute — Independent Research on ESG Disclosure Quality in Real Estate">
+  <meta property="og:description" content="Independent research on ESG disclosure quality in real estate. Home of the Disclosure Quality Index, annual UK REIT benchmarking, and policy submissions to HM Treasury, HKMA, and CRREM.">
+  <meta property="og:url" content="https://plinthos.io/institute">
+  <meta property="og:type" content="website">
+
+  <!-- JSON-LD for ResearchOrganization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ResearchOrganization",
+    "name": "Plinthos Institute",
+    "url": "https://plinthos.io/institute",
+    "parentOrganization": {
+      "@type": "Organization",
+      "name": "Plinthos Technologies Ltd",
+      "url": "https://plinthos.io"
+    },
+    "description": "Independent research programme on ESG disclosure quality in real estate. Publisher of the Disclosure Quality Index.",
+    "founder": {
+      "@type": "Person",
+      "name": "Dr Yishuang Xu",
+      "jobTitle": "Founder",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "University of Manchester"
+      }
+    },
+    "knowsAbout": [
+      "ESG disclosure quality",
+      "UK REITs",
+      "Sustainability reporting",
+      "Real estate regulation",
+      "RICS valuation standards",
+      "CRREM pathways",
+      "GRESB benchmarking"
+    ]
+  }
+  </script>
+
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0f;
+      --bg-card: #12121a;
+      --bg-card-hover: #1a1a25;
+      --border: #1e1e2e;
+      --text: #e0e0e8;
+      --text-muted: #8888a0;
+      --text-dim: #5a5a72;
+      --accent: #a0c4ff;
+      --accent-dim: #607090;
+      --accent-glow: rgba(160, 196, 255, 0.08);
+      --white: #ffffff;
+      --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      --mono: 'SF Mono', 'Fira Code', monospace;
+      --max-w: 900px;
+      --section-gap: 6rem;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--accent); text-decoration: none; transition: opacity 0.2s; }
+    a:hover { opacity: 0.8; }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(10, 10, 15, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-size: 1.1rem; font-weight: 600; color: var(--white);
+      letter-spacing: 0.02em;
+    }
+    .nav-logo span { color: var(--accent); font-weight: 400; margin-left: 0.4em; font-size: 0.85em; }
+
+    .nav-links { display: flex; gap: 1.8rem; font-size: 0.85rem; }
+    .nav-links a { color: var(--text-muted); }
+    .nav-links a:hover { color: var(--white); }
+
+    /* ── Sections ── */
+    section { padding: var(--section-gap) 2rem; max-width: var(--max-w); margin: 0 auto; }
+
+    .hero { padding-top: 10rem; padding-bottom: 4rem; text-align: center; }
+
+    .label {
+      font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent-dim); margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 600; line-height: 1.2;
+      color: var(--white); margin-bottom: 1.5rem;
+    }
+    h1 em { font-style: italic; color: var(--accent); }
+
+    h2 {
+      font-size: clamp(1.5rem, 3.5vw, 2rem);
+      font-weight: 600; line-height: 1.3;
+      color: var(--white); margin-bottom: 1rem;
+    }
+    h2 em { font-style: italic; color: var(--accent); }
+
+    h3 { font-size: 1.15rem; font-weight: 600; color: var(--white); margin-bottom: 0.5rem; }
+
+    .subtitle {
+      font-size: 1.1rem; color: var(--text-muted);
+      max-width: 640px; margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+
+    /* ── Stat row ── */
+    .stats {
+      display: flex; justify-content: center; gap: 3rem;
+      margin: 3rem 0; flex-wrap: wrap;
+    }
+    .stat { text-align: center; }
+    .stat-num { font-size: 2rem; font-weight: 700; color: var(--accent); display: block; }
+    .stat-label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+
+    /* ── Cards ── */
+    .card-grid {
+      display: grid; gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .card:hover { border-color: var(--accent-dim); background: var(--bg-card-hover); }
+
+    .card .card-icon {
+      font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent-dim); margin-bottom: 1rem;
+    }
+
+    .card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+
+    /* ── Timeline / Policy list ── */
+    .timeline { list-style: none; margin-top: 2rem; }
+    .timeline li {
+      position: relative;
+      padding: 1.5rem 0 1.5rem 2rem;
+      border-left: 2px solid var(--border);
+    }
+    .timeline li::before {
+      content: '';
+      position: absolute; left: -5px; top: 1.8rem;
+      width: 8px; height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+    .timeline .tl-date {
+      font-size: 0.75rem; color: var(--accent-dim);
+      text-transform: uppercase; letter-spacing: 0.08em;
+      margin-bottom: 0.3rem;
+    }
+    .timeline .tl-title { font-weight: 600; color: var(--white); margin-bottom: 0.3rem; }
+    .timeline .tl-desc { color: var(--text-muted); font-size: 0.9rem; }
+
+    /* ── Divider ── */
+    .divider {
+      width: 60px; height: 1px;
+      background: var(--border);
+      margin: var(--section-gap) auto;
+    }
+
+    /* ── CTA block ── */
+    .cta-block {
+      text-align: center;
+      padding: 4rem 2rem;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--bg-card);
+      margin-top: 2rem;
+    }
+    .cta-block p { color: var(--text-muted); margin-bottom: 1.5rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      border: 1px solid var(--accent-dim);
+      border-radius: 8px;
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .btn:hover { background: var(--accent-glow); border-color: var(--accent); opacity: 1; }
+
+    /* ── Independence note ── */
+    .independence {
+      margin-top: 3rem;
+      padding: 1.5rem 2rem;
+      border-left: 3px solid var(--accent-dim);
+      background: rgba(160, 196, 255, 0.03);
+      border-radius: 0 8px 8px 0;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .independence strong { color: var(--text); }
+
+    /* ── Footer ── */
+    footer {
+      padding: 3rem 2rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      margin-top: var(--section-gap);
+    }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1rem; font-size: 0.85rem; flex-wrap: wrap; }
+    .footer-links a { color: var(--text-muted); }
+    .footer-copy { font-size: 0.75rem; color: var(--text-dim); }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      nav { padding: 0.8rem 1rem; }
+      .nav-links { gap: 1rem; font-size: 0.78rem; }
+      section { padding: 3rem 1.2rem; }
+      .hero { padding-top: 7rem; }
+      .stats { gap: 1.5rem; }
+      .card { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <a href="https://plinthos.io/" class="nav-logo">Plinthos <span>Institute</span></a>
+  <div class="nav-links">
+    <a href="#research">Research</a>
+    <a href="#policy">Policy</a>
+    <a href="#dqi">DQI</a>
+    <a href="#events">Events</a>
+    <a href="https://plinthos.io/">Advisory</a>
+    <a href="https://plinthos.io/#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <p class="label">Independent Research Programme</p>
+  <h1>The Plinthos <em>Institute</em></h1>
+  <p class="subtitle">
+    Independent research on ESG disclosure quality in real estate.
+    We publish what the sector needs to hear, not what it wants to hear.
+  </p>
+
+  <div class="stats">
+    <div class="stat">
+      <span class="stat-num">24</span>
+      <span class="stat-label">UK REITs Scored</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">120</span>
+      <span class="stat-label">Point Framework</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">4</span>
+      <span class="stat-label">Policy Submissions</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">72pt</span>
+      <span class="stat-label">Disclosure Gap</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ WHAT WE DO ═══ -->
+<section>
+  <p class="label">What We Do</p>
+  <h2>Research that changes <em>practice</em></h2>
+  <p style="color: var(--text-muted); margin-bottom: 2.5rem; max-width: 640px;">
+    The Plinthos Institute is the research programme of Plinthos Technologies Ltd.
+    We produce census-level benchmarking, peer-reviewed research, and policy evidence
+    on ESG disclosure quality in UK and international real estate markets.
+  </p>
+
+  <div class="card-grid">
+    <div class="card">
+      <p class="card-icon">Benchmarking</p>
+      <h3>Disclosure Quality Index</h3>
+      <p>
+        Annual scoring of all UK-listed REITs against a proprietary 120-point framework.
+        The DQI measures what investors can actually read, verify, and act on. Not performance. Not ratings.
+        Disclosure quality.
+      </p>
+    </div>
+    <div class="card">
+      <p class="card-icon">Peer-Reviewed Research</p>
+      <h3>Academic Publications</h3>
+      <p>
+        Our findings are published in peer-reviewed journals and on SSRN.
+        The flagship study reveals that disclosure infrastructure choices, not firm structure,
+        determine ESG reporting quality.
+      </p>
+    </div>
+    <div class="card">
+      <p class="card-icon">Policy</p>
+      <h3>Regulatory Evidence</h3>
+      <p>
+        We submit evidence to regulators and policymakers including HM Treasury, the HKMA,
+        CRREM, and RICS. Our research informs how disclosure standards evolve.
+      </p>
+    </div>
+    <div class="card">
+      <p class="card-icon">Convening</p>
+      <h3>Events and Speaking</h3>
+      <p>
+        Industry panels, university events, and practitioner roundtables
+        that bring together fund managers, valuers, regulators, and researchers
+        around ESG disclosure.
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ DQI ═══ -->
+<section id="dqi">
+  <p class="label">Flagship Publication</p>
+  <h2>The Disclosure <em>Quality Index</em></h2>
+  <p style="color: var(--text-muted); margin-bottom: 1rem; max-width: 640px;">
+    The first census-level assessment of ESG disclosure quality across all UK-listed REITs.
+    Published annually, the DQI scores what companies say and whether it gives investors
+    the data they need to make decisions.
+  </p>
+  <p style="color: var(--text-muted); margin-bottom: 2rem; max-width: 640px;">
+    The 2025 baseline reveals a 72-point quality gap between the sector's strongest
+    and weakest reporters. Eight companies (33%) achieve Sector Leader status.
+    Three remain at Pre-Disclosure level.
+  </p>
+
+  <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+    <a href="https://plinthos.io/dqi" class="btn">Explore the DQI &rarr;</a>
+    <a href="https://plinthos.io/research.html" class="btn">Read the Research Paper &rarr;</a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ RESEARCH ═══ -->
+<section id="research">
+  <p class="label">Published Research</p>
+  <h2>What we have <em>found</em></h2>
+
+  <div class="card-grid" style="grid-template-columns: 1fr;">
+    <div class="card">
+      <p class="card-icon">Working Paper &middot; 2026</p>
+      <h3>What Makes a "Good" ESG Report? Evidence from UK REITs</h3>
+      <p>
+        Census of all 24 UK-listed REITs over four fiscal years.
+        Key finding: the 72-point disclosure quality gap is driven by three specific
+        infrastructure choices (SBTi commitment, external assurance, GRESB participation)
+        that any company can make within 18 months. Management structure, once controlled for,
+        has no independent effect.
+      </p>
+      <p style="margin-top: 0.8rem;">
+        <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7350500">Read on SSRN &rarr;</a>
+      </p>
+    </div>
+
+    <div class="card">
+      <p class="card-icon">Benchmark &middot; In Development</p>
+      <h3>RE-FinBench: A Domain-Specific LLM Evaluation Benchmark for Real Estate</h3>
+      <p>
+        A collaboration with the MSCI Institute to build a rigorous, domain-specific
+        benchmark for evaluating large language models on institutional real estate
+        financial analysis tasks. 42 task types across 5 difficulty levels.
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ POLICY ═══ -->
+<section id="policy">
+  <p class="label">Policy and Consultation</p>
+  <h2>Evidence submitted to <em>policymakers</em></h2>
+
+  <ul class="timeline">
+    <li>
+      <p class="tl-date">October 2026</p>
+      <p class="tl-title">CRREM Energy Pathway Methodology Consultation</p>
+      <p class="tl-desc">
+        Offered the DQI dataset (24 UK REITs, 120 data points per company) to CRREM's
+        open-contribution model for validating median EUI starting points. Feedback on
+        CBECS benchmarking limitations and floor area projection methodology.
+      </p>
+    </li>
+    <li>
+      <p class="tl-date">September 2026</p>
+      <p class="tl-title">HKMA Hong Kong Taxonomy Phase 2B</p>
+      <p class="tl-desc">
+        Response to the Hong Kong Monetary Authority's public consultation on the
+        Hong Kong Taxonomy for Sustainable Finance. Key arguments: include BREEAM in
+        construction certification pathways, require independent verification for
+        non-whitelist adaptation measures, add a disclosure quality threshold for
+        transition activities.
+      </p>
+    </li>
+    <li>
+      <p class="tl-date">September 2026</p>
+      <p class="tl-title">HM Treasury Autumn Budget Representation</p>
+      <p class="tl-desc">
+        Joint submission with PlusValue arguing for Green Book reform to incorporate
+        social and environmental return in public investment appraisal. Cites DQI findings
+        and the Si4 econometric methodology.
+      </p>
+    </li>
+  </ul>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ EVENTS ═══ -->
+<section id="events">
+  <p class="label">Events and Speaking</p>
+  <h2>Where we <em>convene</em></h2>
+
+  <div class="card-grid">
+    <div class="card">
+      <p class="card-icon">November 2026</p>
+      <h3>RICS Technology & AI Summit</h3>
+      <p>Panel on AI applications in valuation and sustainability compliance. 22 Bishopsgate, London.</p>
+    </div>
+    <div class="card">
+      <p class="card-icon">September 2026</p>
+      <h3>PropTech Connect Europe</h3>
+      <p>Moderated "Accelerating Decarbonisation with Data in Real Estate" on the Sustainability Stage. InterContinental O2, London.</p>
+    </div>
+    <div class="card">
+      <p class="card-icon">Coming Soon</p>
+      <h3>Investing Beyond London</h3>
+      <p>University of Manchester event on sustainability, social value, and housing investment. Co-organised with PlusValue and the Manchester Urban Institute.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ ABOUT / INDEPENDENCE ═══ -->
+<section>
+  <p class="label">About</p>
+  <h2>Founded on <em>independence</em></h2>
+  <p style="color: var(--text-muted); margin-bottom: 1.5rem; max-width: 640px;">
+    The Plinthos Institute is led by Dr Yishuang Xu, Senior Lecturer in Real Estate at
+    the University of Manchester and founder of Plinthos Technologies Ltd.
+  </p>
+  <p style="color: var(--text-muted); margin-bottom: 1.5rem; max-width: 640px;">
+    The Institute's research is independent of its advisory practice. The DQI methodology
+    is applied consistently to all companies in the dataset regardless of any commercial
+    relationship. Scores are calculated before any advisory engagement begins.
+    The 120-point scoring rubric is available for research verification on request.
+  </p>
+
+  <div class="independence">
+    <strong>Research integrity.</strong>
+    The DQI scores disclosure quality, not ESG performance. A company with high emissions
+    but transparent, assured reporting scores higher than a company with low emissions but
+    vague, unverified descriptions. Individual company scores are shared privately on request;
+    they are never conditioned on a commercial relationship.
+  </div>
+
+  <div class="cta-block" style="margin-top: 3rem;">
+    <h3>Work with the Institute</h3>
+    <p>
+      Request your company's DQI score, invite us to speak, propose a research collaboration,
+      or enquire about the advisory practice.
+    </p>
+    <a href="mailto:yishuang.xu@manchester.ac.uk?subject=Plinthos%20Institute%20Enquiry" class="btn">
+      Get in Touch &rarr;
+    </a>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-links">
+    <a href="https://plinthos.io/">Advisory Services</a>
+    <a href="https://plinthos.io/valuers">For Valuers</a>
+    <a href="https://plinthos.io/dqi">Disclosure Quality Index</a>
+    <a href="https://plinthos.io/research.html">Research Paper</a>
+    <a href="https://plinthos.io/whitepaper.html">White Paper</a>
+    <a href="https://plinthos.io/#contact">Contact</a>
+  </div>
+  <p class="footer-copy">
+    The Plinthos Institute is the research programme of Plinthos Technologies Ltd.
+    &copy; 2026 Plinthos. All rights reserved.
+  </p>
+</footer>
+
+</body>
+</html>
