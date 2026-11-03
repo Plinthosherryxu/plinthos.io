@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESG in Red Book Valuations: How Are Practitioners Responding? | Plinthos Institute</title>
+    <meta name="description" content="A practice note examining the gap between what RICS Red Book valuation standards require on ESG and what current tools deliver, with a worked example of an AI-assisted ESG valuation insert.">
+    <meta name="keywords" content="Red Book ESG valuation, ESG insert Red Book, sustainability valuation report example, RICS ESG, MEES compliance valuation, VPGA 8 ESG, Plinthos for Valuers, RICS 4th Edition ESG">
+    <link rel="canonical" href="https://plinthos.io/esg-red-book-practice-note.html">
+    <meta property="og:title" content="ESG in Red Book Valuations: How Are Practitioners Responding?">
+    <meta property="og:description" content="A practice note examining the gap between what RICS valuation standards require on ESG and what current tools deliver, with a worked example of an AI-assisted ESG valuation insert.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://plinthos.io/esg-red-book-practice-note.html">
+    <meta property="og:site_name" content="Plinthos Institute">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="author" content="Dr Yishuang Xu">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"ESG in Red Book Valuations: How Are Practitioners Responding?","datePublished":"2026-11-03","dateModified":"2026-11-03","author":{"@type":"Person","name":"Dr Yishuang Xu","jobTitle":"Senior Lecturer in Real Estate","affiliation":[{"@type":"EducationalOrganization","name":"University of Manchester"},{"@type":"Organization","name":"Plinthos","url":"https://plinthos.io"}]},"publisher":{"@type":"Organization","name":"Plinthos Institute","url":"https://plinthos.io/institute"},"mainEntityOfPage":"https://plinthos.io/esg-red-book-practice-note.html","description":"A practice note examining the gap between what RICS Red Book valuation standards require on ESG and sustainability, and what current tools and practices deliver. Includes a worked example of an AI-assisted ESG valuation insert.","keywords":["Red Book","ESG","RICS","valuation","sustainability","MEES","VPGA 8","commercial property"]}
+    </script>
+    <style>:root{--ink:#1a1a2e;--body:#3d3d5c;--muted:#6b7094;--accent:#0f5132;--accent-light:#e8f5e9;--surface:#fafaf8;--white:#fff;--border:#e2e2e0;--highlight:#fdf6e3;--risk-amber:#c07d2b;--risk-amber-bg:#fef8ee}*{margin:0;padding:0;box-sizing:border-box}body{font-family:"DM Sans",-apple-system,sans-serif;color:var(--body);background:var(--surface);line-height:1.72;-webkit-font-smoothing:antialiased}
+
+/* Nav */
+nav{background:var(--white);border-bottom:1px solid var(--border);padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}.nav-logo{font-family:"DM Serif Display",serif;font-size:1.4rem;color:var(--accent);text-decoration:none}.nav-links{display:flex;gap:1.5rem}.nav-links a{color:var(--body);text-decoration:none;font-size:.9rem;font-weight:500}.nav-links a:hover{color:var(--accent)}
+
+/* Article header */
+.article-header{max-width:720px;margin:3rem auto 2rem;padding:0 1.5rem}.article-meta{font-size:.85rem;color:var(--muted);margin-bottom:1rem;display:flex;gap:1.5rem;flex-wrap:wrap}.article-header h1{font-family:"DM Serif Display",serif;font-size:2.1rem;color:var(--ink);line-height:1.25;letter-spacing:-.02em;margin-bottom:1rem;text-wrap:balance}.article-header .subtitle{font-size:1.15rem;color:var(--muted);line-height:1.6}
+
+/* Author block */
+.author-block{display:flex;align-items:flex-start;gap:1rem;padding:1.25rem;background:var(--white);border:1px solid var(--border);border-radius:8px;margin-bottom:2rem}.author-avatar{width:48px;height:48px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:"DM Serif Display",serif;font-weight:700;font-size:1.125rem;flex-shrink:0}.author-info{min-width:0}.author-name{font-weight:600;color:var(--ink);font-size:.9375rem;margin-bottom:.125rem}.author-role{font-size:.8125rem;color:var(--muted);line-height:1.5}
+
+/* Article body */
+article{max-width:720px;margin:0 auto 3rem;padding:0 1.5rem}article p{margin-bottom:1.4rem;font-size:1.05rem}article h2{font-family:"DM Serif Display",serif;font-size:1.45rem;color:var(--ink);margin:2.5rem 0 1rem;padding-top:1.5rem;border-top:1px solid var(--border);text-wrap:balance}article h2:first-of-type{border-top:none;padding-top:0}article h3{font-family:"DM Serif Display",serif;font-size:1.2rem;color:var(--ink);margin:2rem 0 .75rem}article h4{font-family:"DM Sans",sans-serif;font-size:.9375rem;font-weight:600;color:var(--accent);letter-spacing:.01em;margin:2rem 0 .75rem}article strong{color:var(--ink)}article ul,article ol{margin:0 0 1.4rem;padding-left:1.5rem}article li{margin-bottom:.5rem;font-size:1.05rem}article li::marker{color:var(--muted)}
+
+/* Table of contents */
+.toc{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:1.25rem 1.5rem;margin-bottom:2.5rem}.toc-label{font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.75rem}.toc ol{margin:0;padding-left:1.25rem;list-style-type:decimal}.toc li{margin-bottom:.375rem;font-size:.95rem}.toc a{color:var(--body);text-decoration:none}.toc a:hover{color:var(--accent)}
+
+/* Tables */
+.table-container{overflow-x:auto;margin:1.5rem 0;border-radius:8px;border:1px solid var(--border)}.table-container table{width:100%;border-collapse:collapse;font-size:.95rem;background:var(--white)}.table-container th{background:var(--ink);color:var(--white);padding:.75rem 1rem;text-align:left;font-size:.85rem;font-weight:600}.table-container td{padding:.75rem 1rem;border-bottom:1px solid var(--border);font-size:.95rem}.table-container tr:last-child td{border-bottom:none}
+
+/* Gap table styling */
+.gap-table td:first-child{color:var(--ink);font-weight:500}.gap-table td:last-child{color:var(--risk-amber);font-weight:500}
+
+/* Callout boxes */
+.callout{background:var(--highlight);border-left:4px solid var(--risk-amber);padding:1.25rem 1.5rem;margin:2rem 0;border-radius:0 8px 8px 0;font-size:1rem}.callout p{margin-bottom:.5rem}.callout p:last-child{margin-bottom:0}.callout-accent{background:var(--accent-light);border-left:4px solid var(--accent);padding:1.25rem 1.5rem;margin:2rem 0;border-radius:0 8px 8px 0;font-size:1rem}.callout-accent p{margin-bottom:.5rem}.callout-accent p:last-child{margin-bottom:0}
+
+/* Risk badge */
+.risk-badge{display:inline-block;background:var(--risk-amber-bg);color:var(--risk-amber);font-weight:600;font-size:.8125rem;letter-spacing:.04em;padding:.25rem .75rem;border-radius:3px;text-transform:uppercase}
+
+/* Property profile card */
+.property-card{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:1.25rem 1.5rem;margin:1.5rem 0}.property-card h5{font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 .75rem}.property-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:.75rem}.property-stat{display:flex;flex-direction:column;gap:.125rem}.property-stat-label{font-size:.75rem;color:var(--muted)}.property-stat-value{font-size:.9375rem;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums}
+
+/* Horizontal rule */
+article hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+
+/* Note text */
+.note{font-style:italic;color:var(--muted);font-size:.95rem;margin:1rem 0 1.4rem}
+
+/* Related section */
+.related-section{max-width:720px;margin:0 auto 3rem;padding:0 1.5rem}.related-section h3{font-family:"DM Serif Display",serif;font-size:1.2rem;color:var(--ink);margin-bottom:1rem}.related-links{display:flex;flex-direction:column;gap:.75rem}.related-links a{display:block;background:var(--white);border:1px solid var(--border);border-radius:8px;padding:1rem 1.25rem;color:var(--ink);text-decoration:none;font-weight:500;font-size:.95rem;transition:border-color .2s,background .2s}.related-links a:hover{border-color:var(--accent);background:var(--accent-light)}.related-links a span{color:var(--muted);font-weight:400;font-size:.85rem;display:block;margin-top:.25rem}
+
+/* CTA sections */
+.cta-section{max-width:690px;margin:0 auto 3rem;padding:2rem 1.5rem;background:var(--ink);border-radius:12px;text-align:center;color:var(--white)}.cta-section h3{font-family:"DM Serif Display",serif;font-size:1.4rem;margin-bottom:.75rem}.cta-section p{color:#b8b8d0;margin-bottom:1.25rem;font-size:.95rem}.cta-button{display:inline-block;background:var(--accent);color:var(--white);padding:.75rem 2rem;border-radius:6px;text-decoration:none;font-weight:600}.subscribe-cta{background:#1a1a2e;border-radius:12px;padding:2rem;max-width:690px;margin:2rem auto 3rem;text-align:center;color:#fff}.subscribe-cta h3{font-family:"DM Serif Display",serif;font-size:1.3rem;margin-bottom:.5rem}.subscribe-cta p{color:#b8b8d0;font-size:.9rem;margin-bottom:1rem}.subscribe-cta a{display:inline-block;background:#0f5132;color:#fff;padding:.75rem 2rem;border-radius:6px;text-decoration:none;font-weight:600}
+
+/* Footer */
+footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-size:.85rem;color:var(--muted)}
+
+/* Responsive */
+@media(max-width:640px){.article-header h1{font-size:1.7rem}.author-block{flex-direction:column;align-items:center;text-align:center}.property-grid{grid-template-columns:1fr 1fr}.table-container{font-size:.85rem}.nav-links{gap:.75rem}.nav-links a{font-size:.8rem}}</style>
+</head>
+<body>
+<nav><a href="https://plinthos.io" class="nav-logo">Plinthos</a><div class="nav-links"><a href="https://plinthos.io">For Funds</a><a href="https://plinthos.io/valuers.html">For Valuers</a><a href="https://plinthos.io/institute.html">Institute</a><a href="https://plinthos.io/research.html">Research</a></div></nav>
+
+<header class="article-header">
+    <div class="article-meta"><span>Practice Note</span><span>Dr Yishuang Xu</span><span>November 2026</span><span>12 min read</span></div>
+    <h1>ESG in Red Book Valuations: How Are Practitioners Responding?</h1>
+    <p class="subtitle">The gap between what RICS valuation standards require on ESG and what current tools deliver, with a worked example of an AI-assisted ESG valuation insert.</p>
+</header>
+
+<article>
+
+<!-- Author block -->
+<div class="author-block">
+    <div class="author-avatar">YX</div>
+    <div class="author-info">
+        <div class="author-name">Dr Yishuang Xu</div>
+        <div class="author-role">Senior Lecturer in Real Estate, University of Manchester<br>Founder, <a href="https://plinthos.io" style="color:var(--accent);text-decoration:none">Plinthos</a></div>
+    </div>
+</div>
+
+<!-- Table of contents -->
+<nav class="toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#red-book-requirements">What the Red Book Actually Requires</a></li>
+        <li><a href="#practice-landscape">Current Practice Landscape</a></li>
+        <li><a href="#the-gap">The Gap: Data Aggregation vs Professional Judgment</a></li>
+        <li><a href="#worked-example">What a Thorough ESG Section Contains: A Worked Example</a></li>
+        <li><a href="#implications">Implications</a></li>
+    </ol>
+</nav>
+
+<!-- Section 1 -->
+<section id="introduction">
+    <h2>1. Introduction</h2>
+    <p>The latest edition of the Red Book (RICS Valuation &ndash; Global Standards, effective 31 January 2025, and the UK National Supplement, effective 1 May 2024) expanded expectations for how valuers address sustainability, ESG factors, and climate risk in valuations. Over a year on, there is no published template, worked example, or practice guidance on what a robust ESG section in a valuation report should contain. This paper asks a simple question: how are practitioners actually responding?</p>
+    <p>The paper draws on practitioner conversations, analysis of current valuation technology, and a worked example produced using an AI-assisted ESG compliance tool to examine the gap between what the Red Book expects and what is being delivered in practice. It is not guidance. It is a record of what we found.</p>
+    <p><strong>Audience:</strong> Independent chartered surveyors and small-to-medium valuation practices; also relevant to lenders, asset managers, and professional training providers.</p>
+</section>
+
+<!-- Section 2 -->
+<section id="red-book-requirements">
+    <h2>2. What the Red Book Actually Requires</h2>
+    <p>The Red Book does not prescribe a specific ESG section or template. Instead, it integrates sustainability considerations as mandatory obligations across the valuation process. The current edition (RICS Valuation &ndash; Global Standards, effective 31 January 2025) was realigned with IVS to embed ESG more explicitly than previous editions. The key provisions include:</p>
+    <ul>
+        <li><strong>VPS 1 (Terms of Engagement):</strong> Terms must include consideration of any significant ESG factors (VPS 1 para 3.1(s)). Implementation requires: stating requirements related to significant ESG factors; considering their potential impact on value to the extent reasonably identifiable and quantifiable (proportionate to asset type, location and purpose); stating with justification if none are significant; clarifying limitations (e.g. the valuation is not an ESG risk assessment or rating); and identifying any client-specific measurements or strategies. The valuer must also address expertise limitations with appropriate liability limits where they cannot judge the reliability of certain ESG resources.</li>
+        <li><strong>VPS 4 (Inspections, Investigations and Records):</strong> Updated to require proper regard to sustainability and ESG matters and collection/recording of appropriate data.</li>
+        <li><strong>VPS 6 (Valuation Reports):</strong> Reports must identify, report and document the consideration of significant ESG factors and any impact on the valuation conclusion and/or rationale. Relevance and significance of sustainability/ESG matters should form an integral part of the approach and reasoning where appropriate.</li>
+        <li><strong>VPGA 8 (Valuation of Real Property Interests):</strong> The principal application guidance, substantially updated. Now covers all three ESG pillars, physical risks (flooding, heat, wildfires, severe storms), transitional risks (energy efficiency, carbon emissions, climate impact), transition-to-net-zero considerations, stranding risk, and circularity. The key question is the extent to which factors affect value, reflected on the basis of market evidence and professional judgment. Energy efficiency, regulatory trajectory and related cost implications are explicitly within scope.</li>
+        <li><strong>IVS linkage:</strong> The Red Book adopts and applies the current IVS (effective same date), which includes ESG in data/inputs. The Red Book incorporates the relevant IVS ESG appendix by cross-reference and adds RICS-specific commentary.</li>
+    </ul>
+    <p>For UK valuations specifically, the UK National Supplement (2023 edition, effective 1 May 2024, reissued January 2025) adds local practical considerations. <strong>UK VPGA 10</strong> (valuation for commercial secured lending) notes that sustainability and ESG factors can have significant market influence and must be considered, cross-referencing Global VPS 1 and VPS 6, and flagging UK-specific factors including MEES, EPCs, sustainability-related certification, green leases and flood risk.</p>
+    <p>In addition, the separate RICS professional standard <em>ESG and sustainability in commercial property valuation</em> (4th edition, effective 30 April 2026) provides more detailed practical support and jurisdictional coverage (UK, EU, Australia). It cross-references the Red Book/IVS mandatory requirements but does not replace them.</p>
+
+    <div class="callout-accent">
+        <p><strong>The critical point:</strong> the obligation is to exercise and document professional judgment on how significant, reasonably identifiable and quantifiable sustainability/ESG factors affect value (or state why they do not), proportionate to the assignment. This is a narrative and analytical requirement, not a data-retrieval exercise. The valuer must explain their reasoning, not simply list data points.</p>
+    </div>
+</section>
+
+<!-- Section 3 -->
+<section id="practice-landscape">
+    <h2>3. Current Practice Landscape</h2>
+
+    <h3>3.1 What valuation technology provides</h3>
+    <p>The dominant valuation workflow tools used by UK practices are data aggregation platforms, several of which are RICS Tech Partners. These tools automate the assembly of valuation report inputs: Land Registry records, planning history, statutory enquiries, local taxation, transport links, and site plans. Their feature lists typically include a &ldquo;Sustainability &amp; Environmental Considerations&rdquo; section.</p>
+    <p>Market research reveals that this section, like its other modules, is a data retrieval function. It pulls publicly available environmental data (EPC ratings, flood risk, contaminated land register entries) and presents them in a report template. It does not produce:</p>
+    <ul>
+        <li>A narrative assessment of how sustainability factors affect the property&rsquo;s value</li>
+        <li>A stranded asset analysis or MEES compliance timeline</li>
+        <li>A CRREM pathway assessment or transition risk commentary</li>
+        <li>A capex estimate for energy efficiency improvements</li>
+        <li>A documented professional judgment linking ESG data to valuation conclusions</li>
+    </ul>
+    <p>This is not a criticism of these platforms. They are data aggregation tools and perform that function well. The point is that the Red Book&rsquo;s requirement for documented professional judgment on ESG impact falls outside what current valuation technology delivers.</p>
+
+    <h3>3.2 What practitioners report doing</h3>
+    <p>Conversations with independent practitioners and compliance specialists (2026) reveal significant variation in how ESG sections are handled in practice:</p>
+    <ul>
+        <li>Some firms have developed their own ESG templates, typically a structured checklist covering EPC data, MEES compliance status, flood risk, and a brief commentary on identified sustainability risks. These represent proactive engagement but vary considerably in depth and analytical rigour.</li>
+        <li>Some practitioners include a short paragraph acknowledging that ESG factors have been considered, without detailed analysis. This satisfies a minimal reading of the Red Book but provides limited defence in the event of a challenge.</li>
+        <li>Some reports contain no dedicated ESG section, particularly for instruction types where sustainability is perceived as less relevant (e.g. short-lease commercial, secured lending below certain thresholds).</li>
+    </ul>
+    <p>The barrier most frequently cited is not unwillingness but uncertainty: valuers report that without a clear template, worked example, or guidance on what &ldquo;good&rdquo; looks like, they default to minimal compliance. The professional judgment requirement is acknowledged but not operationalised.</p>
+</section>
+
+<!-- Section 4 -->
+<section id="the-gap">
+    <h2>4. The Gap: Data Aggregation vs Professional Judgment</h2>
+    <p>The pattern that emerges is a structural gap in the valuation workflow. Current technology provides the data inputs (EPC rating, flood zone, environmental register entries). The Red Book requires an analytical output (a documented assessment of how those inputs affect the valuation). Nothing in the standard workflow bridges the two.</p>
+
+    <div class="table-container">
+        <table class="gap-table">
+            <thead>
+                <tr>
+                    <th>What the Red Book expects<br><span style="font-weight:400;font-size:.8125em;color:#b8b8d0">VPS 1, 4, 6; VPGA 8</span></th>
+                    <th>What current tools provide</th>
+                    <th>The gap</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Documented consideration of energy efficiency impact on value (VPS 6, VPGA 8)</td>
+                    <td>EPC rating data pull</td>
+                    <td>No narrative linking EPC to valuation</td>
+                </tr>
+                <tr>
+                    <td>MEES compliance assessment and regulatory trajectory (VPGA 8; UK VPGA 10 for secured lending)</td>
+                    <td>Basic MEES status flag</td>
+                    <td>No forward-looking analysis (proposed EPC C by 2028, EPC B by 2030/31 for buildings above 1,000 m&sup2;)</td>
+                </tr>
+                <tr>
+                    <td>Transition risk commentary including stranding risk (VPGA 8)</td>
+                    <td>None</td>
+                    <td>No CRREM pathway, stranding year, or decarbonisation cost assessment</td>
+                </tr>
+                <tr>
+                    <td>Physical climate risk consideration (VPGA 8: flooding, heat, wildfires, severe storms)</td>
+                    <td>Flood risk zone data</td>
+                    <td>No assessment of insurance implications, adaptation cost, or value impact</td>
+                </tr>
+                <tr>
+                    <td>Cost implications of ESG factors for the valuation (VPGA 8)</td>
+                    <td>None</td>
+                    <td>No estimate of required sustainability-related capital expenditure</td>
+                </tr>
+                <tr>
+                    <td>Professional judgment narrative on significance and impact (VPS 1 scope, VPS 6 reporting)</td>
+                    <td>Structured data fields</td>
+                    <td>No interpretive or analytical text; no statement of significance or justification of absence</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p>This gap is not a technology failure. It reflects the difference between two types of work: assembling known facts (which technology does well) and interpreting those facts in the context of a specific valuation (which requires domain expertise and professional judgment). The Red Book introduced the second requirement without a corresponding infrastructure for delivering it.</p>
+</section>
+
+<!-- Section 5 -->
+<section id="worked-example">
+    <h2>5. What a Thorough ESG Section Contains: A Worked Example</h2>
+    <p>To illustrate what a robust ESG section might look like in practice, we present the structure of an AI-assisted ESG valuation insert produced for a hypothetical commercial property using publicly available data. The example follows the structure of the Plinthos for Valuers output, which was designed specifically to meet Red Book requirements.</p>
+
+    <h3>5.1 Module structure</h3>
+    <p>A thorough ESG insert for a Red Book valuation contains four integrated modules:</p>
+
+    <h4>Module 1: EPC and MEES Classification</h4>
+    <ul>
+        <li>Current EPC rating and certificate date</li>
+        <li>MEES compliance status against current (EPC E) and forthcoming thresholds (proposed EPC C by 2028, EPC B by 2030/31 for buildings above 1,000m&sup2;)</li>
+        <li>Compliance gap analysis: what rating improvement is needed, by when</li>
+        <li>Implications for the valuation: lettability constraints, void risk, covenant implications</li>
+    </ul>
+
+    <h4>Module 2: Stranded Asset Timeline</h4>
+    <ul>
+        <li>CRREM pathway analysis for the property type and location</li>
+        <li>Projected stranding year based on current energy intensity</li>
+        <li>Comparison against 1.5&deg;C and 2&deg;C decarbonisation pathways</li>
+        <li>What stranding means in practical terms: potential loss of institutional investability, financing constraints, insurance implications</li>
+    </ul>
+
+    <h4>Module 3: Capex Assessment</h4>
+    <ul>
+        <li>Identified sustainability-related capital expenditure requirements</li>
+        <li>Estimated cost ranges for energy efficiency improvements needed to maintain compliance</li>
+        <li>Timeline for required interventions aligned with regulatory milestones</li>
+        <li>Impact on net valuation: the &ldquo;true cost&rdquo; of holding the asset through the transition</li>
+    </ul>
+
+    <h4>Module 4: Summary and KPI Dashboard</h4>
+    <ul>
+        <li>Key sustainability metrics in a format suitable for inclusion in the valuation report</li>
+        <li>Overall ESG risk rating for the property</li>
+        <li>Data sources and confidence levels</li>
+        <li>Clear statement of limitations and assumptions</li>
+    </ul>
+
+    <h3>5.2 Worked example</h3>
+    <p class="note">The following output was produced using the Plinthos for Valuers workflow for a real commercial property, anonymised for publication. The property is a converted Victorian mill building in a regional English city, currently offered for sale as a multi-tenanted investment. All data is drawn from the public EPC register and the property&rsquo;s sales particulars.</p>
+
+    <!-- Property profile card -->
+    <div class="property-card">
+        <h5>Property Profile</h5>
+        <div class="property-grid">
+            <div class="property-stat">
+                <span class="property-stat-label">Type</span>
+                <span class="property-stat-value">Former mill, studio/office</span>
+            </div>
+            <div class="property-stat">
+                <span class="property-stat-label">Built</span>
+                <span class="property-stat-value">c. 1880</span>
+            </div>
+            <div class="property-stat">
+                <span class="property-stat-label">GIA</span>
+                <span class="property-stat-value">1,770 m&sup2;</span>
+            </div>
+            <div class="property-stat">
+                <span class="property-stat-label">Occupancy</span>
+                <span class="property-stat-value">17 tenants (creative)</span>
+            </div>
+            <div class="property-stat">
+                <span class="property-stat-label">EPC</span>
+                <span class="property-stat-value">D (score 92)</span>
+            </div>
+            <div class="property-stat">
+                <span class="property-stat-label">Heating</span>
+                <span class="property-stat-value">Natural gas</span>
+            </div>
+            <div class="property-stat">
+                <span class="property-stat-label">Asking price</span>
+                <span class="property-stat-value">&pound;2.5m (6.5% yield)</span>
+            </div>
+            <div class="property-stat">
+                <span class="property-stat-label">Time on market</span>
+                <span class="property-stat-value">260+ days</span>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <h4>Module 1 output: EPC and MEES Risk Classification</h4>
+    <p>The property holds a current EPC rating of D, due to expire in 2028. Under current MEES requirements (minimum EPC E, enforceable from 1 April 2023), the asset is compliant. However, the UK Government has proposed tightening the minimum to EPC C by 2027/2028 and EPC B by 2030; neither threshold has been enacted. Should the EPC C threshold be enacted, the property&rsquo;s D rating would render it non-compliant and unlettable unless remedial works are undertaken.</p>
+    <p><span class="risk-badge">Risk classification: Amber</span></p>
+
+    <h4>Module 2 output: Stranded Asset Timeline</h4>
+    <p>The property remains lettable under the current MEES framework. It faces material compliance risk in the near term: if the proposed EPC C minimum is enacted (anticipated 2027/2028), the property could not be let on a new lease or renewal without first achieving a C rating. Under the longer-term EPC B threshold (proposed 2030), further retrofit expenditure beyond the C improvement would be required.</p>
+    <p>Given the building&rsquo;s age (1880 construction, no recorded refurbishment), achieving these thresholds is likely to require targeted fabric and services upgrades. Costs may sit towards the higher end of indicative benchmarks owing to constraints typically associated with older building stock.</p>
+    <p>CRREM pathway analysis was not undertaken for this instruction.</p>
+
+    <h4>Module 3 output: Indicative Capex Assessment</h4>
+    <p>Based on the current EPC D and a GIA of 1,770 m&sup2;, indicative retrofit cost ranges were calculated:</p>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Target</th>
+                    <th>Indicative cost range</th>
+                    <th>Basis</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>To EPC C</td>
+                    <td>&pound;53,100 to &pound;106,200<br><span style="font-size:.8125em;color:var(--muted)">(1,770 m&sup2; at &pound;30&ndash;60/m&sup2;)</span></td>
+                    <td>Benchmark estimate</td>
+                </tr>
+                <tr>
+                    <td>To EPC B (cumulative from D)</td>
+                    <td>&pound;141,600 to &pound;283,200<br><span style="font-size:.8125em;color:var(--muted)">(1,770 m&sup2; at &pound;80&ndash;160/m&sup2;)</span></td>
+                    <td>Benchmark estimate</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p>These are indicative estimates, not a quantity surveyor&rsquo;s report. No intrusive investigation was undertaken.</p>
+
+    <h4>Module 4 output: Standardised KPI Dashboard</h4>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>KPI</th>
+                    <th>Value</th>
+                    <th>Source</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Gross Internal Area</td><td>1,770 m&sup2;</td><td>Supplied</td></tr>
+                <tr><td>EPC Rating</td><td>D (score 92)</td><td>EPC Register</td></tr>
+                <tr><td>EPC Expiry</td><td>2028</td><td>EPC Register</td></tr>
+                <tr><td>MEES Compliance</td><td>Compliant (current minimum: EPC E)</td><td>Assessed</td></tr>
+                <tr><td>Energy Use Intensity</td><td>407.7 kWh/m&sup2;/yr</td><td>Calculated</td></tr>
+                <tr><td>GHG Emissions Intensity</td><td>69.97 kgCO&#8322;/m&sup2;/yr</td><td>EPC certificate</td></tr>
+                <tr><td>CRREM Misalignment Year</td><td>Not assessed</td><td>&mdash;</td></tr>
+                <tr><td>Certification</td><td>None</td><td>Supplied</td></tr>
+                <tr><td>Physical Climate Risk</td><td>Not assessed</td><td>&mdash;</td></tr>
+                <tr><td>Planned Retrofit Works</td><td>None known</td><td>Supplied</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p>The calculated EUI of 407.7 kWh/m&sup2;/yr is notably elevated relative to the CIBSE TM46 benchmark for a general office (approximately 120 kWh/m&sup2;/yr). This may reflect the age and thermal performance of the 1880 building fabric, the nature of occupier operations, or metering arrangements capturing uses beyond the demise.</p>
+
+    <h4>Limitations stated in the output</h4>
+    <p>The output explicitly states that it does not constitute an environmental, engineering, surveying, legal, or compliance report. Where data was unavailable (CRREM, physical climate risk, planned retrofit), the tool noted the gap rather than estimating. The divergence between the modelled EPC D rating and the actual EUI of 407.7 kWh/m&sup2;/yr was flagged as warranting further investigation.</p>
+
+    <div class="callout">
+        <p><strong>Note:</strong> The original output listed GHG Emissions Intensity as &ldquo;Not provided&rdquo; despite this figure (69.97 kgCO&#8322;/m&sup2;/yr) being available on the EPC certificate. The dashboard above has been corrected. This illustrates the importance of quality-checking AI-generated outputs against source data.</p>
+    </div>
+
+    <h3>5.3 What makes this different from current practice</h3>
+    <p>The key differences between this structured approach and what we observe in typical current practice:</p>
+    <ol>
+        <li><strong>Forward-looking, not backward-looking.</strong> Most current ESG sections report the current EPC rating. A thorough section projects forward to regulatory milestones and stranding dates.</li>
+        <li><strong>Quantified, not qualitative.</strong> Instead of &ldquo;ESG factors have been considered,&rdquo; the section presents specific timelines, cost ranges, and compliance gaps.</li>
+        <li><strong>Linked to the valuation, not appended to it.</strong> Each module connects explicitly to valuation implications: lettability, void risk, capex liability, institutional investability.</li>
+        <li><strong>Sourced and traceable.</strong> Every data point is attributed to a specific source (EPC register, CRREM pathway, MEES legislation), providing the audit trail needed for professional defence.</li>
+    </ol>
+</section>
+
+<!-- Section 6 -->
+<section id="implications">
+    <h2>6. Implications</h2>
+
+    <h3>For practitioners</h3>
+    <p>The Red Book&rsquo;s ESG requirements are already in force. The absence of official templates does not remove the obligation. Practitioners who currently include minimal or no ESG analysis in their valuation reports face potential exposure if a valuation is challenged and the ESG section is found to be inadequate. The question is not whether to address ESG in valuations, but how to do so in a way that is proportionate, defensible, and efficient.</p>
+    <p>Current valuation technology provides the data inputs. The analytical and narrative layer sits on top of that data and is currently handled manually, if at all. AI-assisted tools that combine data retrieval with interpretive narrative generation represent one approach to filling this gap at scale.</p>
+
+    <h3>For professional training</h3>
+    <p>There is a clear training need. Valuers report uncertainty about what a robust ESG section looks like. CPD providers and RICS itself could address this by publishing worked examples and providing structured training on ESG analysis within the valuation context. Until such training exists, individual practitioners must develop their own approaches, which inevitably produces the variation we observe.</p>
+
+    <h3>For technology providers</h3>
+    <p>Valuation technology platforms currently stop at data aggregation. There is an opportunity to extend workflow tools to include ESG narrative generation, either natively or through integration with specialist providers. The distinction between data retrieval and professional judgment generation is the key design question.</p>
+
+    <h3>Limitations of this paper</h3>
+    <p>This is a practice note based on a small number of practitioner conversations and analysis of publicly available tool features. It is not a representative survey. The worked example in Section 5 demonstrates one approach; others may be equally valid. The regulatory references (particularly proposed MEES thresholds) are subject to change. Nothing in this paper constitutes formal practice guidance.</p>
+</section>
+
+</article>
+
+<!-- Related -->
+<div class="related-section">
+    <h3>Related Reading</h3>
+    <div class="related-links">
+        <a href="esg-commentary-red-book-valuation.html">How to Write ESG Commentary in a Red Book Valuation Report<span>The practical writing guide for surveyors</span></a>
+        <a href="rics-4th-edition-esg-requirements.html">RICS 4th Edition ESG Requirements<span>The four core elements</span></a>
+        <a href="esg-valuation-insert-template.html">ESG Valuation Insert Template<span>What a structured ESG insert looks like</span></a>
+        <a href="esg-kpis-valuation-report.html">ESG KPIs for Valuation Reports<span>What metrics to include in the dashboard</span></a>
+    </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+    <h3>Try Plinthos for Valuers</h3>
+    <p>Generate pre-drafted ESG valuation inserts with traceable sources, limitation clauses, and the four-module structure described in this paper.</p>
+    <a href="https://udify.app/chat/BK8JIPXt8TqCE7vo" class="cta-button">Start Free Trial</a>
+</div>
+<div class="subscribe-cta"><h3>Get the Monthly ESG Briefing</h3><p>RICS updates, CRREM pathway changes, and ESG reporting insights.</p><a href="https://plinthos.substack.com/subscribe">Subscribe Free</a></div>
+
+<footer><p>&copy; 2026 Plinthos. Built on research, not assumptions. Based on analysis of 136 UK REIT sustainability reports.</p></footer>
+</body>
+</html>
