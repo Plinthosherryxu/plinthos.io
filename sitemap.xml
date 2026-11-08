@@ -102,10 +102,18 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- CSRD UK real estate regulatory analysis -->
+  <url>
+    <loc>https://plinthos.io/csrd-uk-real-estate-2026.html</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Institute page -->
   <url>
     <loc>https://plinthos.io/institute.html</loc>
-    <lastmod>2026-11-03</lastmod>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
