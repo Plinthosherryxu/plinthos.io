@@ -241,6 +241,186 @@
     .footer-links a { color: var(--text-muted); }
     .footer-copy { font-size: 0.75rem; color: var(--text-dim); }
 
+    /* ── Training section ── */
+    .training-intro {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      text-align: center;
+      padding: 0 2rem;
+    }
+
+    .tier-grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      margin-top: 2.5rem;
+    }
+
+    .tier-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .tier-card:hover { border-color: var(--accent-dim); background: var(--bg-card-hover); }
+    .tier-card.flagship { border-color: var(--accent-dim); border-width: 2px; }
+
+    .tier-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-dim);
+      margin-bottom: 0.5rem;
+    }
+
+    .tier-name {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.2rem;
+    }
+
+    .tier-sub {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .tier-price {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.2rem;
+    }
+
+    .tier-meta {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      margin-bottom: 1.2rem;
+    }
+
+    .tier-items {
+      list-style: none;
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+      flex-grow: 1;
+    }
+    .tier-items li {
+      position: relative;
+      padding-left: 1.2rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .tier-items li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 5px;
+      height: 5px;
+      background: var(--accent-dim);
+      border-radius: 50%;
+    }
+
+    .tier-audience {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      border-top: 1px solid var(--border);
+      padding-top: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    .flagship-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--accent);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+
+    .waitlist-form {
+      max-width: 500px;
+      margin: 2rem auto 0;
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .waitlist-form input[type="email"] {
+      flex: 1 1 240px;
+      padding: 0.8rem 1.2rem;
+      font-size: 0.95rem;
+      font-family: var(--font);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--white);
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .waitlist-form input[type="email"]::placeholder { color: var(--text-dim); }
+    .waitlist-form input[type="email"]:focus { border-color: var(--accent-dim); }
+
+    .waitlist-form button {
+      padding: 0.8rem 1.8rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      font-family: var(--font);
+      border: 1px solid var(--accent-dim);
+      border-radius: 8px;
+      background: var(--accent-glow);
+      color: var(--accent);
+      cursor: pointer;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .waitlist-form button:hover { background: rgba(160, 196, 255, 0.15); border-color: var(--accent); }
+
+    .reg-cards {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      margin: 2rem 0 3rem;
+    }
+
+    .reg-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.4rem;
+      border-left: 3px solid var(--accent-dim);
+    }
+    .reg-card .reg-status {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-dim);
+      margin-bottom: 0.4rem;
+    }
+    .reg-card .reg-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+      line-height: 1.3;
+    }
+    .reg-card .reg-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
     /* ── Responsive ── */
     @media (max-width: 640px) {
       nav { padding: 0.8rem 1rem; }
@@ -262,6 +442,7 @@
     <a href="#policy">Policy</a>
     <a href="#dqi">DQI</a>
     <a href="#events">Events</a>
+    <a href="#training">Training</a>
     <a href="https://plinthos.io/">Advisory</a>
     <a href="https://plinthos.io/#contact">Contact</a>
   </div>
@@ -517,6 +698,133 @@
 
 <div class="divider"></div>
 
+<!-- ═══ PROFESSIONAL TRAINING ═══ -->
+<section id="training">
+  <p class="label">Professional Training</p>
+  <h2>AI &amp; Sustainability in <em>Real Estate</em></h2>
+  <p style="color: var(--text-muted); margin-bottom: 1rem; max-width: 640px;">
+    <em style="color: var(--accent); font-style: italic;">AI-assisted, professionally judged.</em>
+  </p>
+  <p style="color: var(--text-muted); margin-bottom: 1.5rem; max-width: 640px;">
+    The only programme integrating AI methods with real-estate sustainability workflows,
+    quality assurance, and professional judgement. Mapped to RICS CPD requirements.
+  </p>
+
+  <p style="color: var(--text-muted); margin-bottom: 0.5rem; max-width: 640px; font-size: 0.95rem;">
+    Four regulatory forces are creating compliance obligations that professionals cannot meet
+    without new skills:
+  </p>
+
+  <div class="reg-cards">
+    <div class="reg-card">
+      <p class="reg-status">In Force</p>
+      <p class="reg-title">RICS Sustainability 4th Edition</p>
+      <p class="reg-desc">Mandatory ESG considerations in every valuation since April 2025.</p>
+    </div>
+    <div class="reg-card">
+      <p class="reg-status">2028 &ndash; 2031</p>
+      <p class="reg-title">MEES EPC Tightening</p>
+      <p class="reg-desc">EPC C by 2028, EPC B by 2030&ndash;31 for commercial buildings.</p>
+    </div>
+    <div class="reg-card">
+      <p class="reg-status">Shifting</p>
+      <p class="reg-title">GRESB Performance Metrics</p>
+      <p class="reg-desc">Moving from disclosure-based to performance-based benchmarking.</p>
+    </div>
+    <div class="reg-card">
+      <p class="reg-status">Incoming</p>
+      <p class="reg-title">UK Sustainability Reporting Standards</p>
+      <p class="reg-desc">ISSB-aligned mandatory sustainability disclosure for UK entities.</p>
+    </div>
+  </div>
+
+  <p style="color: var(--text-muted); margin-bottom: 2rem; max-width: 640px; font-size: 0.95rem;">
+    AI courses skip real estate sustainability. Sustainability CPD skips AI.
+    Neither teaches professional judgement for technology-assisted compliance work.
+    This programme bridges the gap.
+  </p>
+
+  <!-- Programme tiers -->
+  <h3 style="margin-bottom: 0.3rem;">Three Tiers. One Ladder.</h3>
+  <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0;">
+    Each tier serves a different professional at a different stage. Start where you are.
+  </p>
+
+  <div class="tier-grid">
+
+    <!-- Tier 1: Awareness -->
+    <div class="tier-card">
+      <p class="tier-label">Tier 1</p>
+      <p class="tier-name">Awareness</p>
+      <p class="tier-sub">AI &amp; Sustainability Essentials</p>
+      <p class="tier-price">&pound;149 &ndash; 249</p>
+      <p class="tier-meta">Self-paced &middot; 4&ndash;6 hours &middot; RICS CPD</p>
+      <ul class="tier-items">
+        <li>When and how to use AI in sustainability work</li>
+        <li>Regulatory landscape: RICS, GRESB, CRREM, MEES</li>
+        <li>AI failure modes that matter in practice</li>
+        <li>The professional judgement layer</li>
+        <li>DQI-based worked examples</li>
+      </ul>
+      <p class="tier-audience">For fund managers, surveyors, sustainability officers, and MSc students</p>
+    </div>
+
+    <!-- Tier 2: Practitioner (Flagship) -->
+    <div class="tier-card flagship">
+      <p class="tier-label">Tier 2 <span class="flagship-badge">Flagship</span></p>
+      <p class="tier-name">Practitioner</p>
+      <p class="tier-sub">Applied AI for RE Sustainability</p>
+      <p class="tier-price">&pound;1,200 &ndash; 1,800</p>
+      <p class="tier-meta">6-week cohort &middot; Live sessions &middot; 30&ndash;40 CPD hours</p>
+      <ul class="tier-items">
+        <li>Build and run AI-assisted sustainability workflows</li>
+        <li>GRESB submission and CRREM pathway analysis</li>
+        <li>ESG valuation inserts with documented judgement</li>
+        <li>Governance, documentation, and client communication</li>
+        <li>Capstone project with expert review</li>
+        <li>Template pack and 90-day implementation plan</li>
+      </ul>
+      <p class="tier-audience">For sustainability directors, ESG consultants, and senior surveyors. Capped at 20 per cohort.</p>
+    </div>
+
+    <!-- Tier 3: Specialist -->
+    <div class="tier-card">
+      <p class="tier-label">Tier 3</p>
+      <p class="tier-name">Specialist</p>
+      <p class="tier-sub">Bespoke In-House Masterclass</p>
+      <p class="tier-price">From &pound;2,500<span style="font-size: 0.75em; font-weight: 400; color: var(--text-dim);">/day</span></p>
+      <p class="tier-meta">1&ndash;2 days &middot; In-person or hybrid &middot; Fully customised</p>
+      <ul class="tier-items">
+        <li>RICS 4th Edition compliance for your firm</li>
+        <li>GRESB submission strategy for your fund</li>
+        <li>AI governance policy for your organisation</li>
+        <li>DQI benchmarking against your own reports</li>
+      </ul>
+      <p class="tier-audience">For firm leads, fund managers, and organisations adapting to new regulatory requirements</p>
+    </div>
+
+  </div>
+
+  <!-- Waitlist -->
+  <div class="cta-block" style="margin-top: 3rem;">
+    <h3>Join the Waitlist</h3>
+    <p>
+      Be first to know when enrolment opens. Waitlist members receive early-access pricing,
+      free course previews, and research updates from the Plinthos Disclosure Quality Index.
+    </p>
+    <form class="waitlist-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <label for="training-email" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0);">Email address</label>
+      <input id="training-email" type="email" name="email" placeholder="Your email address" required>
+      <button type="submit">Notify Me</button>
+    </form>
+    <p style="font-size: 0.75rem; color: var(--text-dim); margin-top: 1rem;">
+      Training launches 2027 &middot; No spam &middot; Unsubscribe anytime
+    </p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
 <!-- ═══ ABOUT / INDEPENDENCE ═══ -->
 <section>
   <p class="label">About</p>
@@ -559,6 +867,7 @@
     <a href="https://plinthos.io/valuers">For Valuers</a>
     <a href="https://plinthos.io/dqi">Disclosure Quality Index</a>
     <a href="https://plinthos.io/research.html">Research Paper</a>
+    <a href="#training">Professional Training</a>
     <a href="https://plinthos.io/whitepaper.html">White Paper</a>
     <a href="https://plinthos.io/#contact">Contact</a>
   </div>
